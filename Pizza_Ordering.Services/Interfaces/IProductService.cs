@@ -11,7 +11,7 @@ namespace Pizza_Ordering.Services.Interfaces
     {
         ProductDto GetById(int id);
         void CreateProduct(ProductDto dto);
-        void UpdateProduct(int id, ProductDto dto);
+        void UpdateProduct(ProductDto dto);
         void DeleteProduct(int id);
     }
 }

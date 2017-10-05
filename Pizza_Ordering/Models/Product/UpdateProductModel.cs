@@ -5,7 +5,8 @@ using System.Web;
 
 namespace Pizza_Ordering.Models.Product
 {
-    public class UpdateProductModel
+    public class UpdateProductModel : CreateProductModel
     {
+
     }
 }

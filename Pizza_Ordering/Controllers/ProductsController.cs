@@ -1,6 +1,6 @@
 ﻿using Pizza_Ordering.Models.Product;
-using Pizza_Ordering.Services;
 using Pizza_Ordering.Services.Interfaces;
+using Pizza_Ordering.Services.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -42,8 +42,10 @@ namespace Pizza_Ordering.Controllers
         {
             _productService.CreateProduct(new Services.DTOs.ProductDto
             {
-                
+                Name = model.Name,
+                Price = model.Price
             });
+
             return Ok();
         }
 
@@ -51,6 +53,13 @@ namespace Pizza_Ordering.Controllers
         [HttpPut]
         public IHttpActionResult Put(int id, [FromBody]UpdateProductModel model)
         {
+            _productService.UpdateProduct(new Services.DTOs.ProductDto
+            {
+                Id = id,
+                Name = model.Name,
+                Price = model.Price
+            });
+
             return Ok();
         }
 
@@ -58,6 +67,8 @@ namespace Pizza_Ordering.Controllers
         [HttpDelete]
         public IHttpActionResult Delete(int id)
         {
+            _productService.DeleteProduct(id);
+
             return Ok();
         }
     }

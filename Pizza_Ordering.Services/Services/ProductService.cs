@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Pizza_Ordering.Services
+namespace Pizza_Ordering.Services.Services
 {
     public class ProductService : IProductService
     {
@@ -54,7 +54,7 @@ namespace Pizza_Ordering.Services
             }
         }
 
-        public void UpdateProduct(int id, ProductDto dto)
+        public void UpdateProduct(ProductDto dto)
         {
             throw new NotImplementedException();
         }

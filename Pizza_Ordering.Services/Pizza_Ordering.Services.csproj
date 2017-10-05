@@ -49,7 +49,7 @@
   <ItemGroup>
     <Compile Include="DTOs\ProductDto.cs" />
     <Compile Include="Interfaces\IProductService.cs" />
-    <Compile Include="ProductService.cs" />
+    <Compile Include="Services\ProductService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
