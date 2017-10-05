@@ -8,7 +8,7 @@ using System.Web.Http;
 namespace Pizza_Ordering.Controllers
 {
     [Authorize]
-    public class ValuesController : ApiController
+    public class ValuesController : BaseController
     {
         // GET api/values
         public IEnumerable<string> Get()
