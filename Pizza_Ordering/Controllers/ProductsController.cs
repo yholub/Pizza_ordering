@@ -13,10 +13,7 @@ namespace Pizza_Ordering.Controllers
     public class ProductsController : BaseController
     {
         private readonly IProductService _productService;
-
-        public ProductsController()
-            : this(new ProductService()) { }
-
+        
         public ProductsController(IProductService productService)
         {
             _productService = productService;
