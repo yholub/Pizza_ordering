@@ -101,9 +101,9 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Pizza_Ordering\Pizza_Ordering.csproj">
+    <ProjectReference Include="..\Pizza_Ordering\Pizza_Ordering.Web.csproj">
       <Project>{70C2A2CE-5691-427B-BC9F-F0011FDA7C6C}</Project>
-      <Name>Pizza_Ordering</Name>
+      <Name>Pizza_Ordering.Web</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />

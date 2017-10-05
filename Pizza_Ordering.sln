@@ -3,9 +3,17 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.26430.13
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pizza_Ordering", "Pizza_Ordering\Pizza_Ordering.csproj", "{70C2A2CE-5691-427B-BC9F-F0011FDA7C6C}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pizza_Ordering.Web", "Pizza_Ordering\Pizza_Ordering.Web.csproj", "{70C2A2CE-5691-427B-BC9F-F0011FDA7C6C}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pizza_Ordering.Tests", "Pizza_Ordering.Tests\Pizza_Ordering.Tests.csproj", "{C2C45E96-3FEB-4C15-99CA-D77A53C62A54}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pizza_Ordering.Domain", "Pizza_ordering.Domain\Pizza_Ordering.Domain.csproj", "{8B7BC04D-21EE-4260-B2A6-D9559BBA5F38}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pizza_Ordering.DataProvider", "Pizza_Ordering.DataProvider\Pizza_Ordering.DataProvider.csproj", "{18ADCB0F-B784-48DA-BDC5-FFDB0273A903}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pizza_Ordering.Common", "Pizza_Ordering.Common\Pizza_Ordering.Common.csproj", "{7475802D-7F59-4DBC-A1B0-B8E7BDE8108F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pizza_Ordering.Services", "Pizza_Ordering.Services\Pizza_Ordering.Services.csproj", "{CD287681-DA63-49AE-8329-3CC9DAB2BE15}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +29,22 @@ Global
 		{C2C45E96-3FEB-4C15-99CA-D77A53C62A54}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C2C45E96-3FEB-4C15-99CA-D77A53C62A54}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C2C45E96-3FEB-4C15-99CA-D77A53C62A54}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8B7BC04D-21EE-4260-B2A6-D9559BBA5F38}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8B7BC04D-21EE-4260-B2A6-D9559BBA5F38}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8B7BC04D-21EE-4260-B2A6-D9559BBA5F38}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8B7BC04D-21EE-4260-B2A6-D9559BBA5F38}.Release|Any CPU.Build.0 = Release|Any CPU
+		{18ADCB0F-B784-48DA-BDC5-FFDB0273A903}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{18ADCB0F-B784-48DA-BDC5-FFDB0273A903}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{18ADCB0F-B784-48DA-BDC5-FFDB0273A903}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{18ADCB0F-B784-48DA-BDC5-FFDB0273A903}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7475802D-7F59-4DBC-A1B0-B8E7BDE8108F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7475802D-7F59-4DBC-A1B0-B8E7BDE8108F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7475802D-7F59-4DBC-A1B0-B8E7BDE8108F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7475802D-7F59-4DBC-A1B0-B8E7BDE8108F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CD287681-DA63-49AE-8329-3CC9DAB2BE15}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CD287681-DA63-49AE-8329-3CC9DAB2BE15}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CD287681-DA63-49AE-8329-3CC9DAB2BE15}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CD287681-DA63-49AE-8329-3CC9DAB2BE15}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
