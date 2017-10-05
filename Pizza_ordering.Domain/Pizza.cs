@@ -5,16 +5,16 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Pizza_Ordering.Domain
+namespace Pizza_ordering.Domain
 {
-    public class Product
+    public class Pizza
     {
         public int Id { get; set; }
 
-        public string Name { get; set; }
+        public virtual PizzaRecipe Recipe { get; set; }
 
         public decimal Price { get; set; }
 
-        //public ProductType Type { get; set; }
+        public string Name { get; set; }
     }
 }

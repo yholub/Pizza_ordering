@@ -1,4 +1,5 @@
-﻿using Pizza_Ordering.Domain;
+﻿using Pizza_ordering.Domain;
+using Pizza_Ordering.Domain;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -16,7 +17,13 @@ namespace Pizza_Ordering.DataProvider
             Database.SetInitializer(new DbInitializer());
         }
 
-        public DbSet<User> Users { get; set; }
-        public DbSet<Product> Products { get; set; }
+        public virtual DbSet<User> Users { get; set; }
+        public virtual DbSet<Product> Products { get; set; }
+
+        public virtual DbSet<Pizza> Pizzas { get; set; }
+        public virtual DbSet<PizzaRecipe> PizzaRecipes { get; set; }
+        public virtual DbSet<Ingredient> Ingredients { get; set; }
+        public virtual DbSet<Company> Companies { get; set; }
+        public virtual DbSet<Place> Places { get; set; }
     }
 }
