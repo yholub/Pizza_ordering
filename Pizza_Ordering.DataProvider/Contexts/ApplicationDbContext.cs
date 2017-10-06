@@ -17,6 +17,11 @@ namespace Pizza_Ordering.DataProvider
             Database.SetInitializer(new DbInitializer());
         }
 
+        public static ApplicationDbContext Create()
+        {
+            return new ApplicationDbContext();
+        }
+
         public virtual DbSet<User> Users { get; set; }
         public virtual DbSet<Product> Products { get; set; }
 

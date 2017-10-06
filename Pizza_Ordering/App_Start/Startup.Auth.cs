@@ -10,6 +10,8 @@ using Microsoft.Owin.Security.OAuth;
 using Owin;
 using Pizza_Ordering.Providers;
 using Pizza_Ordering.Models;
+using Pizza_Ordering.DataProvider;
+using Pizza_Ordering.DataProvider.Contexts;
 
 namespace Pizza_Ordering
 {
@@ -24,11 +26,18 @@ namespace Pizza_Ordering
         {
             // Configure the db context and user manager to use a single instance per request
             app.CreatePerOwinContext(ApplicationDbContext.Create);
+            app.CreatePerOwinContext(AuthorizationContext.Create);
             app.CreatePerOwinContext<ApplicationUserManager>(ApplicationUserManager.Create);
+           
 
             // Enable the application to use a cookie to store information for the signed in user
             // and to use a cookie to temporarily store information about a user logging in with a third party login provider
-            app.UseCookieAuthentication(new CookieAuthenticationOptions());
+            app.UseCookieAuthentication(new CookieAuthenticationOptions()
+            {
+                LoginPath = new PathString("/api/Account/Login"),
+                AuthenticationType = DefaultAuthenticationTypes.ApplicationCookie
+
+            });
             app.UseExternalSignInCookie(DefaultAuthenticationTypes.ExternalCookie);
 
             // Configure the application for OAuth based flow
