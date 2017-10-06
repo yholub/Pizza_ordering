@@ -1,20 +1,18 @@
-﻿using Pizza_Ordering.Common;
+﻿using Pizza_ordering.Domain.Abstract;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Pizza_Ordering.Domain
+namespace Pizza_ordering.Domain.Entities
 {
-    public class Product
+    public class Ingredient: BaseEntity
     {
-        public int Id { get; set; }
-
         public string Name { get; set; }
 
         public decimal Price { get; set; }
 
-        //public ProductType Type { get; set; }
+        public double Weight { get; set; }
     }
 }

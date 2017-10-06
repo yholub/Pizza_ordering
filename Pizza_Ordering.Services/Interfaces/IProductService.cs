@@ -9,9 +9,9 @@ namespace Pizza_Ordering.Services.Interfaces
 {
     public interface IProductService
     {
-        ProductDto GetById(int id);
+        ProductDto GetById(long id);
         void CreateProduct(ProductDto dto);
         void UpdateProduct(ProductDto dto);
-        void DeleteProduct(int id);
+        void DeleteProduct(long id);
     }
 }

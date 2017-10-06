@@ -10,11 +10,10 @@ namespace Pizza_ordering.Domain.Abstract
     public abstract class BaseEntity
     {
         [Key]
-        public Guid Id { get; private set; }
+        public long Id { get; private set; }
 
         public BaseEntity()
         {
-            Id = Guid.NewGuid();
         }
     }
 }

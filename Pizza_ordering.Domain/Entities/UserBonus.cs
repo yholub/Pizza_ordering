@@ -2,27 +2,25 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace Pizza_ordering.Domain.Entities
 {
-    public class CapacityPlan: BaseEntity
+    public class UserBonus: BaseEntity
     {
         [Required]
-        public long PizzaHouseId { get; set; }
+        public long UserId { get; set; }
+
+        [ForeignKey("UserId")]
+        public virtual User User { get; set; }
 
         [Required]
-        public DateTime FromTime { get; set; }
+        public int Count { get; set; }
 
         [Required]
-        public DateTime ToTime { get; set; }
-
-        [Required]
-        public TimeSpan TimeForOnePizza { get; set; }
-
-        [Required]
-        public int CountOfPizza { get; set; }
+        public int Percent { get; set; }
     }
 }

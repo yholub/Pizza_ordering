@@ -12,6 +12,7 @@ using Microsoft.Owin.Security.OAuth;
 using Pizza_Ordering.Models;
 using Pizza_Ordering.Domain;
 using Pizza_Ordering.DataProvider.Contexts;
+using Pizza_ordering.Domain.Entities;
 
 namespace Pizza_Ordering.Providers
 {

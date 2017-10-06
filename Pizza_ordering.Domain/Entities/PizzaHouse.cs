@@ -17,10 +17,12 @@ namespace Pizza_ordering.Domain.Entities
         [ForeignKey("AddressId")]
         public virtual Address Location { get; set; }
 
+        public virtual List<CapacityPlan> CapacityPlans { get; set; }
+
         public TimeSpan OpenTime { get; set; }
 
         public TimeSpan СloseTime { get; set; }
 
-        public virtual List<Place> Places { get; set; }
+        //public virtual List<Place> Places { get; set; }
     }
 }

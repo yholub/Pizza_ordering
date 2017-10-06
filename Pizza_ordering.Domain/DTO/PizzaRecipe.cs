@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Pizza_ordering.Domain
 {
-    public class PizzaRecipe
+    public class _PizzaRecipe
     {
         public int Id { get; set; }
 

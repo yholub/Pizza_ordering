@@ -19,9 +19,9 @@ namespace Pizza_Ordering.Controllers
             _productService = productService;
         }
         
-        [Route("{id:int}")]
+        [Route("{id:long}")]
         [HttpGet]
-        public IHttpActionResult Get(int id)
+        public IHttpActionResult Get(long id)
         {
             var dto = _productService.GetById(id);
             var model = new ProductModel
@@ -46,9 +46,9 @@ namespace Pizza_Ordering.Controllers
             return Ok();
         }
 
-        [Route("{id:int}")]
+        [Route("{id:long}")]
         [HttpPut]
-        public IHttpActionResult Put(int id, [FromBody]UpdateProductModel model)
+        public IHttpActionResult Put(long id, [FromBody]UpdateProductModel model)
         {
             _productService.UpdateProduct(new Services.DTOs.ProductDto
             {
@@ -60,9 +60,9 @@ namespace Pizza_Ordering.Controllers
             return Ok();
         }
 
-        [Route("{id:int}")]
+        [Route("{id:long}")]
         [HttpDelete]
-        public IHttpActionResult Delete(int id)
+        public IHttpActionResult Delete(long id)
         {
             _productService.DeleteProduct(id);
 

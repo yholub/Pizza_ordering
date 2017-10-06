@@ -11,11 +11,11 @@ namespace Pizza_Ordering.Services.Services
 {
     public class ProductService : IProductService
     {
-        public ProductDto GetById(int id)
+        public ProductDto GetById(long id)
         {
             using (ApplicationDbContext ctx = new ApplicationDbContext())
             {
-                var entity = ctx.Products.FirstOrDefault(x => x.Id == id);
+                var entity = ctx.SavedPizzas.FirstOrDefault(x => x.Id == id);
 
                 if (entity == null)
                 {
@@ -26,7 +26,7 @@ namespace Pizza_Ordering.Services.Services
                 {
                     Id = entity.Id,
                     Name = entity.Name,
-                    Price = entity.Price
+                    Price = entity.BasePizza.Price // + add ingredients
                 };
 
                 return res;
@@ -37,20 +37,20 @@ namespace Pizza_Ordering.Services.Services
         {
             using (ApplicationDbContext ctx = new ApplicationDbContext())
             {
-                var entity = ctx.Products.FirstOrDefault(x => x.Id == dto.Id);
+                var entity = ctx.SavedPizzas.FirstOrDefault(x => x.Id == dto.Id);
 
                 if (entity == null)
                 {
                     throw new ArgumentException($"product with 'id' = {dto.Id} already exist");
                 }
 
-                entity = new Pizza_Ordering.Domain.Product
+               /* entity = new Pizza_Ordering.Domain.
                 {
                     Name = dto.Name,
                     Price = dto.Price
                 };
 
-                ctx.Products.Add(entity);
+                ctx.Products.Add(entity);*/
             }
         }
 
@@ -58,7 +58,7 @@ namespace Pizza_Ordering.Services.Services
         {
             throw new NotImplementedException();
         }
-        public void DeleteProduct(int id)
+        public void DeleteProduct(long id)
         {
             throw new NotImplementedException();
         }

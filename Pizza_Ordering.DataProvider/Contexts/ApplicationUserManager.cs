@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin;
+using Pizza_ordering.Domain.Entities;
 using Pizza_Ordering.Domain;
 using System;
 using System.Collections.Generic;
