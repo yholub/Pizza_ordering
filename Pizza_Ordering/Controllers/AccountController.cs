@@ -16,6 +16,9 @@ using Microsoft.Owin.Security.OAuth;
 using Pizza_Ordering.Models;
 using Pizza_Ordering.Providers;
 using Pizza_Ordering.Results;
+using Pizza_Ordering.Domain;
+using Pizza_Ordering.Domain.Identity;
+using Pizza_Ordering.DataProvider.Contexts;
 
 namespace Pizza_Ordering.Controllers
 {
@@ -74,11 +77,37 @@ namespace Pizza_Ordering.Controllers
             return Ok();
         }
 
+        // POST api/Account/Logout
+        [Route("Login")]
+        [AllowAnonymous]
+        [HttpPost]
+        public async Task<IHttpActionResult> Login(string userName, string password)
+        {
+            
+
+            User user = await UserManager.FindAsync(userName, password);
+
+            if (user == null)
+            {
+
+                return this.BadRequest("Unauthorized");
+            }
+
+            ClaimsIdentity oAuthIdentity = await user.GenerateUserIdentityAsync(UserManager,
+               OAuthDefaults.AuthenticationType);
+            ClaimsIdentity cookiesIdentity = await user.GenerateUserIdentityAsync(UserManager,
+                DefaultAuthenticationTypes.ApplicationCookie);
+
+            Authentication.SignIn(cookiesIdentity);
+
+            return Ok();
+        }
+
         // GET api/Account/ManageInfo?returnUrl=%2F&generateState=true
         [Route("ManageInfo")]
         public async Task<ManageInfoViewModel> GetManageInfo(string returnUrl, bool generateState = false)
         {
-            IdentityUser user = await UserManager.FindByIdAsync(User.Identity.GetUserId());
+            User user = await UserManager.FindByIdAsync(User.Identity.GetUserId<long>());
 
             if (user == null)
             {
@@ -87,7 +116,7 @@ namespace Pizza_Ordering.Controllers
 
             List<UserLoginInfoViewModel> logins = new List<UserLoginInfoViewModel>();
 
-            foreach (IdentityUserLogin linkedAccount in user.Logins)
+            foreach (CustomUserLogin linkedAccount in user.Logins)
             {
                 logins.Add(new UserLoginInfoViewModel
                 {
@@ -123,7 +152,7 @@ namespace Pizza_Ordering.Controllers
                 return BadRequest(ModelState);
             }
 
-            IdentityResult result = await UserManager.ChangePasswordAsync(User.Identity.GetUserId(), model.OldPassword,
+            IdentityResult result = await UserManager.ChangePasswordAsync(User.Identity.GetUserId<long>(), model.OldPassword,
                 model.NewPassword);
             
             if (!result.Succeeded)
@@ -143,7 +172,7 @@ namespace Pizza_Ordering.Controllers
                 return BadRequest(ModelState);
             }
 
-            IdentityResult result = await UserManager.AddPasswordAsync(User.Identity.GetUserId(), model.NewPassword);
+            IdentityResult result = await UserManager.AddPasswordAsync(User.Identity.GetUserId<long>(), model.NewPassword);
 
             if (!result.Succeeded)
             {
@@ -180,7 +209,7 @@ namespace Pizza_Ordering.Controllers
                 return BadRequest("The external login is already associated with an account.");
             }
 
-            IdentityResult result = await UserManager.AddLoginAsync(User.Identity.GetUserId(),
+            IdentityResult result = await UserManager.AddLoginAsync(User.Identity.GetUserId<long>(),
                 new UserLoginInfo(externalData.LoginProvider, externalData.ProviderKey));
 
             if (!result.Succeeded)
@@ -204,11 +233,11 @@ namespace Pizza_Ordering.Controllers
 
             if (model.LoginProvider == LocalLoginProvider)
             {
-                result = await UserManager.RemovePasswordAsync(User.Identity.GetUserId());
+                result = await UserManager.RemovePasswordAsync(User.Identity.GetUserId<long>());
             }
             else
             {
-                result = await UserManager.RemoveLoginAsync(User.Identity.GetUserId(),
+                result = await UserManager.RemoveLoginAsync(User.Identity.GetUserId<long>(),
                     new UserLoginInfo(model.LoginProvider, model.ProviderKey));
             }
 
@@ -250,7 +279,7 @@ namespace Pizza_Ordering.Controllers
                 return new ChallengeResult(provider, this);
             }
 
-            ApplicationUser user = await UserManager.FindAsync(new UserLoginInfo(externalLogin.LoginProvider,
+            User user = await UserManager.FindAsync(new UserLoginInfo(externalLogin.LoginProvider,
                 externalLogin.ProviderKey));
 
             bool hasRegistered = user != null;
@@ -328,7 +357,7 @@ namespace Pizza_Ordering.Controllers
                 return BadRequest(ModelState);
             }
 
-            var user = new ApplicationUser() { UserName = model.Email, Email = model.Email };
+            var user = new User() { UserName = model.Email, Email = model.Email };
 
             IdentityResult result = await UserManager.CreateAsync(user, model.Password);
 
@@ -357,7 +386,7 @@ namespace Pizza_Ordering.Controllers
                 return InternalServerError();
             }
 
-            var user = new ApplicationUser() { UserName = model.Email, Email = model.Email };
+            var user = new User() { UserName = model.Email, Email = model.Email };
 
             IdentityResult result = await UserManager.CreateAsync(user);
             if (!result.Succeeded)

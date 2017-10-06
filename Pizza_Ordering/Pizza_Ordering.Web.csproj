@@ -209,7 +209,6 @@
   <ItemGroup>
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
-    <Compile Include="App_Start\IdentityConfig.cs" />
     <Compile Include="App_Start\NinjectWebCommon.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
@@ -253,7 +252,6 @@
     </Compile>
     <Compile Include="Models\AccountBindingModels.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
-    <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\Product\CreateProductModel.cs" />
     <Compile Include="Models\Product\ProductModel.cs" />
     <Compile Include="Models\Product\UpdateProductModel.cs" />
@@ -338,6 +336,14 @@
     <Content Include="Scripts\jquery-1.10.2.min.map" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Pizza_Ordering.DataProvider\Pizza_Ordering.DataProvider.csproj">
+      <Project>{18ADCB0F-B784-48DA-BDC5-FFDB0273A903}</Project>
+      <Name>Pizza_Ordering.DataProvider</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Pizza_ordering.Domain\Pizza_Ordering.Domain.csproj">
+      <Project>{8B7BC04D-21EE-4260-B2A6-D9559BBA5F38}</Project>
+      <Name>Pizza_Ordering.Domain</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Pizza_Ordering.Services\Pizza_Ordering.Services.csproj">
       <Project>{CD287681-DA63-49AE-8329-3CC9DAB2BE15}</Project>
       <Name>Pizza_Ordering.Services</Name>

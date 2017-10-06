@@ -10,6 +10,8 @@ using Microsoft.Owin.Security;
 using Microsoft.Owin.Security.Cookies;
 using Microsoft.Owin.Security.OAuth;
 using Pizza_Ordering.Models;
+using Pizza_Ordering.Domain;
+using Pizza_Ordering.DataProvider.Contexts;
 
 namespace Pizza_Ordering.Providers
 {
@@ -31,7 +33,7 @@ namespace Pizza_Ordering.Providers
         {
             var userManager = context.OwinContext.GetUserManager<ApplicationUserManager>();
 
-            ApplicationUser user = await userManager.FindAsync(context.UserName, context.Password);
+            User user = await userManager.FindAsync(context.UserName, context.Password);
 
             if (user == null)
             {
