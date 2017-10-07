@@ -1,17 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using Microsoft.AspNet.Identity;
+﻿using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.Owin;
 using Microsoft.Owin.Security.Cookies;
 using Microsoft.Owin.Security.Google;
 using Microsoft.Owin.Security.OAuth;
 using Owin;
-using Pizza_Ordering.Providers;
-using Pizza_Ordering.Models;
 using Pizza_Ordering.DataProvider;
 using Pizza_Ordering.DataProvider.Contexts;
+using Pizza_Ordering.Models;
+using Pizza_Ordering.Providers;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Pizza_Ordering
 {
@@ -28,7 +28,6 @@ namespace Pizza_Ordering
             app.CreatePerOwinContext(ApplicationDbContext.Create);
             app.CreatePerOwinContext(AuthorizationContext.Create);
             app.CreatePerOwinContext<ApplicationUserManager>(ApplicationUserManager.Create);
-           
 
             // Enable the application to use a cookie to store information for the signed in user
             // and to use a cookie to temporarily store information about a user logging in with a third party login provider
@@ -36,7 +35,6 @@ namespace Pizza_Ordering
             {
                 LoginPath = new PathString("/api/Account/Login"),
                 AuthenticationType = DefaultAuthenticationTypes.ApplicationCookie
-
             });
             app.UseExternalSignInCookie(DefaultAuthenticationTypes.ExternalCookie);
 
@@ -48,6 +46,7 @@ namespace Pizza_Ordering
                 Provider = new ApplicationOAuthProvider(PublicClientId),
                 AuthorizeEndpointPath = new PathString("/api/Account/ExternalLogin"),
                 AccessTokenExpireTimeSpan = TimeSpan.FromDays(14),
+
                 // In production mode set AllowInsecureHttp = false
                 AllowInsecureHttp = true
             };
@@ -56,23 +55,23 @@ namespace Pizza_Ordering
             app.UseOAuthBearerTokens(OAuthOptions);
 
             // Uncomment the following lines to enable logging in with third party login providers
-            //app.UseMicrosoftAccountAuthentication(
+            // app.UseMicrosoftAccountAuthentication(
             //    clientId: "",
             //    clientSecret: "");
 
-            //app.UseTwitterAuthentication(
+            // app.UseTwitterAuthentication(
             //    consumerKey: "",
             //    consumerSecret: "");
 
-            //app.UseFacebookAuthentication(
+            // app.UseFacebookAuthentication(
             //    appId: "",
             //    appSecret: "");
 
-            //app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()
-            //{
+            // app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()
+            // {
             //    ClientId = "",
             //    ClientSecret = ""
-            //});
+            // });
         }
     }
 }

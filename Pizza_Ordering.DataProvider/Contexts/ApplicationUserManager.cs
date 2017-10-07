@@ -1,8 +1,8 @@
 ﻿using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin;
-using Pizza_ordering.Domain.Entities;
 using Pizza_Ordering.Domain;
+using Pizza_ordering.Domain.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,12 +21,14 @@ namespace Pizza_Ordering.DataProvider.Contexts
         public static ApplicationUserManager Create(IdentityFactoryOptions<ApplicationUserManager> options, IOwinContext context)
         {
             var manager = new ApplicationUserManager(new CustomUserStore(context.Get<AuthorizationContext>()));
+
             // Configure validation logic for usernames
             manager.UserValidator = new UserValidator<User, long>(manager)
             {
                 AllowOnlyAlphanumericUserNames = false,
                 RequireUniqueEmail = true
             };
+
             // Configure validation logic for passwords
             manager.PasswordValidator = new PasswordValidator
             {
@@ -42,6 +44,7 @@ namespace Pizza_Ordering.DataProvider.Contexts
             {
                 manager.UserTokenProvider = new DataProtectorTokenProvider<User, long>(dataProtectionProvider.Create("ASP.NET Identity"));
             }
+
             return manager;
         }
     }

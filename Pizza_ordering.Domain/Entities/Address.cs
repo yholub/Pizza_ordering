@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Pizza_ordering.Domain.Entities
 {
-    public class Address: BaseEntity
+    public class Address : BaseEntity
     {
         [Required]
         public string City { get; set; }

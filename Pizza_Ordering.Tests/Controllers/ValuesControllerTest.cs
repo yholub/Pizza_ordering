@@ -1,12 +1,12 @@
-﻿using System;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Pizza_Ordering;
+using Pizza_Ordering.Controllers;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
 using System.Text;
 using System.Web.Http;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Pizza_Ordering;
-using Pizza_Ordering.Controllers;
 
 namespace Pizza_Ordering.Tests.Controllers
 {

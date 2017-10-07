@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Pizza_ordering.Domain.Entities
 {
-    public class ModifiedPizza: BaseEntity
+    public class ModifiedPizza : BaseEntity
     {
         [Required]
         public long FixPizzaId { get; set; }
@@ -18,6 +18,5 @@ namespace Pizza_ordering.Domain.Entities
         public virtual FixPizza BasePizza { get; set; }
 
         public virtual List<IngredientItem> CustomIngredients { get; set; }
-
     }
 }

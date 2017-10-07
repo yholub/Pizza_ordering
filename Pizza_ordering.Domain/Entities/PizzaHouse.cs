@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Pizza_ordering.Domain.Entities
 {
-    public class PizzaHouse: BaseEntity
+    public class PizzaHouse : BaseEntity
     {
         [Required]
         public long AddressId { get; set; }
@@ -23,6 +23,6 @@ namespace Pizza_ordering.Domain.Entities
 
         public TimeSpan СloseTime { get; set; }
 
-        //public virtual List<Place> Places { get; set; }
+        // public virtual List<Place> Places { get; set; }
     }
 }

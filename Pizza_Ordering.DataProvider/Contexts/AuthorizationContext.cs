@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNet.Identity.EntityFramework;
-using Pizza_ordering.Domain.Entities;
 using Pizza_Ordering.Domain;
+using Pizza_ordering.Domain.Entities;
 using Pizza_Ordering.Domain.Identity;
 using System;
 using System.Collections.Generic;
@@ -26,7 +26,8 @@ namespace Pizza_Ordering.DataProvider.Contexts
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
-            //modelBuilder.Configurations.Add(new UserConfiguration());
+
+            // modelBuilder.Configurations.Add(new UserConfiguration());
             ConfigureIdentityTables(modelBuilder);
         }
 

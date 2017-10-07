@@ -7,6 +7,5 @@ namespace Pizza_Ordering.Models.Product
 {
     public class UpdateProductModel : CreateProductModel
     {
-
     }
 }

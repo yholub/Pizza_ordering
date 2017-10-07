@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Pizza_ordering.Domain.Entities
 {
-    public class SavedPizza: BaseEntity
+    public class SavedPizza : BaseEntity
     {
         [Required]
         public long UserId { get; set; }

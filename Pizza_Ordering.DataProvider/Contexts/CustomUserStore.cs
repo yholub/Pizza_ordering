@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNet.Identity.EntityFramework;
-using Pizza_ordering.Domain.Entities;
 using Pizza_Ordering.Domain;
+using Pizza_ordering.Domain.Entities;
 using Pizza_Ordering.Domain.Identity;
 using System;
 using System.Collections.Generic;

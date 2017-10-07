@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Pizza_ordering.Domain.Entities
 {
-    public class Ingredient: BaseEntity
+    public class Ingredient : BaseEntity
     {
         public string Name { get; set; }
 

@@ -1,4 +1,17 @@
-﻿using System;
+﻿using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
+using Microsoft.AspNet.Identity.Owin;
+using Microsoft.Owin.Security;
+using Microsoft.Owin.Security.Cookies;
+using Microsoft.Owin.Security.OAuth;
+using Pizza_Ordering.DataProvider.Contexts;
+using Pizza_Ordering.Domain;
+using Pizza_ordering.Domain.Entities;
+using Pizza_Ordering.Domain.Identity;
+using Pizza_Ordering.Models;
+using Pizza_Ordering.Providers;
+using Pizza_Ordering.Results;
+using System;
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Security.Claims;
@@ -7,19 +20,6 @@ using System.Threading.Tasks;
 using System.Web;
 using System.Web.Http;
 using System.Web.Http.ModelBinding;
-using Microsoft.AspNet.Identity;
-using Microsoft.AspNet.Identity.EntityFramework;
-using Microsoft.AspNet.Identity.Owin;
-using Microsoft.Owin.Security;
-using Microsoft.Owin.Security.Cookies;
-using Microsoft.Owin.Security.OAuth;
-using Pizza_Ordering.Models;
-using Pizza_Ordering.Providers;
-using Pizza_Ordering.Results;
-using Pizza_Ordering.Domain;
-using Pizza_Ordering.Domain.Identity;
-using Pizza_Ordering.DataProvider.Contexts;
-using Pizza_ordering.Domain.Entities;
 
 namespace Pizza_Ordering.Controllers
 {
@@ -34,7 +34,8 @@ namespace Pizza_Ordering.Controllers
         {
         }
 
-        public AccountController(ApplicationUserManager userManager,
+        public AccountController(
+            ApplicationUserManager userManager,
             ISecureDataFormat<AuthenticationTicket> accessTokenFormat)
         {
             UserManager = userManager;
@@ -47,6 +48,7 @@ namespace Pizza_Ordering.Controllers
             {
                 return _userManager ?? Request.GetOwinContext().GetUserManager<ApplicationUserManager>();
             }
+
             private set
             {
                 _userManager = value;
@@ -66,7 +68,7 @@ namespace Pizza_Ordering.Controllers
             {
                 Email = User.Identity.GetUserName(),
                 HasRegistered = externalLogin == null,
-                LoginProvider = externalLogin != null ? externalLogin.LoginProvider : null
+                LoginProvider = externalLogin?.LoginProvider
             };
         }
 
@@ -84,19 +86,18 @@ namespace Pizza_Ordering.Controllers
         [HttpPost]
         public async Task<IHttpActionResult> Login(string userName, string password)
         {
-            
-
             User user = await UserManager.FindAsync(userName, password);
 
             if (user == null)
             {
-
-                return this.BadRequest("Unauthorized");
+                return BadRequest("Unauthorized");
             }
 
-            ClaimsIdentity oAuthIdentity = await user.GenerateUserIdentityAsync(UserManager,
+            ClaimsIdentity oAuthIdentity = await user.GenerateUserIdentityAsync(
+                UserManager,
                OAuthDefaults.AuthenticationType);
-            ClaimsIdentity cookiesIdentity = await user.GenerateUserIdentityAsync(UserManager,
+            ClaimsIdentity cookiesIdentity = await user.GenerateUserIdentityAsync(
+                UserManager,
                 DefaultAuthenticationTypes.ApplicationCookie);
 
             Authentication.SignIn(cookiesIdentity);
@@ -153,9 +154,11 @@ namespace Pizza_Ordering.Controllers
                 return BadRequest(ModelState);
             }
 
-            IdentityResult result = await UserManager.ChangePasswordAsync(User.Identity.GetUserId<long>(), model.OldPassword,
+            IdentityResult result = await UserManager.ChangePasswordAsync(
+                User.Identity.GetUserId<long>(),
+                model.OldPassword,
                 model.NewPassword);
-            
+
             if (!result.Succeeded)
             {
                 return GetErrorResult(result);
@@ -210,7 +213,8 @@ namespace Pizza_Ordering.Controllers
                 return BadRequest("The external login is already associated with an account.");
             }
 
-            IdentityResult result = await UserManager.AddLoginAsync(User.Identity.GetUserId<long>(),
+            IdentityResult result = await UserManager.AddLoginAsync(
+                User.Identity.GetUserId<long>(),
                 new UserLoginInfo(externalData.LoginProvider, externalData.ProviderKey));
 
             if (!result.Succeeded)
@@ -238,7 +242,8 @@ namespace Pizza_Ordering.Controllers
             }
             else
             {
-                result = await UserManager.RemoveLoginAsync(User.Identity.GetUserId<long>(),
+                result = await UserManager.RemoveLoginAsync(
+                    User.Identity.GetUserId<long>(),
                     new UserLoginInfo(model.LoginProvider, model.ProviderKey));
             }
 
@@ -280,7 +285,8 @@ namespace Pizza_Ordering.Controllers
                 return new ChallengeResult(provider, this);
             }
 
-            User user = await UserManager.FindAsync(new UserLoginInfo(externalLogin.LoginProvider,
+            User user = await UserManager.FindAsync(new UserLoginInfo(
+                externalLogin.LoginProvider,
                 externalLogin.ProviderKey));
 
             bool hasRegistered = user != null;
@@ -288,10 +294,12 @@ namespace Pizza_Ordering.Controllers
             if (hasRegistered)
             {
                 Authentication.SignOut(DefaultAuthenticationTypes.ExternalCookie);
-                
-                 ClaimsIdentity oAuthIdentity = await user.GenerateUserIdentityAsync(UserManager,
+
+                 ClaimsIdentity oAuthIdentity = await user.GenerateUserIdentityAsync(
+                     UserManager,
                     OAuthDefaults.AuthenticationType);
-                ClaimsIdentity cookieIdentity = await user.GenerateUserIdentityAsync(UserManager,
+                ClaimsIdentity cookieIdentity = await user.GenerateUserIdentityAsync(
+                    UserManager,
                     CookieAuthenticationDefaults.AuthenticationType);
 
                 AuthenticationProperties properties = ApplicationOAuthProvider.CreateProperties(user.UserName);
@@ -398,8 +406,9 @@ namespace Pizza_Ordering.Controllers
             result = await UserManager.AddLoginAsync(user.Id, info.Login);
             if (!result.Succeeded)
             {
-                return GetErrorResult(result); 
+                return GetErrorResult(result);
             }
+
             return Ok();
         }
 
@@ -434,7 +443,7 @@ namespace Pizza_Ordering.Controllers
                 {
                     foreach (string error in result.Errors)
                     {
-                        ModelState.AddModelError("", error);
+                        ModelState.AddModelError(string.Empty, error);
                     }
                 }
 
@@ -453,14 +462,17 @@ namespace Pizza_Ordering.Controllers
         private class ExternalLoginData
         {
             public string LoginProvider { get; set; }
+
             public string ProviderKey { get; set; }
+
             public string UserName { get; set; }
 
             public IList<Claim> GetClaims()
             {
-                IList<Claim> claims = new List<Claim>();
-                claims.Add(new Claim(ClaimTypes.NameIdentifier, ProviderKey, null, LoginProvider));
-
+                IList<Claim> claims = new List<Claim>
+                {
+                    new Claim(ClaimTypes.NameIdentifier, ProviderKey, null, LoginProvider)
+                };
                 if (UserName != null)
                 {
                     claims.Add(new Claim(ClaimTypes.Name, UserName, null, LoginProvider));
@@ -478,8 +490,8 @@ namespace Pizza_Ordering.Controllers
 
                 Claim providerKeyClaim = identity.FindFirst(ClaimTypes.NameIdentifier);
 
-                if (providerKeyClaim == null || String.IsNullOrEmpty(providerKeyClaim.Issuer)
-                    || String.IsNullOrEmpty(providerKeyClaim.Value))
+                if (providerKeyClaim == null || string.IsNullOrEmpty(providerKeyClaim.Issuer)
+                    || string.IsNullOrEmpty(providerKeyClaim.Value))
                 {
                     return null;
                 }

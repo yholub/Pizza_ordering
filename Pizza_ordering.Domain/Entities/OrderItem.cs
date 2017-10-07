@@ -1,5 +1,5 @@
-﻿using Pizza_ordering.Domain.Abstract;
-using Pizza_Ordering.Common;
+﻿using Pizza_Ordering.Common;
+using Pizza_ordering.Domain.Abstract;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace Pizza_ordering.Domain.Entities
 {
-    public class OrderItem: BaseEntity
+    public class OrderItem : BaseEntity
     {
         [Required]
         public long PizzaId { get; set; }

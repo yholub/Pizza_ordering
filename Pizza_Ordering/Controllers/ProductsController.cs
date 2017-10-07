@@ -13,12 +13,12 @@ namespace Pizza_Ordering.Controllers
     public class ProductsController : BaseController
     {
         private readonly IProductService _productService;
-        
+
         public ProductsController(IProductService productService)
         {
             _productService = productService;
         }
-        
+
         [Route("{id:long}")]
         [HttpGet]
         public IHttpActionResult Get(long id)
@@ -33,7 +33,7 @@ namespace Pizza_Ordering.Controllers
 
             return Ok(model);
         }
-        
+
         [HttpPost]
         public IHttpActionResult Post([FromBody]CreateProductModel model)
         {

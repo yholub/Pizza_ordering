@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Pizza_ordering.Domain.Entities
 {
-    public class CapacityPlan: BaseEntity
+    public class CapacityPlan : BaseEntity
     {
         [Required]
         public long PizzaHouseId { get; set; }

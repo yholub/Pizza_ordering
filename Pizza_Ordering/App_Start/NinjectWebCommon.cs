@@ -1,42 +1,40 @@
+using Microsoft.Web.Infrastructure.DynamicModuleHelper;
+using Ninject;
+using Ninject.Web.Common;
+using Ninject.Web.WebApi;
+using Pizza_Ordering.Services.Interfaces;
+using Pizza_Ordering.Services.Services;
+using System;
+using System.Web;
+using System.Web.Http;
+
 [assembly: WebActivatorEx.PreApplicationStartMethod(typeof(Pizza_Ordering.App_Start.NinjectWebCommon), "Start")]
 [assembly: WebActivatorEx.ApplicationShutdownMethodAttribute(typeof(Pizza_Ordering.App_Start.NinjectWebCommon), "Stop")]
 
 namespace Pizza_Ordering.App_Start
 {
-    using System;
-    using System.Web;
-
-    using Microsoft.Web.Infrastructure.DynamicModuleHelper;
-
-    using Ninject;
-    using Ninject.Web.Common;
-    using Ninject.Web.WebApi;
-    using System.Web.Http;
-    using Pizza_Ordering.Services.Interfaces;
-    using Pizza_Ordering.Services.Services;
-
-    public static class NinjectWebCommon 
+    public static class NinjectWebCommon
     {
-        private static readonly Bootstrapper bootstrapper = new Bootstrapper();
+        private static readonly Bootstrapper Bootstrapper = new Bootstrapper();
 
         /// <summary>
         /// Starts the application
         /// </summary>
-        public static void Start() 
+        public static void Start()
         {
             DynamicModuleUtility.RegisterModule(typeof(OnePerRequestHttpModule));
             DynamicModuleUtility.RegisterModule(typeof(NinjectHttpModule));
-            bootstrapper.Initialize(CreateKernel);
+            Bootstrapper.Initialize(CreateKernel);
         }
-        
+
         /// <summary>
         /// Stops the application.
         /// </summary>
         public static void Stop()
         {
-            bootstrapper.ShutDown();
+            Bootstrapper.ShutDown();
         }
-        
+
         /// <summary>
         /// Creates the kernel that will manage your application.
         /// </summary>
@@ -51,8 +49,6 @@ namespace Pizza_Ordering.App_Start
 
                 RegisterServices(kernel);
                 GlobalConfiguration.Configuration.DependencyResolver = new NinjectDependencyResolver(kernel);
-                return kernel;
-
                 return kernel;
             }
             catch
@@ -69,6 +65,6 @@ namespace Pizza_Ordering.App_Start
         private static void RegisterServices(IKernel kernel)
         {
             kernel.Bind<IProductService>().To<ProductService>();
-        }        
+        }
     }
 }

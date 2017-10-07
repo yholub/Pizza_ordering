@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace Pizza_ordering.Domain
 {
-    public class IngredientItem: BaseEntity
+    public class IngredientItem : BaseEntity
     {
         [Required]
         public long IngredientId { get; set; }
