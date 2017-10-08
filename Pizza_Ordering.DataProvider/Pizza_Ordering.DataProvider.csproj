@@ -76,6 +76,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Configurations\CustomRoleConfigurations.cs" />
+    <Compile Include="Configurations\CustomUserClaimsConfigurations.cs" />
+    <Compile Include="Configurations\CustomUserLoginsConfigurations.cs" />
+    <Compile Include="Configurations\CustomUserRolesConfigurations.cs" />
+    <Compile Include="Configurations\UserConfiguration.cs" />
     <Compile Include="Contexts\ApplicationDbContext.cs" />
     <Compile Include="Contexts\ApplicationUserManager.cs" />
     <Compile Include="Contexts\AuthorizationContext.cs" />

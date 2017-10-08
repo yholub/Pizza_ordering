@@ -7,6 +7,7 @@ using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Pizza_Ordering.DataProvider.Configurations;
 
 namespace Pizza_Ordering.DataProvider
 {
@@ -46,5 +47,18 @@ namespace Pizza_Ordering.DataProvider
         public virtual DbSet<SavedPizza> SavedPizzas { get; set; }
 
         public virtual DbSet<UserBonus> UserBonuses { get; set; }
+
+        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        {
+            ConfigureIdentityTables(modelBuilder);
+        }
+
+        private void ConfigureIdentityTables(DbModelBuilder modelBuilder)
+        {
+            modelBuilder.Configurations.Add(new CustomRoleConfigurations());
+            modelBuilder.Configurations.Add(new CustomUserClaimsConfigurations());
+            modelBuilder.Configurations.Add(new CustomUserLoginsConfigurations());
+            modelBuilder.Configurations.Add(new CustomUserRolesConfigurations());
+        }
     }
 }
