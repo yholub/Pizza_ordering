@@ -12,11 +12,14 @@ namespace Pizza_Ordering.DataProvider.Repositories
 {
     public class RoleRepository : IRepository<CustomRole>, IRoleStore<CustomRole, long>
     {
-         protected AuthorizationContext db;
+        protected AuthorizationContext db;
+
+        private readonly DbSet<CustomRole> dbSet;
 
         public RoleRepository(AuthorizationContext context)
         {
             this.db = context;
+            this.dbSet = db.Set<CustomRole>();
         }
 
         public Task CreateAsync(CustomRole role)
@@ -27,7 +30,7 @@ namespace Pizza_Ordering.DataProvider.Repositories
 
         public Task DeleteAsync(CustomRole role)
         {
-            db.Set<CustomRole>().Remove(role);
+            dbSet.Remove(role);
             return Task.FromResult(1);
         }
 
@@ -37,7 +40,7 @@ namespace Pizza_Ordering.DataProvider.Repositories
 
         public Task<CustomRole> FindByIdAsync(long roleId)
         {
-            return db.Set<CustomRole>().FindAsync(roleId);
+            return dbSet.FindAsync(roleId);
         }
 
         public Task<CustomRole> FindByNameAsync(string roleName)
@@ -53,17 +56,17 @@ namespace Pizza_Ordering.DataProvider.Repositories
 
         public List<CustomRole> GetAll()
         {
-            return db.Set<CustomRole>().ToList();
+            return dbSet.ToList();
         }
 
         public CustomRole Get(object id)
         {
-            return db.Set<CustomRole>().Find(id);
+            return dbSet.Find(id);
         }
 
         public void Create(CustomRole item)
         {
-            db.Set<CustomRole>().Add(item);
+            dbSet.Add(item);
         }
 
         public void Update(CustomRole item)
@@ -76,13 +79,18 @@ namespace Pizza_Ordering.DataProvider.Repositories
             CustomRole item = db.Set<CustomRole>().Find(id);
             if (item != null)
             {
-                db.Set<CustomRole>().Remove(item);
+                dbSet.Remove(item);
             }
         }
 
         public void Save()
         {
             db.SaveChanges();
+        }
+
+        public IQueryable<CustomRole> Query()
+        {
+            return dbSet.AsQueryable();
         }
     }
 }

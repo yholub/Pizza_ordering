@@ -15,32 +15,35 @@ namespace Pizza_Ordering.DataProvider.Repositories
     {
         protected AuthorizationContext db;
 
+        private readonly DbSet<User> dbSet;
+
         public UserRepository(AuthorizationContext context)
         {
             this.db = context;
+            this.dbSet = db.Set<User>();
         }
 
         #region IUserStore
         public Task CreateAsync(User user)
         {
-            db.Users.Add(user);
+            dbSet.Add(user);
             return Task.FromResult(1);
         }
 
         public Task DeleteAsync(User user)
         {
-            db.Set<User>().Remove(user);
+            dbSet.Remove(user);
             return Task.FromResult(1);
         }
 
         public Task<User> FindByIdAsync(long userId)
         {
-            return db.Set<User>().FindAsync(userId);
+            return dbSet.FindAsync(userId);
         }
 
         public Task<User> FindByNameAsync(string userName)
         {
-            return db.Users.FirstOrDefaultAsync(t => t.UserName == userName);
+            return dbSet.FirstOrDefaultAsync(t => t.UserName == userName);
         }
 
         public Task UpdateAsync(User user)
@@ -138,17 +141,17 @@ namespace Pizza_Ordering.DataProvider.Repositories
 
         public List<User> GetAll()
         {
-            return db.Set<User>().ToList();
+            return dbSet.ToList();
         }
 
         public User Get(object id)
         {
-            return db.Set<User>().Find(id);
+            return dbSet.Find(id);
         }
 
         public void Create(User item)
         {
-            db.Set<User>().Add(item);
+            dbSet.Add(item);
         }
 
         public void Update(User item)
@@ -158,11 +161,16 @@ namespace Pizza_Ordering.DataProvider.Repositories
 
         public void Delete(object id)
         {
-            User item = db.Set<User>().Find(id);
+            User item = dbSet.Find(id);
             if (item != null)
             {
-                db.Set<User>().Remove(item);
+                dbSet.Remove(item);
             }
+        }
+
+        public IQueryable<User> Query()
+        {
+            return dbSet.AsQueryable();
         }
     }
 }

@@ -1,6 +1,7 @@
 ﻿using Pizza_Ordering.Domain.Abstract;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,24 +13,27 @@ namespace Pizza_Ordering.DataProvider.Repositories
     {
         protected ApplicationDbContext db;
 
+        private readonly DbSet<TEntity> dbSet;
+
         public Repository(ApplicationDbContext context)
         {
             this.db = context;
+            dbSet = context.Set<TEntity>();
         }
 
         public List<TEntity> GetAll()
         {
-            return db.Set<TEntity>().ToList();
+            return dbSet.ToList();
         }
 
         public TEntity Get(object id)
         {
-            return db.Set<TEntity>().Find(id);
+            return dbSet.Find(id);
         }
 
         public void Create(TEntity item)
         {
-            db.Set<TEntity>().Add(item);
+            dbSet.Add(item);
         }
 
         public void Update(TEntity item)
@@ -42,13 +46,18 @@ namespace Pizza_Ordering.DataProvider.Repositories
             TEntity item = db.Set<TEntity>().Find(id);
             if (item != null)
             {
-                db.Set<TEntity>().Remove(item);
+                dbSet.Remove(item);
             }
         }
 
         public void Save()
         {
             db.SaveChanges();
+        }
+
+        public IQueryable<TEntity> Query()
+        {
+            return dbSet.AsQueryable();
         }
     }
 }

@@ -49,9 +49,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BLs\IngredientsBL.cs" />
     <Compile Include="DTOs\ProductDto.cs" />
+    <Compile Include="Interfaces\IIngredientsBL.cs" />
     <Compile Include="Interfaces\IProductService.cs" />
-    <Compile Include="Services\ProductService.cs" />
+    <Compile Include="BLs\BaseBL.cs" />
+    <Compile Include="BLs\ProductService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

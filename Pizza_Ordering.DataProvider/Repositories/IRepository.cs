@@ -18,5 +18,7 @@ namespace Pizza_Ordering.DataProvider.Repositories
         void Update(TEntity item);
 
         void Delete(object id);
+
+        IQueryable<TEntity> Query();
     }
 }

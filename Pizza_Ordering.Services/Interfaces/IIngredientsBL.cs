@@ -4,11 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Pizza_Ordering.Common
+namespace Pizza_Ordering.Services.Interfaces
 {
-    public enum PizzaType
+    public interface IIngredientsBL
     {
-        PreviouslyMade,
-        Custom
     }
 }

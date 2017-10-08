@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace Pizza_Ordering.DataProvider.UnitOfWork
 {
-    public interface IUnitOfWork
+    public interface IUnitOfWork : IDisposable
     {
         IRepository<Pizza_Ordering.Domain.Entities.Address> Addresses { get; }
 
@@ -41,7 +41,5 @@ namespace Pizza_Ordering.DataProvider.UnitOfWork
         void Save();
 
         void Dispose(bool disposing);
-
-        void Dispose();
     }
 }
