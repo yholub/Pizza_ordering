@@ -21,5 +21,11 @@ namespace Pizza_ordering.Domain.Entities
 
         [Required]
         public string HouseNumber { get; set; }
+
+        [Required]
+        public double Lng { get; set; }
+
+        [Required]
+        public double Lat { get; set; }
     }
 }

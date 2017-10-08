@@ -27,5 +27,8 @@ namespace Pizza_ordering.Domain.Entities
 
         [ForeignKey("OrderId")]
         public virtual Order Order { get; set; }
+
+        [Required]
+        public decimal Price { get; set; }
     }
 }
