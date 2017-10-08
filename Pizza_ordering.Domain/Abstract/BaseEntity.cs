@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Pizza_ordering.Domain.Abstract
+namespace Pizza_Ordering.Domain.Abstract
 {
     public abstract class BaseEntity
     {

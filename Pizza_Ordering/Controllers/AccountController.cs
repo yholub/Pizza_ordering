@@ -6,7 +6,7 @@ using Microsoft.Owin.Security.Cookies;
 using Microsoft.Owin.Security.OAuth;
 using Pizza_Ordering.DataProvider.Contexts;
 using Pizza_Ordering.Domain;
-using Pizza_ordering.Domain.Entities;
+using Pizza_Ordering.Domain.Entities;
 using Pizza_Ordering.Domain.Identity;
 using Pizza_Ordering.Models;
 using Pizza_Ordering.Providers;

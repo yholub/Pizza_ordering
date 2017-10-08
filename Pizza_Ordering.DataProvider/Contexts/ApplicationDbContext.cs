@@ -1,13 +1,10 @@
-﻿using Pizza_ordering.Domain;
+﻿using Pizza_Ordering.DataProvider.Configurations;
 using Pizza_Ordering.Domain;
-using Pizza_ordering.Domain.Entities;
+using Pizza_Ordering.Domain.Entities;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Pizza_Ordering.DataProvider.Configurations;
 
 namespace Pizza_Ordering.DataProvider
 {

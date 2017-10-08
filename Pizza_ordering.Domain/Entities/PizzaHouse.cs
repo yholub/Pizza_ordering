@@ -1,4 +1,4 @@
-﻿using Pizza_ordering.Domain.Abstract;
+﻿using Pizza_Ordering.Domain.Abstract;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Pizza_ordering.Domain.Entities
+namespace Pizza_Ordering.Domain.Entities
 {
     public class PizzaHouse : BaseEntity
     {

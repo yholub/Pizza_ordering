@@ -1,5 +1,5 @@
-﻿using Pizza_ordering.Domain.Abstract;
-using Pizza_ordering.Domain.Entities;
+﻿using Pizza_Ordering.Domain.Abstract;
+using Pizza_Ordering.Domain.Entities;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -8,7 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Pizza_ordering.Domain
+namespace Pizza_Ordering.Domain.Entities
 {
     public class IngredientItem : BaseEntity
     {

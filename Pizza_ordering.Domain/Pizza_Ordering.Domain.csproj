@@ -7,8 +7,8 @@
     <ProjectGuid>{8B7BC04D-21EE-4260-B2A6-D9559BBA5F38}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Pizza_ordering.Domain</RootNamespace>
-    <AssemblyName>Pizza_ordering.Domain</AssemblyName>
+    <RootNamespace>Pizza_Ordering.Domain</RootNamespace>
+    <AssemblyName>Pizza_Ordering.Domain</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>

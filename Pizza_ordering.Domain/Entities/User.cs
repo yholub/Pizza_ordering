@@ -8,7 +8,7 @@ using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Pizza_ordering.Domain.Entities
+namespace Pizza_Ordering.Domain.Entities
 {
     public class User : IdentityUser<long, CustomUserLogin, CustomUserRole, CustomUserClaim>
     {

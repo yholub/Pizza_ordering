@@ -1,4 +1,4 @@
-﻿using Pizza_ordering.Domain.Entities;
+﻿using Pizza_Ordering.Domain.Entities;
 using System.Data.Entity.ModelConfiguration;
 
 namespace Pizza_Ordering.DataProvider.Configurations
