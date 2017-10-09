@@ -12,7 +12,7 @@ namespace Pizza_Ordering.Controllers
         {
             ViewBag.Title = "Home Page";
 
-            return View();
+            return View("app/views/Home.html");
         }
     }
 }
