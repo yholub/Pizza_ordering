@@ -59,7 +59,7 @@ namespace Pizza_Ordering.DataProvider.Repositories
             return dbSet.ToList();
         }
 
-        public CustomRole Get(object id)
+        public CustomRole GetById(object id)
         {
             return dbSet.Find(id);
         }
@@ -71,6 +71,7 @@ namespace Pizza_Ordering.DataProvider.Repositories
 
         public void Update(CustomRole item)
         {
+            dbSet.Attach(item);
             db.Entry<CustomRole>(item).State = System.Data.Entity.EntityState.Modified;
         }
 

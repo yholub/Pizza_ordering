@@ -26,7 +26,7 @@ namespace Pizza_Ordering.DataProvider.Repositories
             return dbSet.ToList();
         }
 
-        public TEntity Get(object id)
+        public TEntity GetById(object id)
         {
             return dbSet.Find(id);
         }
@@ -38,6 +38,7 @@ namespace Pizza_Ordering.DataProvider.Repositories
 
         public void Update(TEntity item)
         {
+            dbSet.Attach(item);
             db.Entry<TEntity>(item).State = System.Data.Entity.EntityState.Modified;
         }
 

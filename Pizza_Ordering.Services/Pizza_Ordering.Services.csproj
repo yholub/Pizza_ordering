@@ -50,7 +50,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BLs\IngredientsBL.cs" />
+    <Compile Include="DTOs\BaseDto.cs" />
+    <Compile Include="DTOs\IngredientDto.cs" />
     <Compile Include="DTOs\ProductDto.cs" />
+    <Compile Include="Interfaces\IBaseBL.cs" />
     <Compile Include="Interfaces\IIngredientsBL.cs" />
     <Compile Include="Interfaces\IProductService.cs" />
     <Compile Include="BLs\BaseBL.cs" />

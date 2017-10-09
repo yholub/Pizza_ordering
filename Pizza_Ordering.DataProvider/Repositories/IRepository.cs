@@ -11,7 +11,7 @@ namespace Pizza_Ordering.DataProvider.Repositories
     {
         List<TEntity> GetAll();
 
-        TEntity Get(object id);
+        TEntity GetById(object id);
 
         void Create(TEntity item);
 

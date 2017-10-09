@@ -144,7 +144,7 @@ namespace Pizza_Ordering.DataProvider.Repositories
             return dbSet.ToList();
         }
 
-        public User Get(object id)
+        public User GetById(object id)
         {
             return dbSet.Find(id);
         }
@@ -156,6 +156,7 @@ namespace Pizza_Ordering.DataProvider.Repositories
 
         public void Update(User item)
         {
+            dbSet.Attach(item);
             db.Entry<User>(item).State = System.Data.Entity.EntityState.Modified;
         }
 
