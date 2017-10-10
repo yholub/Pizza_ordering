@@ -23,6 +23,7 @@ using System.Web.Http.ModelBinding;
 
 namespace Pizza_Ordering.Controllers
 {
+    
     [Authorize]
     [RoutePrefix("api/Account")]
     public class AccountController : BaseController
@@ -84,9 +85,9 @@ namespace Pizza_Ordering.Controllers
         [Route("Login")]
         [AllowAnonymous]
         [HttpPost]
-        public async Task<IHttpActionResult> Login(string userName, string password)
+        public async Task<IHttpActionResult> Login([FromBody] LoginModel credentials)
         {
-            User user = await UserManager.FindAsync(userName, password);
+            User user = await UserManager.FindAsync(credentials.UserName, credentials.Password);
 
             if (user == null)
             {
