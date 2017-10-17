@@ -222,6 +222,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\IngredientsController.cs" />
     <Compile Include="Controllers\ProductsController.cs" />
+    <Compile Include="Controllers\ValuesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -300,7 +301,7 @@
     <Content Include="app\assets\fonts\picto-foundry-food.eot" />
     <Content Include="app\assets\fonts\picto-foundry-food.ttf" />
     <Content Include="app\assets\fonts\picto-foundry-food.woff" />
-    <None Include="app\js\libs\jquery-1.10.2.intellisense.js" />
+<Compile Include="Controllers\ValuesController.cs" />
     <Content Include="app\js\libs\jquery-1.10.2.js" />
     <None Include="app\js\libs\jquery.validate-vsdoc.js" />
     <Content Include="app\js\libs\jquery.validate.js" />
@@ -309,6 +310,8 @@
     <Content Include="app\js\libs\modernizr-2.6.2.js" />
     <Content Include="app\js\libs\respond.js" />
     <Content Include="app\js\libs\respond.min.js" />
+    <Content Include="Scripts\jquery.cookie.js" />
+    <Content Include="Scripts\site.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -317,8 +320,11 @@
       <DependentUpon>Web.config</DependentUpon>
     </Content>
     <Content Include="app\css\Site.css" />
+    <Content Include="Content\Site.css" />
     <Content Include="Views\Web.config" />
     <Content Include="Views\_ViewStart.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <AdditionalFiles Include="stylecop.json" />
   </ItemGroup>
@@ -330,7 +336,19 @@
     <Folder Include="Areas\" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="fonts\glyphicons-halflings-regular.woff" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="fonts\glyphicons-halflings-regular.eot" />
+  </ItemGroup>
+  <ItemGroup>
     <Content Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Scripts\jquery-1.10.2.min.map" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Pizza_Ordering.DataProvider\Pizza_Ordering.DataProvider.csproj">

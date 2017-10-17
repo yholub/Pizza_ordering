@@ -19,7 +19,7 @@ namespace Pizza_Ordering.Services.Services
 
                 if (entity == null)
                 {
-                    throw new ArgumentException($"entity with 'id' = {id} does not exist");
+                    throw new ArgumentException(String.Format("entity with 'id' = {0} does not exist", id));
                 }
 
                 var res = new ProductDto
@@ -41,7 +41,7 @@ namespace Pizza_Ordering.Services.Services
 
                 if (entity == null)
                 {
-                    throw new ArgumentException($"product with 'id' = {dto.Id} already exist");
+                    throw new ArgumentException(String.Format("product with 'id' = {0} already exist", dto.Id));
                 }
 
                /* entity = new Pizza_Ordering.Domain.

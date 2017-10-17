@@ -80,4 +80,10 @@ namespace Pizza_Ordering.Models
         [Compare("NewPassword", ErrorMessage = "The new password and confirmation password do not match.")]
         public string ConfirmPassword { get; set; }
     }
+
+    public class LoginModel
+    {
+        public string UserName { get; set; }
+        public string Password { get; set; }
+    }
 }
