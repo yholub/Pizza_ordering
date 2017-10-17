@@ -9,7 +9,7 @@
    ##################################################################### */
 
 $(function () {
-    if ($.cookie('name')) {
+    if ($.cookie('name') != 'null') {
         $("#userNamePut").text($.cookie('name'));
         $(".toShow").hide();
         $(".toHide").show();
@@ -20,7 +20,7 @@ $(function () {
         $(".toShow").hide();
         $.cookie('name', null);
         
-        $.post("api/Account/Logout");
+        $.post("/api/Account/Logout");
     });
     var $formLogin = $('#login-form');
     var $formLost = $('#lost-form');
@@ -38,7 +38,7 @@ $(function () {
 
                 var $lg_username = $('#login_username').val();
                 var $lg_password = $('#login_password').val();
-                $.post("api/Account/Login", {
+                $.post("/api/Account/Login", {
                     userName: $lg_username,
                     password: $lg_password
                 }).done(function () {
@@ -69,7 +69,7 @@ $(function () {
                 var $rg_username = $('#register_username').val();
                 var $rg_email = $('#register_email').val();
                 var $rg_password = $('#register_password').val();
-                $.post("api/Account/Register", {
+                $.post("/api/Account/Register", {
                     email: $rg_email,
                     password: $rg_password,
                     confirmPassword: $rg_password
