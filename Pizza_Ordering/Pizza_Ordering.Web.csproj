@@ -279,9 +279,12 @@
     <Content Include="app\css\normalize.css" />
     <Content Include="app\css\picto-foundry-food.css" />
     <Content Include="app\css\style-portfolio.css" />
+    <Content Include="app\css\userInfoPage.css" />
     <Content Include="app\js\main.js" />
+    <Content Include="app\js\userInfoPage.js" />
     <Content Include="app\views\Home.html" />
     <Content Include="app\css\bootstrap.css" />
+    <Content Include="app\views\user\UserInfoPage.html" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="app\js\libs\bootstrap.js" />
@@ -327,7 +330,6 @@
   <ItemGroup>
     <Folder Include="app\views\admin\" />
     <Folder Include="app\views\moderator\" />
-    <Folder Include="app\views\user\" />
     <Folder Include="App_Data\" />
     <Folder Include="Areas\" />
     <Folder Include="Content\" />
