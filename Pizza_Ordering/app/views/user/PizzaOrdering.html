@@ -48,11 +48,88 @@
         </div><!-- /.container-fluid -->
     </nav>
 
+    <div class="row pageContent">
+        <div class="col-lg-8">
+            <h3 id="category-title">Меню</h3>
+            <img src="../../assets/images/pizzas.PNG" alt="Alternate Text" />
+            <br />
+        </div>
 
+        <div class="col-lg-4">
+            <br>
+            <h3 id="category-title"> </h3>
+            <div id="related">
+                <div id="related-cart">
+
+                    <div class="basket-header">
+                        <h4>Ваше замовлення: <pr class="cart-qty">0</pr> грн</h4>             
+                    </div>
+
+                    <div id="related-cart-open">
+                        <div class="content">
+                            <div class="products">
+                                <div id="serverloadedMiniBasketItems" class="product loaded selected miniBasketItems" data-bind="foreach: selectedProducts">
+
+                                    <!--@foreach (var product in Nemlig.BusinessLogic.SelectedProducts.Products)
+                                    {
+                                    <div data-bind="id: pizzaId" class="minibasketinner">
+                                        <p class="title" data-bind="text: productName"></p>
+                                        <span class="product-buttons2 product-qty-wrapper">
+                                            <a class="product-remove left" onclick="delItem('@product.ProductInfo.Id')"><span>-</span></a>
+                                            <div class="product-qty left" id="prodCount2-@product.ProductInfo.Id"> @product.ProductInfo.SelectedCount </div>
+                                            <a class="product-add left" onclick="addItem('@product.ProductInfo.Id')"><span>+</span></a>
+                                        </span>
+                                    </div>
+                                    }-->
+                                </div>
+                            </div>
+                            <a href="/checkout/kurv.aspx" class="go-checkout-btn">Замовити</a>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <br /><br />
+        </div>
+
+        
+    </div>
+
+
+
+    <div class="row pizzas" data-bind="foreach: pizzas">
+        <div class="col-lg-3 products-list">
+                <div class="product-gallery">
+                    <img  data-bind="attr: { 'src': imgUrl }" alt="Alternate Text" />
+                    <p class="product-name" data-bind="text: name"></p>
+                    <div class="unitprice" id="inStock">Моцарела, Гриби, Оливки, Шинка, Перець</div>
+                    <div class="product-price secondprice ">
+                        0 грн
+                        <a class="product-buy" id="some" data-bind="click: $parent.addToCard" title="Add to сart">В корзину</a>
+                        <!--@if (@Model.Products[i + j].SelectedCount == 0)
+                        {
+                        <a class="product-buy" id="@Model.Products[i + j].Id" onclick="addToCart('@Model.Products[i + j].Id', '@Model.Products[i + j].Name', '@Model.Products[i + j].SelectedCount')" title="Add to сart">Add to сart</a>
+                        }
+                        else
+                        {
+                        <span id='buyCount-@Model.Products[i + j].Id' class="product-buttons product-qty-wrapper">
+                            <a id="delBtn-@Model.Products[i + j].Id" class="product-remove left" onclick="delItem(@Model.Products[i + j].Id)"><span>-</span></a>
+                            <div class="product-qty left" id="prodCount1-@Model.Products[i + j].Id">
+                                @Nemlig.BusinessLogic.SelectedProducts.Products.First(c => c.ProductInfo.Id == Model.Products[i + j].Id).ProductInfo.SelectedCount
+                            </div>
+                            <a class="product-add left" onclick="addItem(@Model.Products[i + j].Id)"><span>+</span></a>
+                        </span>
+                        }-->
+                    </div> 
+                </div>
+            </div>
+        <!--</div>-->
+    </div>
+
+    <script src="~/Scripts/app.js"></script>
     <script type="text/javascript" src="../../js/libs/jquery-1.10.2.js"> </script>
     <script type="text/javascript" src="../../js/libs/bootstrap.js"></script>
-    <script type="text/javascript" src="../../js/userInfoPage.js"></script>
-    <script src="../../../Scripts/jquery.cookie.js"></script>
-    <script src="../../../Scripts/site.js"></script>
+    <script type="text/javascript" src="../../js/libs/knockout-3.4.2.js"></script>
+    <script type="text/javascript" src="../../js/pizzaOrdering.js"></script>
 </body>
 </html>
