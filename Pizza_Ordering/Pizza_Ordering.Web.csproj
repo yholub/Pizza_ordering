@@ -287,7 +287,9 @@
     <Content Include="app\css\pizzaOrdering.css" />
     <Content Include="app\css\style-portfolio.css" />
     <Content Include="app\css\userInfoPage.css" />
+    <Content Include="app\js\libs\knockout-3.4.2.js" />
     <Content Include="app\js\main.js" />
+    <Content Include="app\js\pizzaOrdering.js" />
     <Content Include="app\js\userInfoPage.js" />
     <Content Include="app\views\Home.html" />
     <Content Include="app\css\bootstrap.css" />
@@ -320,6 +322,8 @@
     <Content Include="app\js\libs\respond.js" />
     <Content Include="app\js\libs\respond.min.js" />
     <Content Include="Scripts\jquery.cookie.js" />
+    <Content Include="Scripts\knockout-3.4.2.debug.js" />
+    <Content Include="Scripts\knockout-3.4.2.js" />
     <Content Include="Scripts\site.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
