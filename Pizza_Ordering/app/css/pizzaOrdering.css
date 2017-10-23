@@ -28,12 +28,13 @@
 }
 
 .unitprice{
-font-size: smaller;
+    font-size: smaller;
     border-top: 1px solid;
     border-bottom: 1px solid rgba(0, 0, 0, 0.48);
     padding-left: 7px;
     padding-bottom: 7px;
     padding-top: 7px;
+    min-height: 46px;
     background-color: rgba(251, 188, 21, 0.48);
 }
 
@@ -378,9 +379,10 @@ textarea {
 
 .product-gallery .product-price, .product-gallery .product-price-previous {
     padding-right: 15px;
-    padding-top: 7px;
+    padding-top: 10px;
     padding-left: 15px;
     text-align: left;
+    font-size: 15px;
 }
 
 .product-price .unitprice {
