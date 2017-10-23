@@ -25,6 +25,7 @@
     <UseGlobalApplicationHostFile />
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
+    <Use64BitIISExpress />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -221,15 +222,18 @@
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\IngredientsController.cs" />
+    <Compile Include="Controllers\PizzaController.cs" />
     <Compile Include="Controllers\ProductsController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountBindingModels.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\Pizza\CreateFixPizzaModel.cs" />
     <Compile Include="Models\Ingredient\CreateIngredientModel.cs" />
     <Compile Include="Models\Ingredient\IngredientModel.cs" />
     <Compile Include="Models\Ingredient\UpdateIngredientModel.cs" />
+    <Compile Include="Models\Pizza\CreateSavedPizzaModel.cs" />
     <Compile Include="Models\Product\CreateProductModel.cs" />
     <Compile Include="Models\Product\ProductModel.cs" />
     <Compile Include="Models\Product\UpdateProductModel.cs" />
@@ -343,6 +347,10 @@
     <Content Include="Scripts\jquery-1.10.2.min.map" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Pizza_Ordering.Common\Pizza_Ordering.Common.csproj">
+      <Project>{7475802D-7F59-4DBC-A1B0-B8E7BDE8108F}</Project>
+      <Name>Pizza_Ordering.Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Pizza_Ordering.DataProvider\Pizza_Ordering.DataProvider.csproj">
       <Project>{18ADCB0F-B784-48DA-BDC5-FFDB0273A903}</Project>
       <Name>Pizza_Ordering.DataProvider</Name>

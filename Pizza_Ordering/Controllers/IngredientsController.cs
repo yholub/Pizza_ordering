@@ -33,7 +33,7 @@ namespace Pizza_Ordering.Controllers
                 Weight = dto.Weight
             };
 
-            return Ok(model);
+            return Json(model);
         }
 
         [HttpPost]

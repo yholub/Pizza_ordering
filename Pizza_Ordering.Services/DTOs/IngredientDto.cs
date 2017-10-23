@@ -13,5 +13,7 @@ namespace Pizza_Ordering.Services.DTOs
         public decimal Price { get; set; }
 
         public double Weight { get; set; }
+
+        public int Quantity { get; set; }
     }
 }
