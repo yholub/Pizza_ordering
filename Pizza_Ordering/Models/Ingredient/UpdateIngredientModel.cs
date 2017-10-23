@@ -7,6 +7,5 @@ namespace Pizza_Ordering.Models.Ingredient
 {
     public class UpdateIngredientModel : CreateIngredientModel
     {
-        public long Id { get; set; }
     }
 }

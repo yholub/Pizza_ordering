@@ -28,12 +28,13 @@ namespace Pizza_Ordering.Services.BLs
                     Name = x.Name,
                     Price = x.Price,
                     PizzaType = Common.PizzaType.Fix,
-                    Ingredients = x.Ingredients.Select(i => new IngredientDto
+                    Ingredients = x.IngredientItems.Select(i => new IngredientDto
                     {
                         Id = i.Id,
-                        Name = i.Name,
-                        Price = i.Price,
-                        Weight = i.Weight
+                        Name = i.Ingredient.Name,
+                        Price = i.Ingredient.Price,
+                        Weight = i.Ingredient.Weight,
+                        Quantity = i.Quantity
                     }).ToList()
                 }).ToList();
 
@@ -41,7 +42,7 @@ namespace Pizza_Ordering.Services.BLs
             });
         }
 
-        public List<PizzaDto> GetSavedPizzas(int userId)
+        public List<PizzaDto> GetSavedPizzas(long userId)
         {
             return UseDb(uow =>
             {
@@ -83,12 +84,13 @@ namespace Pizza_Ordering.Services.BLs
                         Name = entity.Name,
                         Price = entity.Price,
                         PizzaType = Common.PizzaType.Fix,
-                        Ingredients = entity.Ingredients.Select(i => new IngredientDto
+                        Ingredients = entity.IngredientItems.Select(i => new IngredientDto
                         {
                             Id = i.Id,
-                            Name = i.Name,
-                            Price = i.Price,
-                            Weight = i.Weight
+                            Name = i.Ingredient.Name,
+                            Price = i.Ingredient.Price,
+                            Weight = i.Ingredient.Weight,
+                            Quantity = i.Quantity
                         }).ToList()
                     };
 
@@ -131,8 +133,12 @@ namespace Pizza_Ordering.Services.BLs
                 {
                     Name = pizzaDto.Name,
                     Price = pizzaDto.Price,
-                    Ingredients = uow.Ingredients.GetAll()
-                        .Where(x => pizzaDto.Ingredients.Any(dtoIngr => dtoIngr.Id == x.Id))
+                    IngredientItems = pizzaDto.Ingredients
+                        .Select(x => new IngredientItem
+                        {
+                            IngredientId = x.Id,
+                            Quantity = x.Quantity
+                        })
                         .ToList()
                 };
 

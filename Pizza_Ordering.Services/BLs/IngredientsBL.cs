@@ -27,7 +27,7 @@ namespace Pizza_Ordering.Services.BLs
                     Name = x.Name,
                     Price = x.Price,
                     Weight = x.Weight
-                });
+                }).ToList();
 
                 return dtos;
             });
@@ -67,29 +67,24 @@ namespace Pizza_Ordering.Services.BLs
             });
         }
 
-        public void Update(IngredientDto dto)
-        {
-            //    return UseDb(uow =>
-            //    {
-            //        var entity = new Ingredient
-            //        {
-            //            Id = dto.Id,
-            //            Name = dto.Name,
-            //            Price = dto.Price,
-            //            Weight = dto.Weight
-            //        };
-
-            //        uow.Ingredients.Update(entity);
-
-            //        return dto;
-            //    });
-        }
-
         public void Delete(long id)
         {
             UseDb(uow =>
             {
                 uow.Ingredients.Delete(id);
+
+                uow.Save();
+            });
+        }
+
+        public void Update(IngredientDto dto)
+        {
+            UseDb(uow =>
+            {
+                var entity = uow.Ingredients.GetById(dto.Id);
+                entity.Name = !string.IsNullOrEmpty(dto.Name) ? dto.Name : entity.Name;
+                entity.Price = dto.Price != 0 ? dto.Price : entity.Price;
+                entity.Weight = dto.Weight != 0 ? dto.Weight : entity.Weight;
 
                 uow.Save();
             });

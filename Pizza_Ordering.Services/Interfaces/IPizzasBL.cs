@@ -12,7 +12,7 @@ namespace Pizza_Ordering.Services.Interfaces
     {
         List<PizzaDto> GetFixPizzas();
 
-        List<PizzaDto> GetSavedPizzas(int userId);
+        List<PizzaDto> GetSavedPizzas(long userId);
 
         PizzaDto GetPizzaById(PizzaType pizzaType, long pizzaId);
 
