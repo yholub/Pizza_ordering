@@ -50,17 +50,24 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BLs\IngredientsBL.cs" />
+    <Compile Include="BLs\PizzasBL.cs" />
     <Compile Include="DTOs\BaseDto.cs" />
     <Compile Include="DTOs\IngredientDto.cs" />
+    <Compile Include="DTOs\PizzaDto.cs" />
     <Compile Include="DTOs\ProductDto.cs" />
     <Compile Include="Interfaces\IBaseBL.cs" />
     <Compile Include="Interfaces\IIngredientsBL.cs" />
+    <Compile Include="Interfaces\IPizzasBL.cs" />
     <Compile Include="Interfaces\IProductService.cs" />
     <Compile Include="BLs\BaseBL.cs" />
     <Compile Include="BLs\ProductService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Pizza_Ordering.Common\Pizza_Ordering.Common.csproj">
+      <Project>{7475802D-7F59-4DBC-A1B0-B8E7BDE8108F}</Project>
+      <Name>Pizza_Ordering.Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Pizza_Ordering.DataProvider\Pizza_Ordering.DataProvider.csproj">
       <Project>{18ADCB0F-B784-48DA-BDC5-FFDB0273A903}</Project>
       <Name>Pizza_Ordering.DataProvider</Name>

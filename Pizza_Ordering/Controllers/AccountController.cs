@@ -23,7 +23,6 @@ using System.Web.Http.ModelBinding;
 
 namespace Pizza_Ordering.Controllers
 {
-    
     [Authorize]
     [RoutePrefix("api/Account")]
     public class AccountController : BaseController

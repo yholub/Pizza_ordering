@@ -17,6 +17,6 @@ namespace Pizza_Ordering.Domain.Entities
         [ForeignKey("FixPizzaId")]
         public virtual FixPizza BasePizza { get; set; }
 
-        public virtual List<IngredientItem> CustomIngredients { get; set; }
+        public virtual List<IngredientItem> IngredientItems { get; set; }
     }
 }

@@ -20,6 +20,21 @@ namespace Pizza_Ordering.Controllers
             _ingredientsBL = ingredientsBL;
         }
 
+        [HttpGet]
+        public IHttpActionResult Get()
+        {
+            var dtos = _ingredientsBL.GetAll();
+            var model = dtos.Select(dto => new IngredientModel
+            {
+                Id = dto.Id,
+                Name = dto.Name,
+                Price = dto.Price,
+                Weight = dto.Weight
+            });
+
+            return Json(model);
+        }
+
         [Route("{id:long}")]
         [HttpGet]
         public IHttpActionResult Get(long id)
@@ -33,7 +48,7 @@ namespace Pizza_Ordering.Controllers
                 Weight = dto.Weight
             };
 
-            return Ok(model);
+            return Json(model);
         }
 
         [HttpPost]
