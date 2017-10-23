@@ -2,6 +2,8 @@ using Microsoft.Web.Infrastructure.DynamicModuleHelper;
 using Ninject;
 using Ninject.Web.Common;
 using Ninject.Web.WebApi;
+using Pizza_Ordering.DataProvider.UnitOfWork;
+using Pizza_Ordering.Services.BLs;
 using Pizza_Ordering.Services.Interfaces;
 using Pizza_Ordering.Services.Services;
 using System;
@@ -64,7 +66,10 @@ namespace Pizza_Ordering.App_Start
         /// <param name="kernel">The kernel.</param>
         private static void RegisterServices(IKernel kernel)
         {
-            kernel.Bind<IProductService>().To<ProductService>();
+            kernel.Bind<IUnitOfWorkFactory>().To<UnitOfWorkFactory>();
+            kernel.Bind<IUnitOfWork>().To<UnitOfWork>();
+            kernel.Bind<IIngredientsBL>().To<IngredientsBL>();
+            kernel.Bind<IPizzasBL>().To<PizzasBL>();
         }
     }
 }

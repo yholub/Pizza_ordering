@@ -11,12 +11,12 @@ using System.Web.Http;
 
 namespace Pizza_Ordering.Controllers
 {
-    [RoutePrefix("api/pizza")]
-    public class PizzaController : BaseController
+    [RoutePrefix("api/pizzas")]
+    public class PizzasController : BaseController
     {
         private readonly IPizzasBL _pizzasBL;
 
-        public PizzaController(IPizzasBL pizzasBL)
+        public PizzasController(IPizzasBL pizzasBL)
         {
             _pizzasBL = pizzasBL;
         }
