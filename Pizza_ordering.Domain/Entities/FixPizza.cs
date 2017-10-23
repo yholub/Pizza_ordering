@@ -17,7 +17,5 @@ namespace Pizza_Ordering.Domain.Entities
         public decimal Price { get; set; }
 
         public virtual List<Ingredient> Ingredients { get; set; }
-
-        public bool IsDeleted { get; set; }
     }
 }
