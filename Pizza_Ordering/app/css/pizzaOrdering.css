@@ -1,0 +1,449 @@
+﻿body {
+    padding-top: 50px;
+    padding-bottom: 20px;
+}
+
+/* Set padding to keep content from hitting the edges */
+.body-content {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+/* Override the default bootstrap behavior where horizontal description lists 
+   will truncate terms that are too long to fit in the left column 
+*/
+.dl-horizontal dt {
+    white-space: normal;
+}
+
+/* Set width on the form input elements since they're 100% wide by default */
+input,
+select,
+textarea {
+    max-width: 280px;
+}
+
+/* Set padding to display errors that occur during databinding */
+.padding-error {
+    padding-top: 20px;
+}
+
+@media only screen and (max-width: 767px) {
+    .nofloat {
+        float: none;
+        padding: 10px 15px;
+    }
+}
+
+.navbar-inverse {
+    background-color: #d4793a;
+    border-color: #d4793a;
+    color: white;
+}
+
+.navbar-inverse .navbar-brand {
+    color: white;
+}
+
+.navbar-inverse .navbar-nav > li > a {
+    color: white;
+}
+
+
+.top-menu {
+   background-color: #e9e9e2;
+   border-color:#e9e9e2;
+   height:30px;
+   min-height:30px;
+}
+#top-menu-item > a{
+    color: black;
+    padding-top: 5px;
+}
+
+#top-menu-item > a:hover, #top-menu-item > a:focus, #top-menu-item > a:active{
+    text-decoration:underline;
+}
+
+.category-menu {
+    height: 40px;
+    min-height: 40px;
+    border-radius: 0px;
+}
+
+.category-menu .navbar-nav > li > a {
+    line-height: 3px;
+    max-height: 5px;
+    margin-top: 10px;
+    padding-top:10px;
+    padding-bottom:10px;
+    font-weight: 600;
+    border-right:1px solid white;
+}
+
+.category-menu .navbar-nav > li > a:hover, .category-menu .navbar-nav > li > a:focus, .category-menu .navbar-nav > li > a:active {
+    line-height: 20px;
+    max-height: 40px;
+    font-weight: 600;
+    margin-top: 0px;
+    border-left:1px solid white;
+    margin-left: -1px;
+    color:  #d4793a;
+    background-color: white;
+}
+
+#logo{
+    padding-bottom: 20px;
+    padding-left: 30px;
+}
+
+#loginBtn {
+    display: block;
+    width: 90px;
+    margin-top: 12px;
+    background: #57634b;
+    font-weight: bold;
+    line-height: 26px;
+    text-decoration: none;
+    color: #fff;
+    text-align: center;
+}
+
+
+
+.panel-default {
+    border-color: #dddddd;
+    background-color: rgba(221, 221, 221, 0.36);
+}
+
+#log-title{
+    padding-left:10px;
+}
+
+.navbar-inverse .navbar-collapse, .navbar-inverse {
+    padding-left: 50px;
+}
+
+.row{
+    padding-left:100px;
+}
+
+.product-gallery {
+    width: 180px;
+    height: 276px;
+    position: relative;
+    display: block;
+    float: left;
+    vertical-align: top;
+    margin: 0 18px 18px 0;
+    border: 1px solid #e5e5e5;
+    overflow: hidden;
+}
+
+#related-cart .basket-header {
+    background: #57634b;
+    height: 58px;
+    position: relative;
+    cursor: pointer;
+}
+
+#related-cart-open .content {
+    height: 262px;
+    position: relative;
+}
+
+#related-cart .content {
+    background: #e9e9e2;
+}
+
+#related-cart-open .content {
+    margin-bottom: 6px;
+}
+
+#related {
+    width: 193px;
+    float: left;
+    position: relative;
+    margin-left: 12px;
+    margin-bottom: 17px;
+    font-size: 11px;
+}
+
+.basket-header .cart-info {
+    float: left;
+    margin: 16px 0 0 65px;
+    font-size: 12px;
+    color: #fff;
+}
+
+#related-cart-open .products {
+    float: left;
+    width: 100%;
+}
+
+ #serverloadedMiniBasketItems {
+    margin-top: 14px;
+    padding-top: 0;
+    max-height: 180px;
+    overflow-y: auto;
+}
+
+
+.product .minibasketinner {
+    height: 50px;
+    border-bottom: 1px solid #cfcfcf;
+    margin: 0 12px 12px 12px;
+}
+
+.product .title, .submenu-cart-price {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    word-wrap: normal;
+}
+
+.product .title {
+    padding: 0;
+    margin-bottom: 0px;
+    font-size: 12px;
+}
+
+.product-buttons2 {
+    position: relative;
+    top: 5px;
+    display: block;
+    float: right;
+}
+
+.product-qty-wrapper {
+    width: 80px;
+    height: 17px;
+    position: relative;
+}
+
+.product-add {
+    line-height: 18px;
+}
+
+
+.go-checkout-btn{
+    display: block;
+    float: right;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    margin: 21px 12px 12px;
+    width: 90px;
+    height: 26px;
+    font-size: 12px;
+    font-weight: bold;
+    line-height: 26px;
+    text-align: center;
+    background: #57634b;
+    color: #fff;
+    text-decoration: none;
+}
+
+.product-buy{
+    display: block;
+    float: right;
+    font-size: 12px;
+    font-weight: bold;
+    line-height: 26px;
+    text-align: center;
+    padding-right: 7px;
+    padding-left: 7px;
+    margin-right: 10px;
+    margin-top: 10px;
+    background: #57634b;
+    color: #fff;
+    cursor:pointer;
+    text-decoration: none;
+}
+
+.product-buy:hover, .product-buy:focus{
+    background: rgba(87, 99, 75, 0.71);
+    color: #fff;
+    text-decoration:none;
+}
+
+.product-add {
+    background: #57634b;
+    padding-left: 5px;
+    padding-right: 5px;
+    line-height:17px;
+    height:17px;
+    color: #fff;
+    font-size: 14px;
+    font-weight: bold;
+    text-decoration: none;
+    text-align: center;
+    cursor: pointer;
+}
+
+.product-remove {
+    background: #57634b;
+    padding-left: 7px;
+    padding-right: 7px;
+    line-height:17px;
+    height:17px;
+    color: #fff;
+    font-size: 14px !important;
+    font-weight: bold;
+    text-decoration: none;
+    text-align: center;
+    cursor: pointer;
+}
+
+.product-qty {
+    width: 36px;
+    height: 15px;
+    background: #fff;
+    text-align: center;
+    line-height: 17px;
+    cursor: pointer;
+}
+
+/*!important*/
+#corb {
+    position: relative;
+    width: 35px;
+    margin-top: 13px;
+    margin-left: -90px;
+}
+
+
+/*!important*/
+.product-qty {
+    width: 36px;
+    height: 17px;
+    background: #fff;
+    text-align: center;
+    line-height: 17px;
+    cursor: pointer;
+}
+
+.left {
+    float: left;
+}
+
+
+.product-name {
+    padding-left:20px;
+    font-weight:bold;
+    font-size: 14px;
+    margin-bottom: 0px;
+    min-height: 40px;
+}
+
+
+.product-price{
+    margin-left:20px;
+}
+
+.product-gallery .product-price, .product-gallery .product-price-previous {
+    font-size: 20px;
+    color: #555;
+}
+
+.product-price .unitprice {
+    margin-top: -2px;
+    color: #888;
+    font-size: .60em;
+    padding-top: 2px;
+}
+
+
+
+
+.product-buttons {
+    position: relative;
+    display: block;
+    float: right;
+    margin-top:10px;
+    margin-right:10px;
+    height:26px;
+}
+
+.product-buttons .product-qty {
+    width: 39px;
+    height: 17px;
+    background: #fff;
+    text-align: center;
+    height:26px;
+    line-height: 26px;
+    cursor: default;
+    border:1px solid #57634b;
+    font-size: 12px;
+    color: black;
+}
+
+.product-buttons .product-remove {
+    background: #57634b;
+    padding-left: 7px;
+    padding-right: 7px;
+    line-height: 26px;
+    height: 26px;
+    color: #fff;
+    font-size: 16px !important;
+    font-weight: bold;
+    text-decoration: none;
+    text-align: center;
+    cursor: pointer;
+}
+
+.product-buttons .product-add {
+    background: #57634b;
+    padding-left: 5px;
+    padding-right: 5px;
+    line-height: 26px;
+    height: 26px;
+    color: #fff;
+    font-size: 16px;
+    font-weight: bold;
+    text-decoration: none;
+    text-align: center;
+    cursor: pointer;
+}
+
+#category-title{
+    font-weight:bold;
+    padding-bottom:10px;
+}
+
+.datepicker-cust{
+    max-width: 200px;
+    margin-left: 10px;
+}
+
+.products-list{
+    padding-right: 0px;
+    padding-left: 10px;
+}
+
+select{
+    max-width: 200px;
+    margin-left: 10px;
+}
+
+label{
+    max-width: 200px;
+    margin-left: 10px;
+}
+
+.margin-top{
+    margin-top:15px;
+}
+
+.disabled  { 
+    pointer-events: none; 
+    cursor:default !important;
+    background: rgba(87, 99, 75, 0.64);
+}
+
+.product-add:active, .product-add:hover, .product-add:focus,
+.product-remove:active, .product-remove:hover, .product-remove:focus{
+    color: white;
+    text-decoration:none;
+    background: rgba(87, 99, 75, 0.74);
+}

@@ -266,6 +266,9 @@
     <Content Include="app\assets\images\kabob.jpg" />
     <Content Include="app\assets\images\limes.jpg" />
     <Content Include="app\assets\images\pizza1.jpg" />
+    <Content Include="app\assets\images\pizza11.jpg" />
+    <Content Include="app\assets\images\pizza12.jpg" />
+    <Content Include="app\assets\images\pizza13.jpg" />
     <Content Include="app\assets\images\pizza2.jpg" />
     <Content Include="app\assets\images\pizza3.jpg" />
     <Content Include="app\assets\images\pizza4.jpg" />
@@ -282,12 +285,14 @@
     <Content Include="app\css\main.css" />
     <Content Include="app\css\normalize.css" />
     <Content Include="app\css\picto-foundry-food.css" />
+    <Content Include="app\css\pizzaOrdering.css" />
     <Content Include="app\css\style-portfolio.css" />
     <Content Include="app\css\userInfoPage.css" />
     <Content Include="app\js\main.js" />
     <Content Include="app\js\userInfoPage.js" />
     <Content Include="app\views\Home.html" />
     <Content Include="app\css\bootstrap.css" />
+    <Content Include="app\views\user\PizzaOrdering.html" />
     <Content Include="app\views\user\UserInfoPage.html" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
