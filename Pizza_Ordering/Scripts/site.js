@@ -9,7 +9,7 @@
    ##################################################################### */
 
 $(function () {
-    if ($.cookie('name') != 'null') {
+    if ($.cookie('name')  && $.cookie('name') != "null") {
         $("#userNamePut").text($.cookie('name'));
         $(".toShow").hide();
         $(".toHide").show();
@@ -37,6 +37,10 @@ $(function () {
 
 
                 var $lg_username = $('#login_username').val();
+                if ($lg_username == "mod") {
+                    location.href = "moderator/ModeratorLayout.html#/";
+                }
+
                 var $lg_password = $('#login_password').val();
                 $.post("/api/Account/Login", {
                     userName: $lg_username,

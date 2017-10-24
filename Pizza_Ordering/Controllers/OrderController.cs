@@ -38,8 +38,8 @@ namespace Pizza_Ordering.Controllers
             DateTime start = now - TimeSpan.FromMinutes(min / 10 * 10 + 10);
             return Json(_service.GetPendingOrdersSince(start).Select(o => new OrderViewModel(o)).ToList());
         }
-
-        [Route("{id:long}")]
+        
+        [Route("api/order/accept/{id:long}")]
         [HttpPost]
         public void Accept(int id)
         {
@@ -47,7 +47,7 @@ namespace Pizza_Ordering.Controllers
             _service.Accept(id);
         }
 
-        [Route("{id:long}")]
+        [Route("api/order/reject/{id:long}")]
         [HttpPost]
         public void Reject(int id)
         {

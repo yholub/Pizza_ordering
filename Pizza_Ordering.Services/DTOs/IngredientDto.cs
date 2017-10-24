@@ -15,5 +15,7 @@ namespace Pizza_Ordering.Services.DTOs
         public double Weight { get; set; }
 
         public int Quantity { get; set; }
+
+        public bool IsLocked { get; set; }
     }
 }

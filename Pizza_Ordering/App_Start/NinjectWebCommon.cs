@@ -71,6 +71,7 @@ namespace Pizza_Ordering.App_Start
             kernel.Bind<IIngredientsBL>().To<IngredientsBL>();
             kernel.Bind<IPizzasBL>().To<PizzasBL>();
             kernel.Bind<IOrderBL>().To<OrderBL>();
+            kernel.Bind<ISettingsBL>().To<SettingsBL>();
         }
     }
 }

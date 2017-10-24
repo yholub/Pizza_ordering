@@ -74,7 +74,7 @@ namespace Pizza_Ordering.Services.BLs
 
         public List<Order> GetOrdersSince(DateTime st)
         {
-            return Orders.Where(o => o.End > st).ToList();
+            return Orders.Where(o => o.End > st && o.State != State.Rejected).ToList();
         }
 
         public List<Order> GetPendingOrdersSince(DateTime st)

@@ -34,10 +34,11 @@
      */
     $.fn.layOutDay = function(options){
       options = options || {};
-      settings  = $.extend({}, settings, options);
-      if(!$.cal){
-        $.cal = new Calendar(settings, this);
-      }
+      settings = $.extend({}, settings, options);
+      $.cal = new Calendar(settings, this);
+      //if(!$.cal){
+      //  $.cal = new Calendar(settings, this);
+      //}
     };
 
     /**
@@ -80,7 +81,11 @@
         this.colliding_events = [];
         this.options.col = 0;
         this.id = this.ev.start + "-" + this.ev.end + '-' + this.options.pos;
-        this.el = $('<div id="' + this.id + '" class="event"' + 'data-order-id=' + ev.ordId+ '><span class="title">' + ev.title + '</span><br /><span class="subtitle">' + ev.description + '</span><br /><span class="debug">' + this.ev.start + ":" + this.ev.end + "</span></div>");
+        var acceptClass = "";
+        if (this.ev.state == 1) {
+            acceptClass = 'accepted';
+        }
+        this.el = $('<div id="' + this.id + '" class="event ' + acceptClass + '" data-order-id=' + ev.ordId+ '><span class="title">' + ev.title + '</span><br /><span class="subtitle">' + ev.description + '</span><br /><span class="debug">' + this.ev.start + ":" + this.ev.end + "</span></div>");
         var unit = settings.calendar_height / (settings.calendar_end-settings.calendar_start);
         $(this.el).css('height', unit*(Math.abs(this.ev.start-this.ev.end)));
         $(this.el).css('top', unit*(this.ev.start-settings.calendar_start));

@@ -23,6 +23,7 @@ namespace Pizza_Ordering.Domain.Entities
 
         public TimeSpan СloseTime { get; set; }
 
+
         // public virtual List<Place> Places { get; set; }
     }
 }

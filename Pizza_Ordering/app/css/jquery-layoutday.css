@@ -21,18 +21,18 @@
   vertical-align: top;
   box-sizing: border-box;
 }
+.jquery-layoutday .events .event.accepted {
 
+  border-left:4px solid #5cb85c;
+
+}
 .jquery-layoutday .events .event.active {
 
   border-left:4px solid #f0ad4e;
 
 }
 
-.jquery-layoutday .events .event.accept {
 
-  border-left:4px solid #5cb85c;
-
-}
 
 .jquery-layoutday .events .event .title {
   color: #4B6EA8;

@@ -224,6 +224,7 @@
     <Compile Include="Controllers\IngredientsController.cs" />
     <Compile Include="Controllers\OrderController.cs" />
     <Compile Include="Controllers\PizzasController.cs" />
+    <Compile Include="Controllers\SettingsController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -292,6 +293,7 @@
     <Content Include="app\css\pizzaOrdering.css" />
     <Content Include="app\css\style-portfolio.css" />
     <Content Include="app\css\userInfoPage.css" />
+    <Content Include="app\js\libs\bootstrap-notify.min.js" />
     <Content Include="app\js\libs\handlebars-v4.0.11.js" />
     <Content Include="app\js\libs\knockout-3.4.2.js" />
     <Content Include="app\js\layout.js" />
@@ -304,6 +306,7 @@
     <Content Include="app\css\bootstrap.css" />
     <Content Include="app\views\moderator\ModeratorLayout.html" />
     <Content Include="app\views\moderator\orders.html" />
+    <Content Include="app\views\moderator\settings.html" />
     <Content Include="app\views\user\PizzaOrdering.html" />
     <Content Include="app\views\user\UserInfoPage.html" />
     <Content Include="favicon.ico" />
