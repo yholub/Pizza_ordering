@@ -1,0 +1,36 @@
+﻿<div class="row">
+    <div class="col-md-6" >
+        <div id="calendar"></div>
+        <div class="time">
+            <ul class="hoursList">
+                {{#each hours}}
+                <li> {{this}}</li>
+                {{/each}}
+            </ul>
+        </div>
+        <div id="calendar"></div>
+    </div>
+
+    <div class="col-md-2 col-md-offset-1">
+        <hr />
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h4 class="panel-title" data-bind="text: selected().Name"></h4>
+            </div>
+            <div class="panel-body">
+               
+                <h6 class="card-subtitle mb-2 text-muted"></h6>
+                <p class="card-text">Ціна: <span data-bind="text: selected().Price"></span></p>
+                <p class="card-text">Початок приготування: <span data-bind="text: selected().StartStr"></span></p>
+                <p class="card-text">Кінець приготування: <span data-bind="text: selected().EndStr"></span></p>
+            </div>
+            <div class="panel-footer">
+                <button class="btn btn-success">Accept</button>
+                <button class="btn btn-danger">Reject</button>
+               
+            </div>
+      
+        </div>
+    </div>
+ </div>
+

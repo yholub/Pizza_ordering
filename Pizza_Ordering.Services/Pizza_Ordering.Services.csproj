@@ -50,13 +50,17 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BLs\IngredientsBL.cs" />
+    <Compile Include="BLs\OrderBL.cs" />
+    <Compile Include="BLs\OrderViewModel.cs" />
     <Compile Include="BLs\PizzasBL.cs" />
     <Compile Include="DTOs\BaseDto.cs" />
     <Compile Include="DTOs\IngredientDto.cs" />
+    <Compile Include="DTOs\Order.cs" />
     <Compile Include="DTOs\PizzaDto.cs" />
     <Compile Include="DTOs\ProductDto.cs" />
     <Compile Include="Interfaces\IBaseBL.cs" />
     <Compile Include="Interfaces\IIngredientsBL.cs" />
+    <Compile Include="Interfaces\IOrderBL.cs" />
     <Compile Include="Interfaces\IPizzasBL.cs" />
     <Compile Include="Interfaces\IProductService.cs" />
     <Compile Include="BLs\BaseBL.cs" />

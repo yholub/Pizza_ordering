@@ -222,6 +222,7 @@
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\IngredientsController.cs" />
+    <Compile Include="Controllers\OrderController.cs" />
     <Compile Include="Controllers\PizzasController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -291,12 +292,18 @@
     <Content Include="app\css\pizzaOrdering.css" />
     <Content Include="app\css\style-portfolio.css" />
     <Content Include="app\css\userInfoPage.css" />
+    <Content Include="app\js\libs\handlebars-v4.0.11.js" />
     <Content Include="app\js\libs\knockout-3.4.2.js" />
+    <Content Include="app\js\layout.js" />
+    <Content Include="app\js\libs\sammy-0.7.6.min.js" />
+    <Content Include="app\js\libs\sammy.handlebars.js" />
     <Content Include="app\js\main.js" />
     <Content Include="app\js\pizzaOrdering.js" />
     <Content Include="app\js\userInfoPage.js" />
     <Content Include="app\views\Home.html" />
     <Content Include="app\css\bootstrap.css" />
+    <Content Include="app\views\moderator\ModeratorLayout.html" />
+    <Content Include="app\views\moderator\orders.html" />
     <Content Include="app\views\user\PizzaOrdering.html" />
     <Content Include="app\views\user\UserInfoPage.html" />
     <Content Include="favicon.ico" />
@@ -345,7 +352,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="app\views\admin\" />
-    <Folder Include="app\views\moderator\" />
     <Folder Include="App_Data\" />
     <Folder Include="Areas\" />
     <Folder Include="Content\" />
