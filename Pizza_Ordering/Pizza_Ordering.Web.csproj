@@ -232,6 +232,7 @@
     <Compile Include="Models\Ingredient\CreateIngredientModel.cs" />
     <Compile Include="Models\Ingredient\IngredientModel.cs" />
     <Compile Include="Models\Ingredient\UpdateIngredientModel.cs" />
+    <Compile Include="Models\Pizza\CreateModifiedPizzaModel.cs" />
     <Compile Include="Models\Pizza\CreateSavedPizzaModel.cs" />
     <Compile Include="Models\Product\CreateProductModel.cs" />
     <Compile Include="Models\Product\ProductModel.cs" />

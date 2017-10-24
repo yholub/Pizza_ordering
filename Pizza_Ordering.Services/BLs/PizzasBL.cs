@@ -201,7 +201,7 @@ namespace Pizza_Ordering.Services.BLs
                     FixPizzaId = pizzaDto.BasePizzaId,
                     UserId = userId,
                     Name = pizzaDto.Name,
-                    IngredientItems = ingredientItems
+                    IngredientItems = ingredientItems,
                 };
 
                 uow.SavedPizzas.Create(entity);

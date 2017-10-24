@@ -68,6 +68,22 @@ namespace Pizza_Ordering.Controllers
             return Ok();
         }
 
+        [Route("modified")]
+        [HttpPost]
+        public IHttpActionResult Post([FromBody]CreateModifiedPizzaModel model)
+        {
+            PizzaDto dto = new PizzaDto
+            {
+                BasePizzaId = model.BasePizzaId,
+                PizzaType = PizzaType.Saved,
+                Ingredients = model.Ingredients
+            };
+
+            _pizzasBL.CreateModifiedPizza(model.UserId, dto);
+
+            return Ok();
+        }
+
         [Route("saved")]
         [HttpPost]
         public IHttpActionResult Post([FromBody]CreateSavedPizzaModel model)
@@ -77,9 +93,10 @@ namespace Pizza_Ordering.Controllers
                 BasePizzaId = model.BasePizzaId,
                 PizzaType = PizzaType.Saved,
                 Name = model.Name,
-                Price = model.Price,
                 Ingredients = model.Ingredients
             };
+
+            _pizzasBL.CreateSavedPizza(model.UserId, dto);
 
             return Ok();
         }

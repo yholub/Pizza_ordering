@@ -6,13 +6,11 @@ using System.Web;
 
 namespace Pizza_Ordering.Models.Pizza
 {
-    public class CreateSavedPizzaModel
+    public class CreateModifiedPizzaModel
     {
         public long UserId { get; set; }
 
         public long BasePizzaId { get; set; }
-
-        public string Name { get; set; }
 
         public List<IngredientDto> Ingredients { get; set; }
     }
