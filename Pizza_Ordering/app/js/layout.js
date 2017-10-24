@@ -75,16 +75,19 @@
         var self = context;
         $("#oHref").addClass("navactive");
         $("#sHref").removeClass("navactive");
-        $.get('/api/Order/GetCurrent')
-            .then(function (data) {
+        var getOrds = $.get('/api/Order/GetCurrent');
+        var getSet = $.get('/api/settings');
+        $.when(getOrds, getSet).done(function (concatData, concatSettings) {
+            var data = concatData[0];
+            var settings = concatSettings[0];
                 var list = [];
                 var now = new Date();
                 var stHour = now.getHours();
                 var stMin = now.getMinutes();
-                if (stHour < 9) {
-                    stHour = 9;
+                if (stHour < settings.StartHour) {
+                    stHour = settings.StartHour;
                 }
-                for (var i = stHour; i < 21; ++i) {
+                for (var i = stHour; i < settings.EndHour; ++i) {
                     for (var j = 0; j < 60; j = j + 10) {
                         var jText = '' + j;
                         if (j < 10) {
@@ -96,7 +99,7 @@
                 
                 self.render('orders.html', { hours: list }).replace("#main").then(function () {
                     
-                    $('#calendar').height((1260 - stHour * 60) * 3);
+                    $('#calendar').height(((settings.EndHour - stHour) * 60) * 3);
                     
                     var layOutDay = function (cal_events) {
                         $('#calendar').addEvents(cal_events);
@@ -104,7 +107,7 @@
                   
                     $('#calendar').layOutDay({
                         'calendar_start': stHour * 60,
-                        'calendar_end': 1260,
+                        'calendar_end': settings.EndHour * 60,
                         'time_selector': 'body .time'
                     });
                    
