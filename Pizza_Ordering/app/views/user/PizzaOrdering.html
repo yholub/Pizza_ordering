@@ -102,10 +102,11 @@
                 <div class="product-gallery">
                     <img  data-bind="attr: { 'src': imgUrl }" alt="Alternate Text" />
                     <p class="product-name" data-bind="text: name"></p>
-                    <div class="unitprice" id="inStock">Моцарела, Гриби, Оливки, Шинка, Перець</div>
+                    <div class="unitprice" id="inStock" data-bind="text: ko.utils.arrayMap($data.ingredients, function(v){return ' ' + v;})"></div>
+
                     <div class="product-price secondprice ">
-                        0 грн
-                        <a class="product-buy" id="some" data-bind="click: $parent.addToCard" title="Add to сart">В корзину</a>
+                        <el data-bind="text: price"></el> грн
+                        <a class="product-buy" data-bind="attr:{'id': $index()}, click: $parent.addToCard" title="Add to сart">В корзину</a>
                         <!--@if (@Model.Products[i + j].SelectedCount == 0)
                         {
                         <a class="product-buy" id="@Model.Products[i + j].Id" onclick="addToCart('@Model.Products[i + j].Id', '@Model.Products[i + j].Name', '@Model.Products[i + j].SelectedCount')" title="Add to сart">Add to сart</a>

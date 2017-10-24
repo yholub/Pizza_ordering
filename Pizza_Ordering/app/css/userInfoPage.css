@@ -218,7 +218,6 @@ table#t01 th {	background-color: Green;	color: white;}
     padding-top: 20px;
     padding-bottom: 10px;
     border: 1px solid;
-    border-radius:0px 0px 22px 22px;
     border-color: rgba(30, 30, 30, 0.33);
     background-color: rgba(255, 185, 0, 0.31);
     box-shadow: 0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22);
@@ -239,7 +238,6 @@ table#t01 th {	background-color: Green;	color: white;}
     background-color:#ffcb43!important;  
     border-top: 1px solid;
     border-color: rgba(30, 30, 30, 0.33);
-    border-radius:0px 0px 22px 22px;
 
 }
 
