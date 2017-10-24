@@ -865,3 +865,17 @@ MEDIA QUERIE DESKTOP
         font-size: 30px;
     }
 }
+
+ul.hoursList>li  {
+    color: black !important;
+}
+
+#calendar {
+  margin-top:30px;
+  /*width: 600px;*/
+  font-size: 12px !important;
+
+}
+#calendar li {
+      color: black !important;
+}
