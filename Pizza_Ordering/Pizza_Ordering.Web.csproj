@@ -280,6 +280,9 @@
     <Content Include="app\assets\images\slider2.jpg" />
     <Content Include="app\assets\images\slider3.JPG" />
     <Content Include="app\assets\images\steak.jpg" />
+    <Content Include="app\assets\images\ukr.PNG" />
+    <Content Include="app\assets\images\veg.jpg" />
+    <Content Include="app\assets\images\zesare.jpeg" />
     <Content Include="app\css\font-awesome.min.css" />
     <Content Include="app\css\jquery-ui.css" />
     <Content Include="app\css\main.css" />

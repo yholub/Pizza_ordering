@@ -219,13 +219,13 @@ textarea {
  #serverloadedMiniBasketItems {
     margin-top: 14px;
     padding-top: 0;
-    max-height: 180px;
+    max-height: 150px;
     overflow-y: auto;
 }
 
 
 .product .minibasketinner {
-    height: 50px;
+    height: 40px;
     border-bottom: 1px solid #cfcfcf;
     margin: 0 12px 12px 12px;
 }
@@ -495,3 +495,22 @@ label{
     padding-bottom: 25px;
 }
 
+
+ .delPizza {
+    line-height: 12px;
+    width: 18px;
+    font-size: 8pt;
+    font-family: tahoma;
+    position: absolute;
+    /* top: 0; */
+    right: 0;
+    margin-right: 30px;
+    padding-left: 3px;
+    padding-right: 3px;
+    background: #9ca1b5;
+    /* border-color: #9ca1b5; */
+    border: none;
+    border-radius: 50%;
+    color: #fff;
+    margin-top: -4px;
+ }

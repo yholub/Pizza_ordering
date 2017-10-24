@@ -70,17 +70,18 @@
                             <div class="products">
                                 <div id="serverloadedMiniBasketItems" class="product loaded selected miniBasketItems" data-bind="foreach: selectedProducts">
 
-                                    <!--@foreach (var product in Nemlig.BusinessLogic.SelectedProducts.Products)
-                                    {
-                                    <div data-bind="id: pizzaId" class="minibasketinner">
-                                        <p class="title" data-bind="text: productName"></p>
+                                    <div data-bind="attr: {pizzaId" class="minibasketinner">
+                                        <b class="title" data-bind="text: name"></b>
+                                        <input class="delPizza" type="button" value="X">
+                                        <p class="title" data-bind="text: ko.utils.arrayMap($data.ingredients, function(v){return ' ' + v;})"></p>
+                                        
                                         <span class="product-buttons2 product-qty-wrapper">
-                                            <a class="product-remove left" onclick="delItem('@product.ProductInfo.Id')"><span>-</span></a>
+                                            <!--<a class="product-remove left" data-bind="attr:{'id': pizzaId}, click: delItem"><span>-</span></a>
                                             <div class="product-qty left" id="prodCount2-@product.ProductInfo.Id"> @product.ProductInfo.SelectedCount </div>
-                                            <a class="product-add left" onclick="addItem('@product.ProductInfo.Id')"><span>+</span></a>
+                                            <a class="product-add left" onclick="addItem('@product.ProductInfo.Id')"><span>+</span></a>--->
                                         </span>
                                     </div>
-                                    }-->
+
                                 </div>
                             </div>
                             <a href="/checkout/kurv.aspx" class="go-checkout-btn">Замовити</a>
