@@ -9,6 +9,5 @@ namespace Pizza_Ordering.Services.Interfaces
 {
     public interface IIngredientsBL : IBaseBL<IngredientDto>
     {
-
     }
 }

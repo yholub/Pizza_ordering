@@ -10,7 +10,7 @@ using System.Web.Http;
 
 namespace Pizza_Ordering.Controllers
 {
-    [RoutePrefix("api/[controller]")]
+    [RoutePrefix("api/ingredients")]
     public class IngredientsController : BaseController
     {
         private readonly IIngredientsBL _ingredientsBL;
@@ -30,7 +30,7 @@ namespace Pizza_Ordering.Controllers
                 Name = dto.Name,
                 Price = dto.Price,
                 Weight = dto.Weight
-            });
+            }).ToList();
 
             return Json(model);
         }

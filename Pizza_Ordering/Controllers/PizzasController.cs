@@ -11,21 +11,31 @@ using System.Web.Http;
 
 namespace Pizza_Ordering.Controllers
 {
-    [RoutePrefix("api/pizza")]
-    public class PizzaController : BaseController
+    [RoutePrefix("api/pizzas")]
+    public class PizzasController : BaseController
     {
         private readonly IPizzasBL _pizzasBL;
 
-        public PizzaController(IPizzasBL pizzasBL)
+        public PizzasController(IPizzasBL pizzasBL)
         {
             _pizzasBL = pizzasBL;
         }
 
-        [Route("{pizzaType}")]
+        [Route("fix")]
         [HttpGet]
-        public IHttpActionResult Get(PizzaType pizzaType)
+        public IHttpActionResult GetFixPizzas()
         {
             var dtos = _pizzasBL.GetFixPizzas();
+            var models = dtos;
+
+            return Json(models);
+        }
+
+        [Route("saved/{userId:long}")]
+        [HttpGet]
+        public IHttpActionResult GetSavedPizzas(long userId)
+        {
+            var dtos = _pizzasBL.GetSavedPizzas(userId);
             var models = dtos;
 
             return Json(models);
