@@ -10,12 +10,12 @@ namespace Pizza_Ordering.Services.Interfaces
     public interface IOrderBL
     {
        List<Order> GetOrdersSince(DateTime st);
+
        List<Order> GetPendingOrdersSince(DateTime st);
-      
+
        void Accept(int id);
 
-
        void Reject(int id);
-      
+
     }
 }

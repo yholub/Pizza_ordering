@@ -230,6 +230,7 @@
     </Compile>
     <Compile Include="Models\AccountBindingModels.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\Order\OrderViewModel.cs" />
     <Compile Include="Models\Pizza\CreateFixPizzaModel.cs" />
     <Compile Include="Models\Ingredient\CreateIngredientModel.cs" />
     <Compile Include="Models\Ingredient\IngredientModel.cs" />
@@ -401,7 +402,7 @@
     <VisualStudio>
       <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
         <WebProjectProperties>
-          <UseIIS>True</UseIIS>
+          <UseIIS>False</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>49947</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>

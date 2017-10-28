@@ -4,22 +4,34 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace Pizza_Ordering.Services.BLs
+namespace Pizza_Ordering.Models.OrderViewModel
 {
     public class OrderViewModel
     {
         public string StartStr { get; set; }
+
         public string EndStr { get; set; }
+
         public DateTime Start { get; set; }
+
         public DateTime End { get; set; }
+
         public int Id { get; set; }
+
         public int Price { get; set; }
+
         public string Name { get; set; }
+
         public int StHour { get; set; }
+
         public int StMinute { get; set; }
+
         public int EndHour { get; set; }
+
         public int EndMinute { get; set; }
+
         public State State { get; set; }
+
         public OrderViewModel(Order ord)
         {
             State = ord.State;
@@ -34,7 +46,6 @@ namespace Pizza_Ordering.Services.BLs
             StMinute = Start.Minute;
             EndHour = End.Hour;
             EndMinute = End.Minute;
-            
         }
     }
 }
