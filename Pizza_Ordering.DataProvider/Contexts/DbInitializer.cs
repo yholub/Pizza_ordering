@@ -90,7 +90,7 @@ namespace Pizza_Ordering.DataProvider
                 new FixPizza { Name = "Маргарита", Price = 55, IngredientItems = pizzaIngr0 },
                 new FixPizza { Name = "Цезаре", Price = 120, IngredientItems = pizzaIngr1 },
                 new FixPizza { Name = "Вегетеріанська", Price = 93, IngredientItems = pizzaIngr2 },
-                new FixPizza { Name = "Капрічіоза", Price = 95, IngredientItems = pizzaIngr3 },
+                new FixPizza { Name = "Капрічоза", Price = 95, IngredientItems = pizzaIngr3 },
                 new FixPizza { Name = "Гавайська", Price = 96, IngredientItems = pizzaIngr4 },
                 new FixPizza { Name = "Українська", Price = 111, IngredientItems = pizzaIngr5 }
             };
