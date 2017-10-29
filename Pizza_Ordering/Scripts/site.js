@@ -15,12 +15,16 @@ $(function () {
         $(".toHide").show();
     }
 
-    $("#logout").click(function() {
-        $(".toHide").show();
-        $(".toShow").hide();
-        $.cookie('name', null);
-        
-        $.post("/api/Account/Logout");
+    $("#logout").click(function (e) {
+        e.preventDefault();
+        $
+            .post("/api/Account/Logout")
+            .then(function () {
+                $(".toHide").hide();
+                $(".toShow").show();
+                $.cookie('name', null);
+                window.location.href = "#/"
+            });
     });
     var $formLogin = $('#login-form');
     var $formLost = $('#lost-form');
@@ -70,20 +74,22 @@ $(function () {
                 return false;
                 break;
             case "register-form":
+              
                 var $rg_username = $('#register_username').val();
                 var $rg_email = $('#register_email').val();
                 var $rg_password = $('#register_password').val();
                 $.post("/api/Account/Register", {
+                    name: $rg_username,
                     email: $rg_email,
                     password: $rg_password,
                     confirmPassword: $rg_password
                 }).done(function () {
-                    msgChange($('#div-login-msg'), $('#icon-login-msg'), $('#text-login-msg'), "success", "glyphicon-ok", "Registration finished");
+                    msgChange($('#div-register-msg'), $('#icon-register-msg'), $('#text-register-msg'), "success", "glyphicon-ok", "Registration finished");
                     setTimeout(function () {
                         modalAnimate($formRegister, $formLogin);
                     }, 2000);
                 }).fail(function (err) {
-                    msgChange($('#div-login-msg'), $('#icon-login-msg'), $('#text-login-msg'), "error", "glyphicon-remove", "Bad user info");
+                    msgChange($('#div-register-msg'), $('#icon-register-msg'), $('#text-register-msg'), "error", "glyphicon-remove", "Bad user info");
                 });
                 return false;
                 break;

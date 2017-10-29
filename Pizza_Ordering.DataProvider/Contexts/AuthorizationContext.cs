@@ -33,6 +33,7 @@ namespace Pizza_Ordering.DataProvider.Contexts
 
         private void ConfigureIdentityTables(DbModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<User>().ToTable("Users");
             modelBuilder.Entity<CustomRole>().ToTable("Roles");
             modelBuilder.Entity<CustomUserRole>().ToTable("UserRoles");
             modelBuilder.Entity<CustomUserLogin>().ToTable("UserLogins");

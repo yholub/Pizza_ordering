@@ -29,7 +29,8 @@ namespace Pizza_Ordering.Controllers
     {
         private const string LocalLoginProvider = "Local";
         private ApplicationUserManager _userManager;
-
+     
+      
         public AccountController()
         {
         }
@@ -76,7 +77,7 @@ namespace Pizza_Ordering.Controllers
         [Route("Logout")]
         public IHttpActionResult Logout()
         {
-            Authentication.SignOut(CookieAuthenticationDefaults.AuthenticationType);
+            Authentication.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
             return Ok();
         }
 
@@ -93,12 +94,12 @@ namespace Pizza_Ordering.Controllers
                 return BadRequest("Unauthorized");
             }
 
-            ClaimsIdentity oAuthIdentity = await user.GenerateUserIdentityAsync(
-                UserManager,
-               OAuthDefaults.AuthenticationType);
+            //ClaimsIdentity oAuthIdentity = await user.GenerateUserIdentityAsync(
+            //    UserManager,
+            //   OAuthDefaults.AuthenticationType);
             ClaimsIdentity cookiesIdentity = await user.GenerateUserIdentityAsync(
-                UserManager,
-                DefaultAuthenticationTypes.ApplicationCookie);
+                UserManager, DefaultAuthenticationTypes.ApplicationCookie);
+
 
             Authentication.SignIn(cookiesIdentity);
 
