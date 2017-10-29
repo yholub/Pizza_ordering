@@ -20,7 +20,7 @@ namespace Pizza_Ordering.Services.DTOs
 
         public PizzaStatusType Status { get; set; }
 
-        public long UserId { get; set; }
+        public long? UserId { get; set; }
 
         public long PizzaHouseId { get; set; }
 
