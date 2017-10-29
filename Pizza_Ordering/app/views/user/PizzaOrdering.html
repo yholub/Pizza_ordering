@@ -1,57 +1,8 @@
-﻿<!DOCTYPE html>
-<html>
-
-<head>
-    <meta charset="UTF-8">
-    <title>Restaurant</title>
-    <link rel="stylesheet" href="../../css/normalize.css">
-    <link rel="stylesheet" href="../../css/pizzaOrdering.css" media="screen" type="text/css">
-    <link rel="stylesheet" href="../../css/main.css" media="screen" type="text/css">
-    <link href="../css/Site.css" rel="stylesheet" />
-    <link href='http://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
-    <link href='http://fonts.googleapis.com/css?family=Playball' rel='stylesheet' type='text/css'>
-    <link rel="stylesheet" href="../../css/bootstrap.css">
-    <link rel="stylesheet" href="../../css/style-portfolio.css">
-    <link rel="stylesheet" href="../../css/picto-foundry-food.css" />
-    <link rel="stylesheet" href="../../css/jquery-ui.css">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="../css/font-awesome.min.css" rel="stylesheet">
-    <link rel="icon" href="favicon-1.ico" type="image/x-icon">
-</head>
-
-<body>
-
-    <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
-        <div class="container">
-            <div class="row">
-                <!-- Brand and toggle get grouped for better mobile display -->
-                <div class="navbar-header">
-                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-                        <span class="sr-only">Toggle navigation</span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-                    <a class="navbar-brand" href="../Home.html">Came &amp; ate</a>
-                </div>
-
-                <!-- Collect the nav links, forms, and other content for toggling -->
-                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                    <ul class="nav navbar-nav main-nav  clear navbar-right ">
-                        <li><a class="color_animation" href="UserInfoPage.html" id="userList">PROFILE <span class="toHide" style="display:none; color: white" id="userNamePut"></span></a></li>
-                        <li><a class="navactive color_animation" href="PizzaOrdering.html">ORDER PIZZA</a></li>
-                        <li class="toHide" style="display:none" id="logout"><a class="color_animation" href="">LOG OUT</a> </li>
-
-                    </ul>
-                </div><!-- /.navbar-collapse -->
-            </div>
-        </div><!-- /.container-fluid -->
-    </nav>
-
+﻿<div id="pizzaOrderView">
     <div class="row pageContent">
         <div class="col-lg-8">
             <h3 id="category-title">Меню</h3>
-            <img src="../../assets/images/pizzas.PNG" alt="Alternate Text" />
+            <img src="../assets/images/pizzas.PNG" alt="Alternate Text" />
             <br />
         </div>
 
@@ -62,7 +13,7 @@
                 <div id="related-cart">
 
                     <div class="basket-header">
-                        <h4>Ваше замовлення: <pr class="cart-qty">0</pr> грн</h4>             
+                        <h4>Ваше замовлення: <pr class="cart-qty">0</pr> грн</h4>
                     </div>
 
                     <div id="related-cart-open">
@@ -74,7 +25,7 @@
                                         <b class="title" data-bind="text: name"></b>
                                         <input class="delPizza" type="button" value="X">
                                         <p class="title" data-bind="text: ko.utils.arrayMap($data.ingredients, function(v){return ' ' + v;})"></p>
-                                        
+
                                         <span class="product-buttons2 product-qty-wrapper">
                                             <!--<a class="product-remove left" data-bind="attr:{'id': pizzaId}, click: delItem"><span>-</span></a>
                                             <div class="product-qty left" id="prodCount2-@product.ProductInfo.Id"> @product.ProductInfo.SelectedCount </div>
@@ -93,45 +44,39 @@
             <br /><br />
         </div>
 
-        
+
     </div>
 
 
 
     <div class="row pizzas" data-bind="foreach: pizzas">
         <div class="col-lg-3 products-list">
-                <div class="product-gallery">
-                    <img  data-bind="attr: { 'src': imgUrl }" alt="Alternate Text" />
-                    <p class="product-name" data-bind="text: name"></p>
-                    <div class="unitprice" id="inStock" data-bind="text: ko.utils.arrayMap($data.ingredients, function(v){return ' ' + v;})"></div>
+            <div class="product-gallery">
+                <img data-bind="attr: { 'src': imgUrl }" alt="Alternate Text" />
+                <p class="product-name" data-bind="text: name"></p>
+                <div class="unitprice" id="inStock" data-bind="text: ko.utils.arrayMap($data.ingredients, function(v){return ' ' + v;})"></div>
 
-                    <div class="product-price secondprice ">
-                        <el data-bind="text: price"></el> грн
-                        <a class="product-buy" data-bind="attr:{'id': $index()}, click: $parent.addToCard" title="Add to сart">В корзину</a>
-                        <!--@if (@Model.Products[i + j].SelectedCount == 0)
-                        {
-                        <a class="product-buy" id="@Model.Products[i + j].Id" onclick="addToCart('@Model.Products[i + j].Id', '@Model.Products[i + j].Name', '@Model.Products[i + j].SelectedCount')" title="Add to сart">Add to сart</a>
-                        }
-                        else
-                        {
-                        <span id='buyCount-@Model.Products[i + j].Id' class="product-buttons product-qty-wrapper">
-                            <a id="delBtn-@Model.Products[i + j].Id" class="product-remove left" onclick="delItem(@Model.Products[i + j].Id)"><span>-</span></a>
-                            <div class="product-qty left" id="prodCount1-@Model.Products[i + j].Id">
-                                @Nemlig.BusinessLogic.SelectedProducts.Products.First(c => c.ProductInfo.Id == Model.Products[i + j].Id).ProductInfo.SelectedCount
-                            </div>
-                            <a class="product-add left" onclick="addItem(@Model.Products[i + j].Id)"><span>+</span></a>
-                        </span>
-                        }-->
-                    </div> 
+                <div class="product-price secondprice ">
+                    <el data-bind="text: price"></el> грн
+                    <a class="product-buy" data-bind="attr:{'id': $index()}, click: $parent.addToCard" title="Add to сart">В корзину</a>
+                    <!--@if (@Model.Products[i + j].SelectedCount == 0)
+                    {
+                    <a class="product-buy" id="@Model.Products[i + j].Id" onclick="addToCart('@Model.Products[i + j].Id', '@Model.Products[i + j].Name', '@Model.Products[i + j].SelectedCount')" title="Add to сart">Add to сart</a>
+                    }
+                    else
+                    {
+                    <span id='buyCount-@Model.Products[i + j].Id' class="product-buttons product-qty-wrapper">
+                        <a id="delBtn-@Model.Products[i + j].Id" class="product-remove left" onclick="delItem(@Model.Products[i + j].Id)"><span>-</span></a>
+                        <div class="product-qty left" id="prodCount1-@Model.Products[i + j].Id">
+                            @Nemlig.BusinessLogic.SelectedProducts.Products.First(c => c.ProductInfo.Id == Model.Products[i + j].Id).ProductInfo.SelectedCount
+                        </div>
+                        <a class="product-add left" onclick="addItem(@Model.Products[i + j].Id)"><span>+</span></a>
+                    </span>
+                    }-->
                 </div>
             </div>
+        </div>
         <!--</div>-->
     </div>
 
-    <script src="~/Scripts/app.js"></script>
-    <script type="text/javascript" src="../../js/libs/jquery-1.10.2.js"> </script>
-    <script type="text/javascript" src="../../js/libs/bootstrap.js"></script>
-    <script type="text/javascript" src="../../js/libs/knockout-3.4.2.js"></script>
-    <script type="text/javascript" src="../../js/pizzaOrdering.js"></script>
-</body>
-</html>
+</div>

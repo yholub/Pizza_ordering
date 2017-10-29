@@ -1,28 +1,39 @@
-﻿$(function () {
+﻿var pizzaOrdering = (function ($) {
+    return {
+        init: init,
+        getPizzas: getPizzas,
+        ViewModel: ViewModel
+    };
+
 
     function getPizzas() {
-        var pizzasArr = [];
-        $.get("../../../api/pizzas/fix", function (data) {
-            
-            for (var i = 0; i < data.length; i++) {
-                var pizza = data[i];
-                var ingredients = [];
-                for (var j = 0; j < pizza.Ingredients.length; j++) {
-                    ingredients.push(pizza.Ingredients[j].Name);
+        
+        var promise = 
+            $.get("../../../api/pizzas/fix")
+            .then(function(data) {
+                var pizzasArr = [];
+                for (var i = 0; i < data.length; i++) {
+                    var pizza = data[i];
+                    var ingredients = [];
+                    for (var j = 0; j < pizza.Ingredients.length; j++) {
+                        ingredients.push(pizza.Ingredients[j].Name);
+                    }
+
+                    pizzasArr.push({ id: pizza.Id, imgUrl: "../assets/images/" + pizza.Name + ".jpg", name: pizza.Name, price: pizza.Price, ingredients: ingredients });
                 }
 
-                pizzasArr.push({ id: pizza.Id, imgUrl: "../../assets/images/" + pizza.Name + ".jpg", name: pizza.Name, price: pizza.Price, ingredients: ingredients });
-            }
+                return pizzasArr;
+            });
 
-        });
+        return promise;
 
-        return pizzasArr;
+       
     }
 
-    function ViewModel() {
+    function ViewModel(pizzas) {
         var self = this;
 
-        self.pizzas = getPizzas();
+        self.pizzas = pizzas;
 
         /*self.pizzas = [
            { id: 0, imgUrl: "../../assets/images/food_icon01.jpg", name: "Основа", price: 20, ingredients: [] },
@@ -44,8 +55,14 @@
         }
     }
 
-    ko.applyBindings(new ViewModel());
-
-});
+    function init() {
+        getPizzas().then(function (pizzas) {
+            ko.applyBindings(new ViewModel(pizzas), document.getElementById('pizzaOrderView'));
+        });
+        
+    }
+    
+  
+})(jQuery);
 
 

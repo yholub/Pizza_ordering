@@ -53,6 +53,14 @@
       <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.3\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.Owin, Version=3.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.3.1.0\lib\net45\Microsoft.Owin.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Host.SystemWeb, Version=3.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.Host.SystemWeb.3.1.0\lib\net45\Microsoft.Owin.Host.SystemWeb.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.10.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
@@ -157,12 +165,6 @@
     </Reference>
     <Reference Include="Owin">
       <HintPath>..\packages\Owin.1.0\lib\net40\Owin.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.Owin">
-      <HintPath>..\packages\Microsoft.Owin.3.0.1\lib\net45\Microsoft.Owin.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.Owin.Host.SystemWeb">
-      <HintPath>..\packages\Microsoft.Owin.Host.SystemWeb.3.0.1\lib\net45\Microsoft.Owin.Host.SystemWeb.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Owin.Security">
       <HintPath>..\packages\Microsoft.Owin.Security.3.0.1\lib\net45\Microsoft.Owin.Security.dll</HintPath>
@@ -295,19 +297,21 @@
     <Content Include="app\js\libs\handlebars-v4.0.11.js" />
     <Content Include="app\js\libs\jquery-layoutday.js" />
     <Content Include="app\js\libs\knockout-3.4.2.js" />
-    <Content Include="app\js\layout.js" />
+    <Content Include="app\js\moderator\layout.js" />
     <Content Include="app\js\libs\sammy-0.7.6.min.js" />
     <Content Include="app\js\libs\sammy.handlebars.js" />
     <Content Include="app\js\main.js" />
-    <Content Include="app\js\pizzaOrdering.js" />
-    <Content Include="app\js\userInfoPage.js" />
-    <Content Include="app\views\Home.html" />
+    <Content Include="app\js\user\pizzaOrdering.js" />
+    <Content Include="app\js\user\user.router.js" />
+    <Content Include="app\js\user\userInfoPage.js" />
+    <Content Include="app\views\home.html" />
     <Content Include="app\css\bootstrap.css" />
+    <Content Include="app\views\layout.html" />
     <Content Include="app\views\moderator\ModeratorLayout.html" />
     <Content Include="app\views\moderator\orders.html" />
     <Content Include="app\views\moderator\settings.html" />
-    <Content Include="app\views\user\PizzaOrdering.html" />
-    <Content Include="app\views\user\UserInfoPage.html" />
+    <Content Include="app\views\user\pizzaOrdering.html" />
+    <Content Include="app\views\user\userInfoPage.html" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="app\js\libs\bootstrap.js" />

@@ -14,49 +14,49 @@ namespace Pizza_Ordering.Services.BLs
         static List<Order> Orders { get; set; }
 
         static OrderBL_MOC() {
-            /*Orders = new List<Order>();
+            Orders = new List<Order>();
             Orders.Add(new Order
             {
                 State = State.Pending,
                 Name = "Папероні",
-                Start = new DateTime(2017, 10, 24, 17, 0, 0),
+                Start = new DateTime(2017, 10, 29, 17, 0, 0),
                 Price = 70,
-                End = new DateTime(2017, 10, 24, 17, 20, 0)
+                End = new DateTime(2017, 10, 29, 17, 20, 0)
             });
 
             Orders.Add(new Order
             {
                 State = State.Pending,
                 Name = "Наполетана",
-                Start = new DateTime(2017, 10, 24, 17, 10, 0),
+                Start = new DateTime(2017, 10, 29, 17, 10, 0),
                 Price = 80,
-                End = new DateTime(2017, 10, 24, 17, 30, 0)
+                End = new DateTime(2017, 10, 29, 17, 30, 0)
             });
 
             Orders.Add(new Order
             {
                 State = State.Pending,
                 Name = "Кальцоне",
-                Start = new DateTime(2017, 10, 24, 18, 10, 0),
+                Start = new DateTime(2017, 10, 29, 18, 10, 0),
                 Price = 40,
-                End = new DateTime(2017, 10, 24, 18, 30, 0)
+                End = new DateTime(2017, 10, 29, 18, 30, 0)
             });
             Orders.Add(new Order
             {
                 State = State.Pending,
                 Name = "Чезаре",
-                Start = new DateTime(2017, 10, 24, 17, 40, 0),
+                Start = new DateTime(2017, 10, 29, 17, 40, 0),
                 Price = 60,
-                End = new DateTime(2017, 10, 24, 18, 00, 0)
+                End = new DateTime(2017, 10, 29, 18, 00, 0)
             });
 
             Orders.Add(new Order
             {
                 State = State.Pending,
                 Name = "Наполетана",
-                Start = new DateTime(2017, 10, 24, 19, 10, 0),
+                Start = new DateTime(2017, 10, 29, 19, 10, 0),
                 Price = 80,
-                End = new DateTime(2017, 10, 24, 19, 30, 0)
+                End = new DateTime(2017, 10, 29, 19, 30, 0)
             });
 
             Orders.Add(new Order
@@ -70,7 +70,7 @@ namespace Pizza_Ordering.Services.BLs
 
             for(int i = 0; i < Orders.Count; ++i) {
                 Orders[i].Id = i;
-            }*/
+            }
         }
 
         public List<Order> GetOrdersSince(DateTime st)

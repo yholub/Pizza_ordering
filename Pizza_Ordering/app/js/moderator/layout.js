@@ -1,13 +1,9 @@
 ﻿$.sammy("#main", function () {
-    var isBound = function (id) {
-        if (document.getElementById(id) != null)
-            return !!ko.dataFor(document.getElementById(id));
-        else
-            return false;
-    };
     this._checkFormSubmission = function (form) {
         return false;
     };
+
+
     this.use('Handlebars', 'html');
     this.get('#/settings', function (context) {
         var self = context;
@@ -54,9 +50,6 @@
                     }
                 }
                 
-                if (isBound("setview"))
-                    ko.cleanNode(document.getElementById('setview'));
-              
                 var model = new SettingsFormModel(data);
                 ko.applyBindings(model, document.getElementById('setview'));
                
@@ -97,7 +90,7 @@
                     }
                 }
                 
-                self.render('orders.html', { hours: list }).replace("#main").then(function () {
+                self.partial('orders.html', { hours: list, cache: false }).then(function () {
                     
                     $('#calendar').height(((settings.EndHour - stHour) * 60) * 3);
                     
@@ -174,8 +167,6 @@
                     }
 
                     var model = new OrderViewModel(data);
-                    if (isBound("view"))
-                        ko.cleanNode(document.getElementById('view'));
                     ko.applyBindings(model, document.getElementById('view'));
 
                     $(".event").click(function () {
@@ -196,3 +187,11 @@
 
 
 }).run("#/");
+
+
+function isBound(id) {
+    if (document.getElementById(id) != null)
+        return !!ko.dataFor(document.getElementById(id));
+    else
+        return false;
+}

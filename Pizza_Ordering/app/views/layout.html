@@ -1,40 +1,69 @@
 ﻿<!DOCTYPE html>
 <html>
-<head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width" />
-    <title>@ViewBag.Title</title>
-    @Styles.Render("~/Content/css")
-    @Scripts.Render("~/bundles/modernizr")
-</head>
-<body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
-            </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
 
-                    <li class="toShow" ><a href="" data-toggle="modal" data-target="#login-modal">Login</a></li>
-                    <li class="toHide" style="display:none" id="userList" hidden><a href="">Hello <span id="userNamePut"></span></a> </li>
-                    <li class="toHide" style="display:none" id="logout" hidden><a href="">Logout</a> </li>
-                </ul>
+<head>
+    <meta charset="UTF-8">
+    <title>Restaurant</title>
+    <link rel="stylesheet" href="../css/normalize.css">
+    <link rel="stylesheet" href="../css/main.css" media="screen" type="text/css">
+    <link href="../css/Site.css" rel="stylesheet" />
+    <link href='http://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Playball' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="../css/bootstrap.css">
+    <link rel="stylesheet" href="../css/style-portfolio.css">
+    <link rel="stylesheet" href="../css/picto-foundry-food.css" />
+    <link rel="stylesheet" href="../css/jquery-ui.css">
+    <link href="../css/pizzaOrdering.css" rel="stylesheet" />
+    <!--<link href="../css/userInfoPage.css" rel="stylesheet" />-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="../css/font-awesome.min.css" rel="stylesheet">
+    <link rel="icon" href="favicon-1.ico" type="image/x-icon">
+</head>
+
+<body>
+
+    <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+        <div class="container">
+            <div class="row">
+                <!-- Brand and toggle get grouped for better mobile display -->
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="#">Came &amp; ate</a>
+                </div>
+
+                <!-- Collect the nav links, forms, and other content for toggling -->
+                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                    <ul class="nav navbar-nav main-nav  clear navbar-right ">
+                        <li ><a class="router-href navactive color_animation" href="#/" id="userList">WELCOME <span class="toHide" style="display:none; color: white" id="userNamePut"></span></a></li>
+                        <li ><a class="router-href color_animation" href="#/order">ORDER PIZZA</a></li>
+                        <li class="toShow"><a href="" class="color_animation" data-toggle="modal" data-target="#login-modal">LOG IN</a></li>
+
+                        <li class=" toHide" style="display:none" id="logout" hidden><a class="color_animation" href="#/">Logout</a> </li>
+
+                    </ul>
+                </div><!-- /.navbar-collapse -->
             </div>
+        </div><!-- /.container-fluid -->
+    </nav>
+    
+    <div id="main">
+
+    </div>
+    <!-- ============ Footer Section  ============= -->
+
+    <footer class="sub_footer">
+        <div class="container">
+            <div class="col-md-offset-4 col-md-4"><p class="sub-footer-text text-center">&copy; Came &amp; Eat 2017</p></div>
         </div>
-    </div>
-    <div class="container body-content">
-        @RenderBody()
-        <hr />
-        <footer>
-            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
-        </footer>
-    </div>
+    </footer>
+
+
+
     <div class="modal fade" id="login-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -55,7 +84,7 @@
                                 <div id="icon-login-msg" class="glyphicon glyphicon-chevron-right"></div>
                                 <span id="text-login-msg">Type your username and password.</span>
                             </div>
-                            <input id="login_username" class="form-control" type="text" placeholder="Username (type ERROR for error effect)" required>
+                            <input id="login_username" class="form-control" type="text" placeholder="Username" required>
                             <input id="login_password" class="form-control" type="password" placeholder="Password" required>
                             <div class="checkbox">
                                 <label>
@@ -75,7 +104,7 @@
                     </form>
                     <!-- End # Login Form -->
                     <!-- Begin | Lost Password Form -->
-                    <form id="lost-form" style="display:none;">
+                    <form id="lost-form" style="display: none;">
                         <div class="modal-body">
                             <div id="div-lost-msg">
                                 <div id="icon-lost-msg" class="glyphicon glyphicon-chevron-right"></div>
@@ -95,7 +124,7 @@
                     </form>
                     <!-- End | Lost Password Form -->
                     <!-- Begin | Register Form -->
-                    <form id="register-form" style="display:none;">
+                    <form id="register-form" style="display: none;">
                         <div class="modal-body">
                             <div id="div-register-msg">
                                 <div id="icon-register-msg" class="glyphicon glyphicon-chevron-right"></div>
@@ -124,10 +153,17 @@
             </div>
         </div>
     </div>
-    @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/bootstrap")
-            @RenderSection("scripts", required: false)
-         <script src="~/Scripts/jquery.cookie.js"></script>
-        <script src="~/Scripts/site.js"></script>
+
+
+    <script type="text/javascript" src="../js/libs/jquery-1.10.2.js"> </script>
+    <script type="text/javascript" src="../js/libs/bootstrap.js"></script>
+    <script src="../js/libs/knockout-3.4.2.js"></script>
+    <script src="../js/libs/sammy-0.7.6.min.js"></script>
+    <script type="text/javascript" src="../js/main.js"></script>
+    <script src="../../Scripts/jquery.cookie.js"></script>
+    <script src="../../Scripts/site.js"></script>
+    <script src="../js/user/pizzaOrdering.js"></script>
+    <script src="../js/user/userInfoPage.js"></script>
+    <script src="../js/user/user.router.js"></script>
 </body>
 </html>

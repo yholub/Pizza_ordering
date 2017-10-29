@@ -1,255 +1,94 @@
-﻿<!DOCTYPE html>
-<html>
-
-<head>
-    <meta charset="UTF-8">
-    <title>Restaurant</title>
-    <link rel="stylesheet" href="../css/normalize.css">
-    <link rel="stylesheet" href="../css/main.css" media="screen" type="text/css">
-    <link href="../css/Site.css" rel="stylesheet" />
-    <link href='http://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
-    <link href='http://fonts.googleapis.com/css?family=Playball' rel='stylesheet' type='text/css'>
-    <link rel="stylesheet" href="../css/bootstrap.css">
-    <link rel="stylesheet" href="../css/style-portfolio.css">
-    <link rel="stylesheet" href="../css/picto-foundry-food.css" />
-    <link rel="stylesheet" href="../css/jquery-ui.css">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="../css/font-awesome.min.css" rel="stylesheet">
-    <link rel="icon" href="favicon-1.ico" type="image/x-icon">
-</head>
-
-<body>
-
-    <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
-        <div class="container">
-            <div class="row">
-                <!-- Brand and toggle get grouped for better mobile display -->
-                <div class="navbar-header">
-                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-                        <span class="sr-only">Toggle navigation</span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-                    <a class="navbar-brand" href="#">Came &amp; ate</a>
-                </div>
-
-                <!-- Collect the nav links, forms, and other content for toggling -->
-                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                    <ul class="nav navbar-nav main-nav  clear navbar-right ">
-                        <li><a class="navactive color_animation" href="#top" id="userList" >WELCOME <span class="toHide" style="display:none; color: white" id="userNamePut" ></span></a></li>
-                        <li><a class="color_animation" href="#story">ORDER PIZZA</a></li>
-                        <li class="toShow"><a href="" class="color_animation" data-toggle="modal" data-target="#login-modal">LOG IN</a></li>
-                     
-                        <li class=" toHide" style="display:none" id="logout" hidden><a class="color_animation"href="">Logout</a> </li>
-                
-                    </ul>
-                </div><!-- /.navbar-collapse -->
-            </div>
-        </div><!-- /.container-fluid -->
-    </nav>
-
-    <div id="top" class="starter_container bg">
-        <div class="follow_container">
-            <div class="col-md-6 col-md-offset-3">
-                <h2 class="top-title">Came &amp; ate</h2>
-                <h2 class="white second-title">" Замовив - Прийшов - З'їв "</h2>
-                <hr>
-            </div>
-        </div>
-    </div>
-
-    <!-- ============ About Us ============= -->
-
-    <section id="story" class="description_content">
-        <div class="text-content container">
-            <div class="col-md-6">
-                <h1>Про Нас</h1>
-                
-                <p class="desc-text">
-                    <br />
-                    Прийшли З’їли – сервіс для завчасного замовлення піци. Ви можете обрати різновид піци, місце і час її видачі і Вам не доведеться
-                    чекати оскільки замовлення буде готове до Вашого приходу. Ви може замовити як готову піцу так і піцу з обраних інгредієнтів.
-                 </p>
-                <p class="desc-text">
-                    Наша особливість: відмова від звичної моделі “Прийшов – Замовив – Почекав – З’їв” на користь інноваційної – “Замовив  –  Прийшов – З’їв”.
-                </p>
-            </div>
-            <div class="col-md-6">
-                <div class="img-section">
-                    <img src="../assets/images/img1.png" width="250" height="220">
-                    <img src="../assets/images/img2.png" width="250" height="220">
-                    <div class="img-section-space"></div>
-                    <img src="../assets/images/img3.jpg" width="250" height="220">
-                    <img src="../assets/images/img4.png" width="250" height="220">
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="contact">
-        <div class="map">
-            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3618.664063989472!2d91.8316103150038!3d24.909437984030877!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x37505558dd0be6a1%3A0x65c7e47c94b6dc45!2sTechnext!5e0!3m2!1sen!2sbd!4v1444461079802" width="100%" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>
-        </div>
-    </section>
-
-    <!-- ============ Social Section  ============= -->
-
-    <section class="social_connect">
-        <div class="text-content container">
-            <div class="col-md-offset-3 col-md-6">
-                <span class="social_heading">Зворотній зв'язок</span>
-                <br/>
-                <span class="social_info"><a class="color_animation" href="tel:063-139-6071"> (063) 139-6071</a></span>
-                <span class="social_info"><a class="color_animation" href="tel:063-139-6071"> (093) 539-0627</a></span>
-            </div>
-        </div>
-    </section>
-
-    <!-- ============ Contact Section  ============= -->
-
-    <!--<section id="contact">
-        <div class="map">
-            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3618.664063989472!2d91.8316103150038!3d24.909437984030877!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x37505558dd0be6a1%3A0x65c7e47c94b6dc45!2sTechnext!5e0!3m2!1sen!2sbd!4v1444461079802" width="100%" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>
-        </div>
-        <div class="container">
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="inner contact">
-                        <div class="contact-form">
-                            <form id="contact-us" method="post" action="contact.php">
-                                <div class="col-md-6 ">
-                                    
-                                    <input type="text" name="name" id="name" required="required" class="form" placeholder="Name" />
-                                   
-                                    <input type="email" name="email" id="email" required="required" class="form" placeholder="Email" />
-                                    
-                                    <input type="text" name="subject" id="subject" required="required" class="form" placeholder="Subject" />
-                                </div>
-                               
-                                <div class="col-md-6">
-                                    
-                                    <textarea name="message" id="message" class="form textarea" placeholder="Message"></textarea>
-                                </div>
-                                <div class="relative fullwidth col-xs-12">
-                                    
-                                    <button type="submit" id="submit" name="submit" class="form-btn">Send Message</button>
-                                </div>
-                                <div class="clear"></div>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>-->
-
-
-        <!-- ============ Footer Section  ============= -->
-
-        <footer class="sub_footer">
-            <div class="container">
-                <div class="col-md-offset-4 col-md-4"><p class="sub-footer-text text-center">&copy; Came &amp; Eat 2017</p></div>
-            </div>
-        </footer>
-
-
-
-    <div class="modal fade" id="login-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header" align="center">
-                <img class="img-circle" id="img_logo" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR64t1QgV-4Kbxy6bj8qgRvtedGa8uRkPpFGJ0xf5j98kJEtR5MJA">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
-                </button>
-            </div>
-
-            <!-- Begin # DIV Form -->
-            <div id="div-forms">
-
-                <!-- Begin # Login Form -->
-                <form id="login-form">
-                    <div class="modal-body">
-                        <div id="div-login-msg">
-                            <div id="icon-login-msg" class="glyphicon glyphicon-chevron-right"></div>
-                            <span id="text-login-msg">Type your username and password.</span>
-                        </div>
-                        <input id="login_username" class="form-control" type="text" placeholder="Username" required>
-                        <input id="login_password" class="form-control" type="password" placeholder="Password" required>
-                        <div class="checkbox">
-                            <label>
-                                <input type="checkbox"> Remember me
-                            </label>
-                        </div>
-                    </div>
-                    <div class="modal-footer">
-                        <div>
-                            <button type="submit" class="btn btn-primary btn-lg btn-block">Login</button>
-                        </div>
-                        <div>
-                            <button id="login_lost_btn" type="button" class="btn btn-link">Lost Password?</button>
-                            <button id="login_register_btn" type="button" class="btn btn-link">Register</button>
-                        </div>
-                    </div>
-                </form>
-                <!-- End # Login Form -->
-                <!-- Begin | Lost Password Form -->
-                <form id="lost-form" style="display: none;">
-                    <div class="modal-body">
-                        <div id="div-lost-msg">
-                            <div id="icon-lost-msg" class="glyphicon glyphicon-chevron-right"></div>
-                            <span id="text-lost-msg">Type your e-mail.</span>
-                        </div>
-                        <input id="lost_email" class="form-control" type="text" placeholder="E-Mail (type ERROR for error effect)" required>
-                    </div>
-                    <div class="modal-footer">
-                        <div>
-                            <button type="submit" class="btn btn-primary btn-lg btn-block">Send</button>
-                        </div>
-                        <div>
-                            <button id="lost_login_btn" type="button" class="btn btn-link">Log In</button>
-                            <button id="lost_register_btn" type="button" class="btn btn-link">Register</button>
-                        </div>
-                    </div>
-                </form>
-                <!-- End | Lost Password Form -->
-                <!-- Begin | Register Form -->
-                <form id="register-form" style="display: none;">
-                    <div class="modal-body">
-                        <div id="div-register-msg">
-                            <div id="icon-register-msg" class="glyphicon glyphicon-chevron-right"></div>
-                            <span id="text-register-msg">Register an account.</span>
-                        </div>
-                        <input id="register_username" class="form-control" type="text" placeholder="Username" required>
-                        <input id="register_email" class="form-control" type="text" placeholder="E-Mail" required>
-                        <input id="register_password" class="form-control" type="password" placeholder="Password" required>
-                        <input id="register_confirm_password" class="form-control" type="password" placeholder="Confirm password" required>
-                    </div>
-                    <div class="modal-footer">
-                        <div>
-                            <button type="submit" class="btn btn-primary btn-lg btn-block">Register</button>
-                        </div>
-                        <div>
-                            <button id="register_login_btn" type="button" class="btn btn-link">Log In</button>
-                            <button id="register_lost_btn" type="button" class="btn btn-link">Lost Password?</button>
-                        </div>
-                    </div>
-                </form>
-                <!-- End | Register Form -->
-
-            </div>
-            <!-- End # DIV Form -->
-
+﻿
+<div id="top" class="starter_container bg">
+    <div class="follow_container">
+        <div class="col-md-6 col-md-offset-3">
+            <h2 class="top-title">Came &amp; ate</h2>
+            <h2 class="white second-title">" Замовив - Прийшов - З'їв "</h2>
+            <hr>
         </div>
     </div>
 </div>
 
+<!-- ============ About Us ============= -->
 
-    <script type="text/javascript" src="../js/libs/jquery-1.10.2.js"> </script>
-    <script type="text/javascript" src="../js/libs/bootstrap.js"></script>
-    <script type="text/javascript" src="../js/main.js"></script>
-    <script src="../../Scripts/jquery.cookie.js"></script>
-    <script src="../../Scripts/site.js"></script>
-</body>
-</html>
+<section id="story" class="description_content">
+    <div class="text-content container">
+        <div class="col-md-6">
+            <h1>Про Нас</h1>
+
+            <p class="desc-text">
+                <br />
+                Прийшли З’їли – сервіс для завчасного замовлення піци. Ви можете обрати різновид піци, місце і час її видачі і Вам не доведеться
+                чекати оскільки замовлення буде готове до Вашого приходу. Ви може замовити як готову піцу так і піцу з обраних інгредієнтів.
+            </p>
+            <p class="desc-text">
+                Наша особливість: відмова від звичної моделі “Прийшов – Замовив – Почекав – З’їв” на користь інноваційної – “Замовив  –  Прийшов – З’їв”.
+            </p>
+        </div>
+        <div class="col-md-6">
+            <div class="img-section">
+                <img src="../assets/images/img1.png" width="250" height="220">
+                <img src="../assets/images/img2.png" width="250" height="220">
+                <div class="img-section-space"></div>
+                <img src="../assets/images/img3.jpg" width="250" height="220">
+                <img src="../assets/images/img4.png" width="250" height="220">
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="contact">
+    <div class="map">
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3618.664063989472!2d91.8316103150038!3d24.909437984030877!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x37505558dd0be6a1%3A0x65c7e47c94b6dc45!2sTechnext!5e0!3m2!1sen!2sbd!4v1444461079802" width="100%" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>
+    </div>
+</section>
+
+<!-- ============ Social Section  ============= -->
+
+<section class="social_connect">
+    <div class="text-content container">
+        <div class="col-md-offset-3 col-md-6">
+            <span class="social_heading">Зворотній зв'язок</span>
+            <br />
+            <span class="social_info"><a class="color_animation" href="tel:063-139-6071"> (063) 139-6071</a></span>
+            <span class="social_info"><a class="color_animation" href="tel:063-139-6071"> (093) 539-0627</a></span>
+        </div>
+    </div>
+</section>
+
+<!-- ============ Contact Section  ============= -->
+<!--<section id="contact">
+    <div class="map">
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3618.664063989472!2d91.8316103150038!3d24.909437984030877!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x37505558dd0be6a1%3A0x65c7e47c94b6dc45!2sTechnext!5e0!3m2!1sen!2sbd!4v1444461079802" width="100%" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="inner contact">
+                    <div class="contact-form">
+                        <form id="contact-us" method="post" action="contact.php">
+                            <div class="col-md-6 ">
+
+                                <input type="text" name="name" id="name" required="required" class="form" placeholder="Name" />
+
+                                <input type="email" name="email" id="email" required="required" class="form" placeholder="Email" />
+
+                                <input type="text" name="subject" id="subject" required="required" class="form" placeholder="Subject" />
+                            </div>
+
+                            <div class="col-md-6">
+
+                                <textarea name="message" id="message" class="form textarea" placeholder="Message"></textarea>
+                            </div>
+                            <div class="relative fullwidth col-xs-12">
+
+                                <button type="submit" id="submit" name="submit" class="form-btn">Send Message</button>
+                            </div>
+                            <div class="clear"></div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>-->
