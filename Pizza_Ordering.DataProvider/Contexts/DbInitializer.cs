@@ -96,10 +96,128 @@ namespace Pizza_Ordering.DataProvider
             };
 
             context.FixPizzas.AddRange(fixPizzas);
+            context.SaveChanges();
+            
+            List<PizzaHouse> pizzas = new List<PizzaHouse> 
+            {
+                new PizzaHouse 
+                {
+                    OpenTime = TimeSpan.FromHours(9),
+                    СloseTime = TimeSpan.FromHours(23),
+                    Location = new Address 
+                    {
+                        City = "Львів",
+                        Street = "Левицького",
+                        District = "13",
+                        HouseNumber = "2",
+                        Lat = 49.8360502,
+                        Lng = 24.0352977
+                    }
+                },
 
+                new PizzaHouse 
+                {
+                    OpenTime = TimeSpan.FromHours(9),
+                    СloseTime = TimeSpan.FromHours(23),
+                    Location = new Address 
+                    {
+                        City = "Львів",
+                        Street = "Січових Стрільців",
+                        District = "13",
+                        HouseNumber = "7",
+                        Lat = 49.840367,
+                        Lng = 24.024088
+                    }
+                },
+                
+            };
+
+            context.PizzaHouses.AddRange(pizzas);
+
+            context.SaveChanges();
+
+            List<Order> orders = new List<Order>
+            {
+                new Order
+                {
+                    PizzaHouseId = pizzas[0].Id,
+                    Price = 80,
+                    TimeToTake = FromTime(22, 40),
+                    Status = Pizza_Ordering.Common.PizzaStatusType.Processed
+                },
+
+                new Order
+                {
+                    PizzaHouseId = pizzas[0].Id,
+                    Price = 180,
+                    TimeToTake = FromTime(23, 20),
+                    Status = Pizza_Ordering.Common.PizzaStatusType.Processed
+                },
+
+                new Order
+                {
+                    PizzaHouseId = pizzas[0].Id,
+                    Price = 90,
+                    TimeToTake = FromTime(23, 50),
+                    Status = Common.PizzaStatusType.Processed
+                },
+
+
+            };
+
+            context.Orders.AddRange(orders);
+
+            context.SaveChanges();
+
+            List<OrderItem> items = new List<OrderItem>
+            {
+                new OrderItem 
+                { 
+                    OrderId = orders[0].Id,
+                    PizzaId = fixPizzas[1].Id, 
+                    Price = 80, 
+                    StartTime = FromTime(22, 20),
+                    EndTime = FromTime(22, 40)
+                },
+                new OrderItem 
+                { 
+                    OrderId = orders[1].Id,
+                    PizzaId = fixPizzas[3].Id, 
+                    Price = 100, 
+                    StartTime = FromTime(23, 00),
+                    EndTime = FromTime(23, 20)
+                },
+                new OrderItem 
+                { 
+                    OrderId = orders[1].Id,
+                    PizzaId = fixPizzas[1].Id, 
+                    Price = 80, 
+                    StartTime = FromTime(23, 00),
+                    EndTime = FromTime(23, 20)
+                },
+                new OrderItem 
+                { 
+                    OrderId = orders[2].Id,
+                    PizzaId = fixPizzas[2].Id, 
+                    Price = 90, 
+                    StartTime = FromTime(23, 10),
+                    EndTime = FromTime(23, 50)
+                }
+
+            };
+
+            context.OrderItems.AddRange(items);
             context.SaveChanges();
 
             base.Seed(context);
         }
+
+        static private DateTime FromTime(int h, int m)
+        {
+            return DateTime.Today + TimeSpan.FromMinutes(m) + TimeSpan.FromHours(h);
+        }
     }
+
+
+    
 }

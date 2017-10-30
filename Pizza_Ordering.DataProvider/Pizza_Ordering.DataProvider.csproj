@@ -107,6 +107,10 @@
     <AdditionalFiles Include="stylecop.json" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Pizza_Ordering.Common\Pizza_Ordering.Common.csproj">
+      <Project>{7475802d-7f59-4dbc-a1b0-b8e7bde8108f}</Project>
+      <Name>Pizza_Ordering.Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Pizza_ordering.Domain\Pizza_Ordering.Domain.csproj">
       <Project>{8B7BC04D-21EE-4260-B2A6-D9559BBA5F38}</Project>
       <Name>Pizza_Ordering.Domain</Name>

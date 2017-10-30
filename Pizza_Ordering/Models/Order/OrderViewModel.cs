@@ -1,4 +1,6 @@
-﻿using Pizza_Ordering.Services.DTOs;
+﻿using Pizza_Ordering.Common;
+using Pizza_Ordering.Domain.Entities;
+using Pizza_Ordering.Services.DTOs;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,9 +18,11 @@ namespace Pizza_Ordering.Models.OrderViewModel
 
         public DateTime End { get; set; }
 
-        public int Id { get; set; }
+        public long Id { get; set; }
 
-        public int Price { get; set; }
+        public long OrderId { get; set; }
+
+        public decimal Price { get; set; }
 
         public string Name { get; set; }
 
@@ -30,16 +34,17 @@ namespace Pizza_Ordering.Models.OrderViewModel
 
         public int EndMinute { get; set; }
 
-        public State State { get; set; }
+        public PizzaStatusType State { get; set; }
 
-        public OrderViewModel(Order ord)
+        public OrderViewModel(OrderItemDto ord)
         {
-            State = ord.State;
-            Start = ord.Start;
-            End = ord.End;
             Id = ord.Id;
+            State = ord.Status;
+            Start = ord.StartTime;
+            End = ord.EndTime;
+            OrderId = ord.OrderId;
             Price = ord.Price;
-            Name = ord.Name;
+            Name = ord.PizzaName;
             StartStr = Start.ToShortTimeString();
             EndStr = End.ToShortTimeString();
             StHour = Start.Hour;

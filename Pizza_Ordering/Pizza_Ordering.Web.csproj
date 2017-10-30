@@ -225,6 +225,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\IngredientsController.cs" />
     <Compile Include="Controllers\OrderController.cs" />
+    <Compile Include="Controllers\PizzaController.cs" />
     <Compile Include="Controllers\PizzasController.cs" />
     <Compile Include="Controllers\SettingsController.cs" />
     <Compile Include="Global.asax.cs">
@@ -297,11 +298,13 @@
     <Content Include="app\js\libs\handlebars-v4.0.11.js" />
     <Content Include="app\js\libs\jquery-layoutday.js" />
     <Content Include="app\js\libs\knockout-3.4.2.js" />
+    <Content Include="app\js\libs\mapplace.min..js" />
     <Content Include="app\js\moderator\layout.js" />
     <Content Include="app\js\libs\sammy-0.7.6.min.js" />
     <Content Include="app\js\libs\sammy.handlebars.js" />
     <Content Include="app\js\main.js" />
     <Content Include="app\js\user\pizzaOrdering.js" />
+    <Content Include="app\js\user\timeLocationPicker.js" />
     <Content Include="app\js\user\user.router.js" />
     <Content Include="app\js\user\userInfoPage.js" />
     <Content Include="app\views\home.html" />
@@ -311,6 +314,7 @@
     <Content Include="app\views\moderator\orders.html" />
     <Content Include="app\views\moderator\settings.html" />
     <Content Include="app\views\user\pizzaOrdering.html" />
+    <Content Include="app\views\user\timeAndLocation.html" />
     <Content Include="app\views\user\userInfoPage.html" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />

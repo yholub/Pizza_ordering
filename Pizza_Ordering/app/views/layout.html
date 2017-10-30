@@ -1,6 +1,5 @@
 ﻿<!DOCTYPE html>
 <html>
-
 <head>
     <meta charset="UTF-8">
     <title>Restaurant</title>
@@ -19,9 +18,7 @@
     <link href="../css/font-awesome.min.css" rel="stylesheet">
     <link rel="icon" href="favicon-1.ico" type="image/x-icon">
 </head>
-
 <body>
-
     <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
         <div class="container">
             <div class="row">
@@ -35,34 +32,25 @@
                     </button>
                     <a class="navbar-brand" href="#">Came &amp; ate</a>
                 </div>
-
                 <!-- Collect the nav links, forms, and other content for toggling -->
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                     <ul class="nav navbar-nav main-nav  clear navbar-right ">
-                        <li ><a class="router-href navactive color_animation" href="#/" id="userList">WELCOME <span class="toHide" style="display:none; color: white" id="userNamePut"></span></a></li>
-                        <li ><a class="router-href color_animation" href="#/order">ORDER PIZZA</a></li>
+                        <li><a class="router-href navactive color_animation" href="#/" id="userList">WELCOME <span class="toHide" style="display:none; color: white" id="userNamePut"></span></a></li>
+                        <li><a class="router-href color_animation" href="#/order">ORDER PIZZA</a></li>
                         <li class="toShow"><a href="" class="color_animation" data-toggle="modal" data-target="#login-modal">LOG IN</a></li>
-
                         <li class=" toHide" style="display:none" id="logout" hidden><a class="color_animation" href="#/">Logout</a> </li>
-
                     </ul>
                 </div><!-- /.navbar-collapse -->
             </div>
         </div><!-- /.container-fluid -->
     </nav>
-    
-    <span id="main">
-
-    </span>
-    <!-- ============ Footer Section  ============= -->
-
+	<content id="main">
+	</content>
     <footer class="sub_footer">
         <div class="container">
             <div class="col-md-offset-4 col-md-4"><p class="sub-footer-text text-center">&copy; Came &amp; Eat 2017</p></div>
         </div>
     </footer>
-
-
 
     <div class="modal fade" id="login-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
         <div class="modal-dialog">
@@ -73,10 +61,8 @@
                         <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
                     </button>
                 </div>
-
                 <!-- Begin # DIV Form -->
                 <div id="div-forms">
-
                     <!-- Begin # Login Form -->
                     <form id="login-form">
                         <div class="modal-body">
@@ -146,14 +132,11 @@
                         </div>
                     </form>
                     <!-- End | Register Form -->
-
                 </div>
                 <!-- End # DIV Form -->
-
             </div>
         </div>
     </div>
-
 
     <script type="text/javascript" src="../js/libs/jquery-1.10.2.js"> </script>
     <script type="text/javascript" src="../js/libs/bootstrap.js"></script>
@@ -164,6 +147,7 @@
     <script src="../../Scripts/site.js"></script>
     <script src="../js/user/pizzaOrdering.js"></script>
     <script src="../js/user/userInfoPage.js"></script>
+    <script src="../js/user/timeLocationPicker.js"></script>
     <script src="../js/user/user.router.js"></script>
 </body>
 </html>
