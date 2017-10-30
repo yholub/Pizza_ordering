@@ -29,8 +29,7 @@ namespace Pizza_Ordering.Controllers
     {
         private const string LocalLoginProvider = "Local";
         private ApplicationUserManager _userManager;
-     
-      
+
         public AccountController()
         {
         }
@@ -99,7 +98,6 @@ namespace Pizza_Ordering.Controllers
             //   OAuthDefaults.AuthenticationType);
             ClaimsIdentity cookiesIdentity = await user.GenerateUserIdentityAsync(
                 UserManager, DefaultAuthenticationTypes.ApplicationCookie);
-
 
             Authentication.SignIn(cookiesIdentity);
 

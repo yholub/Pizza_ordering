@@ -1,19 +1,22 @@
-﻿using System;
+﻿using Pizza_Ordering.Domain.Entities;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Pizza_Ordering.Domain.Entities;
 
 namespace Pizza_Ordering.Services.DTOs
 {
     public class SettingsDto
     {
         public int StartHour { get; set; }
+
         public int EndHour { get; set; }
+
         public int Capacity { get; set; }
 
         public List<IngredientDto> Locked { get; set; }
+
         public SettingsDto()
         {
             StartHour = 9;
@@ -41,7 +44,6 @@ namespace Pizza_Ordering.Services.DTOs
                 new IngredientDto { Name = "Маслини", Price = 22, Weight = 30 },
                 new IngredientDto { Name = "Кукурудза", Price = 14, Weight = 50 }
             };
-
 
             for (int i = 0; i < Locked.Count; ++i)
             {

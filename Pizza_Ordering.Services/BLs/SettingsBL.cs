@@ -1,10 +1,10 @@
-﻿using System;
+﻿using Pizza_Ordering.Services.DTOs;
+using Pizza_Ordering.Services.Interfaces;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Pizza_Ordering.Services.DTOs;
-using Pizza_Ordering.Services.Interfaces;
 
 namespace Pizza_Ordering.Services.BLs
 {
@@ -16,6 +16,7 @@ namespace Pizza_Ordering.Services.BLs
         {
             _default = new SettingsDto();
         }
+
         public DTOs.SettingsDto GetSettings()
         {
             return _default;

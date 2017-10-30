@@ -25,7 +25,8 @@ namespace Pizza_Ordering.Services.BLs
                     .Select(p => new PizzaHouseDto
                     {
                         Id = p.Id,
-                        Location = new AddressDto {
+                        Location = new AddressDto
+                        {
                             Lon = p.Location.Lng,
                             Lat = p.Location.Lat,
                             City = p.Location.City,
@@ -34,7 +35,6 @@ namespace Pizza_Ordering.Services.BLs
                         },
                         Close = p.СloseTime,
                         Open = p.OpenTime
-                        
                     }).ToList();
             });
         }

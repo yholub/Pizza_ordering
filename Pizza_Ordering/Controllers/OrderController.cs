@@ -11,10 +11,10 @@ using System.Web.Http;
 
 namespace Pizza_Ordering.Controllers
 {
-   
     public class OrderController : BaseController
     {
         private IOrderBL _service;
+
         public OrderController(IOrderBL service)
         {
             _service = service;
@@ -26,7 +26,7 @@ namespace Pizza_Ordering.Controllers
         {
             DateTime now = DateTime.Now;
             int min = DateTime.Now.Minute;
-            DateTime start = now - TimeSpan.FromMinutes(min / 10 * 10 + 10);
+            DateTime start = now - TimeSpan.FromMinutes((min / 10 * 10) + 10);
             return Json(_service.GetOrderItemsSince(start).Select(o => new OrderViewModel(o)).ToList());
         }
 
@@ -36,15 +36,14 @@ namespace Pizza_Ordering.Controllers
         {
             DateTime now = DateTime.Now;
             int min = DateTime.Now.Minute;
-            DateTime start = now - TimeSpan.FromMinutes(min / 10 * 10 + 10);
+            DateTime start = now - TimeSpan.FromMinutes((min / 10 * 10) + 10);
             return Json(_service.GetOrderItemsSince(start, false).Select(o => new OrderViewModel(o)).ToList());
         }
-        
+
         [Route("api/order/accept/{id:long}")]
         [HttpPost]
         public void Accept(int id)
         {
-
             _service.Accept(id);
         }
 
@@ -54,6 +53,5 @@ namespace Pizza_Ordering.Controllers
         {
             _service.Reject(id);
         }
-
     }
 }

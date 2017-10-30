@@ -1,13 +1,13 @@
-﻿using Pizza_Ordering.Services.DTOs;
+﻿using Pizza_Ordering.DataProvider.UnitOfWork;
+using Pizza_Ordering.Domain.Entities;
+using Pizza_Ordering.Services.DTOs;
 using Pizza_Ordering.Services.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Pizza_Ordering.DataProvider.UnitOfWork;
-using Pizza_Ordering.Domain.Entities;
-using Pizza_Ordering.Services.DTOs;
+
 namespace Pizza_Ordering.Services.BLs
 {
     public class OrderBL : BaseBL, IOrderBL
@@ -34,7 +34,6 @@ namespace Pizza_Ordering.Services.BLs
                 uow.OrderItems.Create(entity);
 
                 uow.Save();
-
             });
         }
 
@@ -101,13 +100,11 @@ namespace Pizza_Ordering.Services.BLs
                        Status = ordItem.Order.Status
                    };
 
-
                 return queryFix.ToList().Concat(queryMod).ToList();
             });
 
             return orders;
         }
-
 
         public void Reject(int id)
         {

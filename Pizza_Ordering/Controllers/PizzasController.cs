@@ -9,7 +9,6 @@ using System.Linq;
 using System.Web;
 using System.Web.Http;
 
-
 namespace Pizza_Ordering.Controllers
 {
     [RoutePrefix("api/pizzas")]
@@ -26,11 +25,9 @@ namespace Pizza_Ordering.Controllers
         [HttpGet]
         public IHttpActionResult GetFixPizzas()
         {
-      
             var dtos = _pizzasBL.GetFixPizzas();
             var models = dtos;
-           
-          
+
             return Json(models);
         }
 

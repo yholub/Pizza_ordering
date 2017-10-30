@@ -97,14 +97,14 @@ namespace Pizza_Ordering.DataProvider
 
             context.FixPizzas.AddRange(fixPizzas);
             context.SaveChanges();
-            
-            List<PizzaHouse> pizzas = new List<PizzaHouse> 
+
+            List<PizzaHouse> pizzas = new List<PizzaHouse>
             {
-                new PizzaHouse 
+                new PizzaHouse
                 {
                     OpenTime = TimeSpan.FromHours(9),
                     СloseTime = TimeSpan.FromHours(23),
-                    Location = new Address 
+                    Location = new Address
                     {
                         City = "Львів",
                         Street = "Левицького",
@@ -115,11 +115,11 @@ namespace Pizza_Ordering.DataProvider
                     }
                 },
 
-                new PizzaHouse 
+                new PizzaHouse
                 {
                     OpenTime = TimeSpan.FromHours(9),
                     СloseTime = TimeSpan.FromHours(23),
-                    Location = new Address 
+                    Location = new Address
                     {
                         City = "Львів",
                         Street = "Січових Стрільців",
@@ -129,7 +129,6 @@ namespace Pizza_Ordering.DataProvider
                         Lng = 24.024088
                     }
                 },
-                
             };
 
             context.PizzaHouses.AddRange(pizzas);
@@ -161,8 +160,6 @@ namespace Pizza_Ordering.DataProvider
                     TimeToTake = FromTime(23, 50),
                     Status = Common.PizzaStatusType.Processed
                 },
-
-
             };
 
             context.Orders.AddRange(orders);
@@ -171,39 +168,38 @@ namespace Pizza_Ordering.DataProvider
 
             List<OrderItem> items = new List<OrderItem>
             {
-                new OrderItem 
-                { 
+                new OrderItem
+                {
                     OrderId = orders[0].Id,
-                    PizzaId = fixPizzas[1].Id, 
-                    Price = 80, 
+                    PizzaId = fixPizzas[1].Id,
+                    Price = 80,
                     StartTime = FromTime(22, 20),
                     EndTime = FromTime(22, 40)
                 },
-                new OrderItem 
-                { 
+                new OrderItem
+                {
                     OrderId = orders[1].Id,
-                    PizzaId = fixPizzas[3].Id, 
-                    Price = 100, 
+                    PizzaId = fixPizzas[3].Id,
+                    Price = 100,
                     StartTime = FromTime(23, 00),
                     EndTime = FromTime(23, 20)
                 },
-                new OrderItem 
-                { 
+                new OrderItem
+                {
                     OrderId = orders[1].Id,
-                    PizzaId = fixPizzas[1].Id, 
-                    Price = 80, 
+                    PizzaId = fixPizzas[1].Id,
+                    Price = 80,
                     StartTime = FromTime(23, 00),
                     EndTime = FromTime(23, 20)
                 },
-                new OrderItem 
-                { 
+                new OrderItem
+                {
                     OrderId = orders[2].Id,
-                    PizzaId = fixPizzas[2].Id, 
-                    Price = 90, 
+                    PizzaId = fixPizzas[2].Id,
+                    Price = 90,
                     StartTime = FromTime(23, 10),
                     EndTime = FromTime(23, 50)
                 }
-
             };
 
             context.OrderItems.AddRange(items);
@@ -212,12 +208,9 @@ namespace Pizza_Ordering.DataProvider
             base.Seed(context);
         }
 
-        static private DateTime FromTime(int h, int m)
+        private static DateTime FromTime(int h, int m)
         {
             return DateTime.Today + TimeSpan.FromMinutes(m) + TimeSpan.FromHours(h);
         }
     }
-
-
-    
 }
