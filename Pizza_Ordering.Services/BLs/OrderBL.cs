@@ -7,7 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Pizza_Ordering.DataProvider.UnitOfWork;
 using Pizza_Ordering.Domain.Entities;
-
+using Pizza_Ordering.Services.DTOs;
 namespace Pizza_Ordering.Services.BLs
 {
     public class OrderBL : BaseBL, IOrderBL
@@ -65,34 +65,71 @@ namespace Pizza_Ordering.Services.BLs
             });
         }
 
-        public List<Pizza_Ordering.Services.DTOs.Order> GetOrdersSince(DateTime st)
+        public List<Pizza_Ordering.Services.DTOs.OrderItemDto> GetOrderItemsSince(DateTime st, bool onlyPending = false)
         {
-            throw new NotImplementedException();
+            List<OrderItemDto> orders = UseDb(db =>
+            {
+                var queryFix =
+                    from ordItem in db.OrderItems.Query()
+                    where ordItem.EndTime > st && !ordItem.IsModified && (!onlyPending || ordItem.Order.Status == Common.PizzaStatusType.Processed)
+                    join pizza in db.FixPizzas.Query() on ordItem.PizzaId equals pizza.Id
+                    select new OrderItemDto
+                    {
+                        Id = ordItem.Id,
+                        PizzaName = pizza.Name,
+                        Price = ordItem.Price,
+                        PizzaId = pizza.Id,
+                        StartTime = ordItem.StartTime,
+                        EndTime = ordItem.EndTime,
+                        OrderId = ordItem.OrderId,
+                        Status = ordItem.Order.Status
+                    };
+
+                var queryMod =
+                   from ordItem in db.OrderItems.Query()
+                   where ordItem.EndTime < st && ordItem.IsModified
+                   join pizza in db.FixPizzas.Query() on ordItem.PizzaId equals pizza.Id
+                   select new OrderItemDto
+                   {
+                       Id = ordItem.Id,
+                       OrderId = ordItem.OrderId,
+                       PizzaName = "Custom",
+                       Price = ordItem.Price,
+                       PizzaId = pizza.Id,
+                       StartTime = ordItem.StartTime,
+                       EndTime = ordItem.EndTime,
+                       Status = ordItem.Order.Status
+                   };
+
+
+                return queryFix.ToList().Concat(queryMod).ToList();
+            });
+
+            return orders;
         }
 
-        public List<Pizza_Ordering.Services.DTOs.Order> GetPendingOrdersSince(DateTime st)
-        {
-            throw new NotImplementedException();
-        }
 
         public void Reject(int id)
         {
-            throw new NotImplementedException();
-        }
-
-        List<DTOs.Order> IOrderBL.GetOrdersSince(DateTime st)
-        {
-            throw new NotImplementedException();
-        }
-
-        List<DTOs.Order> IOrderBL.GetPendingOrdersSince(DateTime st)
-        {
-            throw new NotImplementedException();
+            UseDb(db =>
+            {
+                var entity = db.Orders.GetById(id);
+                entity.Status = Common.PizzaStatusType.Refused;
+                db.Save();
+            });
         }
 
         public void Accept(int id)
         {
-            throw new NotImplementedException();
+            UseDb(db =>
+            {
+                var entity = db.Orders.GetById(id);
+                if (entity.Status == Common.PizzaStatusType.Processed)
+                {
+                    entity.Status = Common.PizzaStatusType.Refused;
+                    db.Save();
+                }
+            });
         }
     }
 }

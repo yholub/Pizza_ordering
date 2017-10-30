@@ -139,7 +139,7 @@
                         }
 
                         this.accept = function (el) {
-                            $.post('/api/order/accept/' + el.Id);
+                            $.post('/api/order/accept/' + el.OrderId);
                             $('.event[data-order-id="' + el.Id + '"]').addClass('accepted');
                             el.State(1);
 
@@ -147,19 +147,19 @@
 
                         this.acceptSelected = function () {
                             var el = self.selected();
-                            $.post('/api/order/accept/' + el.Id);
+                            $.post('/api/order/accept/' + el.OrderId);
                             $('.event[data-order-id="' + el.Id + '"]').addClass('accepted');
                             el.State(1);
                         }
 
                         this.reject = function (el) {
-                            $.post('/api/order/reject/' + el.Id);
+                            $.post('/api/order/reject/' + el.OrderId);
                             $('.event[data-order-id="' + el.Id + '"]').remove();
                             self.orders.remove(el);
                         }
                         this.rejectSelected = function () {
                             var el = self.selected();
-                            $.post('/api/order/reject/' + el.Id);
+                            $.post('/api/order/reject/' + el.OrderId);
                             $('.event[data-order-id="' + el.Id + '"]').remove();
                             self.orders.remove(el);
                             self.selected(null);

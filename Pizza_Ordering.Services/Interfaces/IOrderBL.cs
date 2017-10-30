@@ -1,4 +1,5 @@
-﻿using Pizza_Ordering.Services.DTOs;
+﻿using Pizza_Ordering.Domain.Entities;
+using Pizza_Ordering.Services.DTOs;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,13 +10,14 @@ namespace Pizza_Ordering.Services.Interfaces
 {
     public interface IOrderBL
     {
-       List<Order> GetOrdersSince(DateTime st);
-
-       List<Order> GetPendingOrdersSince(DateTime st);
+       List<OrderItemDto> GetOrderItemsSince(DateTime st, bool onlyPending = false);
 
        void Accept(int id);
 
        void Reject(int id);
 
+       void CreateOrderItem(OrderItemDto orderItemDto, long orderId);
+
+       void CreateOrder(OrderDto orderDto);
     }
 }

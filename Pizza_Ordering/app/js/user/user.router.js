@@ -15,6 +15,14 @@
         
     });
 
+    this.get('#/time', function () {
+        this
+             .partial('user/timeAndLocation.html')
+             .then(function () {
+                 timeAndLoc.init();
+             });
+    });
+
     this.get('#/uinfo', function (context) {
         updateHref();
         $("a.router-href.navactive").removeClass("navactive");

@@ -92,5 +92,20 @@ namespace Pizza_Ordering.Services.BLs
         {
             Orders[id].State = State.Rejected;
         }
+
+        public List<OrderItemDto> GetOrderItemsSince(DateTime st, bool onlyPending = false)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void CreateOrderItem(OrderItemDto orderItemDto, long orderId)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void CreateOrder(OrderDto orderDto)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

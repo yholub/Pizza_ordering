@@ -70,8 +70,9 @@ namespace Pizza_Ordering.App_Start
             kernel.Bind<IUnitOfWork>().To<UnitOfWork>();
             kernel.Bind<IIngredientsBL>().To<IngredientsBL>();
             kernel.Bind<IPizzasBL>().To<PizzasBL>();
-            kernel.Bind<IOrderBL>().To<OrderBL_MOC>();
+            kernel.Bind<IOrderBL>().To<OrderBL>();
             kernel.Bind<ISettingsBL>().To<SettingsBL>();
+            kernel.Bind<IPizzaHouseBL>().To<PizzaHouseBL>();
         }
     }
 }
