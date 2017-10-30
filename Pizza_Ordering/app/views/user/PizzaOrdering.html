@@ -22,9 +22,25 @@
                                 <div id="serverloadedMiniBasketItems" class="product loaded selected miniBasketItems" data-bind="foreach: selectedProducts">
 
                                     <div data-bind="attr: {pizzaId" class="minibasketinner">
-                                        <b class="title" data-bind="text: name"></b>
-                                        <input class="delPizza" type="button" value="X">
-                                        <p class="title" data-bind="text: ko.utils.arrayMap($data.ingredients, function(v){return ' ' + v;})"></p>
+                                        <div class="col-md-10">
+                                            <b class="title" data-bind="text: name"></b>
+                                        </div>
+                                        <div class="col-md-1">
+                                            <a href="#">
+                                                <span class="glyphicon glyphicon-remove"></span>
+                                            </a>
+                                        </div>
+                                        <div class="col-md-10">
+                                            <p class="title" data-bind="text: ko.utils.arrayMap($data.ingredients, function(v){return ' ' + v;})"></p>
+                                        </div>
+                                        <div class="col-md-1">
+                                            <a href="#">
+                                                <span class="glyphicon glyphicon-cog"></span>
+                                            </a>
+                                        </div>
+                                        
+                                       
+                                        
 
                                         <span class="product-buttons2 product-qty-wrapper">
                                             <!--<a class="product-remove left" data-bind="attr:{'id': pizzaId}, click: delItem"><span>-</span></a>
@@ -52,9 +68,16 @@
     <div class="row pizzas" data-bind="foreach: pizzas">
         <div class="col-lg-3 products-list">
             <div class="product-gallery">
-                <img data-bind="attr: { 'src': imgUrl }" alt="Alternate Text" />
+                <div class="hovereffect">
+                    <img class="img-responsive" data-bind="attr: { 'src': imgUrl }" alt="Alternate Text" />
+                    <div class="overlay">
+                        <h5>Інгредієнти</h5>
+                        <h6 data-bind="text: ko.utils.arrayMap($data.ingredients, function(v){return ' ' + v;})">
+                        </h6>
+                    </div>
+                </div>
+                
                 <p class="product-name" data-bind="text: name"></p>
-                <div class="unitprice" id="inStock" data-bind="text: ko.utils.arrayMap($data.ingredients, function(v){return ' ' + v;})"></div>
 
                 <div class="product-price secondprice ">
                     <el data-bind="text: price"></el> грн
