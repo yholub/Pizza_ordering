@@ -16,10 +16,24 @@
   
     function init() {
         var locInfo = $.get("/api/pizza")
+        
         $.when(locInfo)
             .then(function (data) {
                 lastData = data;
                 model = new TimeLocViewModel(data);
+                $("#gmap").on("change", "select", function () {
+                    var val = parseInt($(this).val());
+                    if (val > 0) {
+                        model.selectedHouse(model.houses[val - 1]);
+                    }
+                    else {
+                        model.selectedHouse(null);
+                    }
+                });
+                $('#timepicker').timepicker({
+                    altField: "#timepickerInput"
+                });
+
                 ko.applyBindings(model,
                     document.getElementById("timeAndLocView"));
 
@@ -30,20 +44,41 @@
 
     function TimeLocViewModel(locs) {
         this.houses = locs;
+        this.houses.forEach(function (el, i) {
+            el.index = i;
+        });
+
         this.selectedHouse = ko.observable(null);
         this.showMap = ko.observable(false);
+        this.map = null;
+
+        this.loaded = ko.observable(window.google === undefined || window.google === null);
+
         var self = this;
         this.toggle = function () {
-            self.showMap(!self.showMap());
-            $("#gmap select").val(selectedHouse().Id + 1);
+            if (!self.map) {
+                self.map = createMapPlace(self.houses);
+            }
+
+            //self.showMap(!self.showMap());
+            if (self.showMap()) {
+                self.map.Load();
+                if (self.selectedHouse()) {
+                    self.map.ViewOnMap(self.selectedHouse().index + 1);
+                } else {
+                    self.map.ViewOnMap(0);
+                }
+            }
+                
+
+           
         }
     }
 
   
-
-    function initMap() {
-        new Maplace({
-            locations: $.map(lastData, function (el, i) {
+    function createMapPlace(locs) {
+        return new Maplace({
+            locations: $.map(locs, function (el, i) {
                 return {
                     lat: el.Location.Lat,
                     lon: el.Location.Lon,
@@ -61,17 +96,12 @@
             force_generate_controls: true,
             controls_applycss: true,
             controls_title: 'Choose a location:',
-        }).Load();
+        });
+    }
 
-        $("#gmap").on("change", "select", function () {
-            var val = parseInt($(this).val());
-            if (val > 0) {
-                model.selectedHouse(model.houses[val - 1]);
-            }
-            else {
-                model.selectedHouse(null);
-            }
-        })
+    function initMap() {
+        if(model)
+            model.loaded(true);
     }
 
 
