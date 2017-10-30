@@ -113,7 +113,23 @@ namespace Pizza_Ordering.DataProvider
                         Lat = 49.8360502,
                         Lng = 24.0352977
                     }
-                }
+                },
+
+                new PizzaHouse 
+                {
+                    OpenTime = TimeSpan.FromHours(9),
+                    СloseTime = TimeSpan.FromHours(23),
+                    Location = new Address 
+                    {
+                        City = "Львів",
+                        Street = "Січових Стрільців",
+                        District = "13",
+                        HouseNumber = "7",
+                        Lat = 49.840367,
+                        Lng = 24.024088
+                    }
+                },
+                
             };
 
             context.PizzaHouses.AddRange(pizzas);
