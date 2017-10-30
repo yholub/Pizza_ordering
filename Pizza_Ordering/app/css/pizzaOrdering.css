@@ -222,8 +222,10 @@ textarea {
 
 .product .minibasketinner {
     height: 40px;
-    border-bottom: 1px solid #cfcfcf;
+    border-bottom: 1px solid rgba(247, 153, 34, 0.66);
     margin: 0 12px 12px 12px;
+    padding-top: 4px;
+    background-color: rgba(253, 146, 11, 0.29);
 }
 
 .product .title, .submenu-cart-price {
