@@ -148,8 +148,8 @@ namespace Pizza_Ordering.Controllers
                 Items = new List<Services.DTOs.OrderItemDto> {
                     new OrderItemDto {
                         PizzaName = "something",
-                        StartTime = DateTime.Today + TimeSpan.FromHours(10),
-                        EndTime = DateTime.Today + TimeSpan.FromHours(10) + TimeSpan.FromMinutes(20),
+                        StartTime = DateTime.Today + TimeSpan.FromHours(20),
+                        EndTime = DateTime.Today + TimeSpan.FromHours(20) + TimeSpan.FromMinutes(20),
                         Price = 200,
                         Status = Common.PizzaStatusType.Processed,
                         PizzaId = 2

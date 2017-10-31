@@ -8,6 +8,10 @@ $.sammy("#main", function () {
     this.use('Handlebars', 'html');
     this.get('#/settings', function (context) {
         var self = context;
+        if (window.task) {
+            clearInterval(window.task);
+            window.task = null;
+        }
         
         $.get('/api/settings').then(function (data) {
             $("#sHref").addClass("navactive");
@@ -65,7 +69,12 @@ $.sammy("#main", function () {
 
    
 
-    this.get('#/', function(context) {
+    this.get('#/', function (context) {
+        if (window.task) {
+            clearInterval(window.task);
+            window.task = null;
+        }
+
         var self = context;
         $("#oHref").addClass("navactive");
         $("#sHref").removeClass("navactive");
@@ -105,21 +114,7 @@ $.sammy("#main", function () {
                         'time_selector': 'body .time'
                     });
                    
-                    var list = $.map(data, function (d) {
-                        return {
-                            event: {
-                                dateStart: new Date(now.getYear(), /* month */ now.getMonth(),  /* day */ now.getDay(), /* hour */ d.StHour, /* minute */ d.StMinute, 0, 0),
-                                dateEnd: new Date(now.getYear(), /* month */ now.getMonth(),  /* day */ now.getDay(), /* hour */ d.EndHour, /* minute */ d.EndMinute, 0, 0),
-                                title: d.Name,
-                                state: d.State,
-                                description: "Price: " + d.Price + " Start: " + d.StartStr + " End: " + d.EndStr,
-                                ordId: d.OrderId,
-                                id: d.Id
-                            }
-                        }
-                    });
-                  
-
+                    var list = eventsMap(data);
                     layOutDay(list);
 
 
@@ -142,6 +137,15 @@ $.sammy("#main", function () {
 
                         this.changeSelected = function(id) {
                             self.selected(self.dict[id]);
+                        }
+
+                        this.select = function(el) {
+                            $this = $('.event[data-order-item-id="' + el.Id + '"]');
+                            $(".event.active").removeClass('active');
+                            $(".event.activeRelated").removeClass('activeRelated');
+                            $this.addClass('active');
+                            $('.event[data-order-id="' + el.OrderId + '"]').addClass('activeRelated');
+                            model.changeSelected(el.Id);
                         }
 
                         this.accept = function (el) {
@@ -174,8 +178,30 @@ $.sammy("#main", function () {
 
                     var model = new OrderViewModel(data);
                     ko.applyBindings(model, document.getElementById('view'));
-
-                    $(".event").click(function () {
+                    window.task = setInterval(function () {
+                        $.get('/api/Order/GetNew', function (data) {
+                            if (window.task) {
+                                var notYet = data.filter(function (el) {
+                                    if (model.dict[el.Id]) {
+                                        return false;
+                                    } else {
+                                        return true;
+                                    }
+                                });
+                                var list = eventsMap(notYet);
+                                if (notYet.length > 0) {
+                                    $('#calendar').addEvents(list);
+                                    notYet.forEach(function (el) {
+                                        model.dict[el.Id] = el;
+                                        el.State = ko.observable(el.State);
+                                        model.orders.push(el);
+                                    });
+                                }
+                                
+                            }
+                        });
+                    }, 2000);
+                    $("#calendar").on("click", ".event", function () {
                         $this = $(this);
                         $(".event.active").removeClass('active');
                         $(".event.activeRelated").removeClass('activeRelated');
@@ -183,6 +209,8 @@ $.sammy("#main", function () {
                         $('.event[data-order-id="' + $this.attr("data-order-id") + '"]').addClass('activeRelated');
                         model.changeSelected($this.attr("data-order-item-id"));
                     });
+
+                   
                  
             });
         
@@ -197,6 +225,22 @@ $.sammy("#main", function () {
 
 }).run("#/");
 
+function eventsMap(data) {
+    var now = new Date();
+    return $.map(data, function (d) {
+        return {
+            event: {
+                dateStart: new Date(now.getYear(), /* month */ now.getMonth(),  /* day */ now.getDay(), /* hour */ d.StHour, /* minute */ d.StMinute, 0, 0),
+                dateEnd: new Date(now.getYear(), /* month */ now.getMonth(),  /* day */ now.getDay(), /* hour */ d.EndHour, /* minute */ d.EndMinute, 0, 0),
+                title: d.Name,
+                state: d.State,
+                description: "Price: " + d.Price + " Start: " + d.StartStr + " End: " + d.EndStr,
+                ordId: d.OrderId,
+                id: d.Id
+            }
+        }
+    });
+}
 
 function isBound(id) {
     if (document.getElementById(id) != null)
