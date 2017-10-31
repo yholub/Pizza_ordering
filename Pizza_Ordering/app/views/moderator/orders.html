@@ -1,6 +1,16 @@
-﻿<div id="view" class="row">
-    <div class="col-md-8" >
-        <div id="calendar"></div>
+﻿<style>
+    .newOrdersDefaultContainer {
+        height: calc(100vh - 200px); 
+        overflow-y: scroll;
+    }
+    .newOrdersSmallerContainer {
+        height: calc(100vh - 400px); 
+        overflow-y: scroll;
+    }
+</style>
+<div id="view" class="row">
+    <div class="col-md-8" style="height: calc(100vh - 100px); overflow-y: scroll">
+        <div id="calendar" ></div>
         <div class="time">
             <ul class="hoursList">
                 {{#each hours}}
@@ -8,16 +18,16 @@
                 {{/each}}
             </ul>
         </div>
-       
+
     </div>
 
     <div class="col-md-4 ">
         <hr />
-        <div class="panel panel-default" data-bind="if:  selected()">
-            <div class="panel-heading">
-                <h4 class="panel-title" data-bind="text: selected().Name"></h4>
+        <div class="panel panel-default" data-bind="if:  selected()" style="max-height: 200px; overflow-y: scroll; cursor: pointer">
+            <div class="panel-heading" data-bind="click: toggleShowSelected">
+                <h4 class="panel-title" ><span data-bind="text: selected().Name"></span> <i class="fa fa-arrow-down" aria-hidden="true"></i></h4>
             </div>
-            <div class="panel-body">
+            <div class="panel-body" data-bind="visible: showSelected">
 
 
                 <p class="card-text">Ціна: <span data-bind="text: selected().Price"></span></p>
@@ -28,37 +38,41 @@
                 </p>
 
             </div>
-            <div class="panel-footer" data-bind="if:  selected().State() == 0">
+            <div class="panel-footer" data-bind="if:  selected().State() == 0, visible: showSelected">
                 <button class="btn btn-success" data-bind="click: acceptSelected">Accept</button>
                 <button class="btn btn-danger" data-bind="click: rejectSelected">Reject</button>
             </div>
 
         </div>
-        <hr/>
-        <h3> Нові замовлення</h3>
-        <div data-bind="foreach: orders">
-            <!-- ko if: State() == 0-->
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    <h4 class="panel-title" data-bind="text: Name"></h4>
+        <div data-bind="css : { newOrdersDefaultContainer: !showSelected(), newOrdersSmallerContainer: showSelected()}" >
+            <hr />
+            <h3> Нові замовлення</h3>
+            <div data-bind="foreach: orders">
+
+                <!-- ko if: State() == 0-->
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title" data-bind="text: Name"></h4>
+                    </div>
+                    <div class="panel-body">
+
+
+                        <p class="card-text">Ціна: <span data-bind="text: Price"></span></p>
+                        <p class="card-text">Початок гот: <span data-bind="text: StartStr"></span></p>
+                        <p class="card-text">Видача: <span data-bind="text: EndStr"></span></p>
+
+
+                    </div>
+                    <div class="panel-footer">
+                        <button class="btn btn-success acceptOrd" data-bind="click: $parent.accept">Accept</button>
+                        <button class="btn btn-danger rejectOrd" data-bind="click: $parent.reject">Reject</button>
+
+                    </div>
                 </div>
-                <div class="panel-body">
-
-
-                    <p class="card-text">Ціна: <span data-bind="text: Price"></span></p>
-                    <p class="card-text">Початок гот: <span data-bind="text: StartStr"></span></p>
-                    <p class="card-text">Видача: <span data-bind="text: EndStr"></span></p>
-                    
-
-                </div>
-                <div class="panel-footer">
-                    <button class="btn btn-success acceptOrd" data-bind="click: $parent.accept">Accept</button>
-                    <button class="btn btn-danger rejectOrd" data-bind="click: $parent.reject">Reject</button>
-
-                </div>
+                <!-- /ko -->
             </div>
-            <!-- /ko -->
         </div>
+       
     </div>
  </div>
 

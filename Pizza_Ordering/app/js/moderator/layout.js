@@ -1,4 +1,5 @@
-﻿$.sammy("#main", function () {
+﻿/// <reference path="layout.js" />
+$.sammy("#main", function () {
     this._checkFormSubmission = function (form) {
         return false;
     };
@@ -112,7 +113,8 @@
                                 title: d.Name,
                                 state: d.State,
                                 description: "Price: " + d.Price + " Start: " + d.StartStr + " End: " + d.EndStr,
-                                ordId: d.Id
+                                ordId: d.OrderId,
+                                id: d.Id
                             }
                         }
                     });
@@ -132,7 +134,11 @@
                             self.orders.push(el);
                         });
 
-                      
+                        this.showSelected = ko.observable(false);
+                        
+                        this.toggleShowSelected = function () {
+                            self.showSelected(!self.showSelected());
+                        }
 
                         this.changeSelected = function(id) {
                             self.selected(self.dict[id]);
@@ -140,7 +146,7 @@
 
                         this.accept = function (el) {
                             $.post('/api/order/accept/' + el.OrderId);
-                            $('.event[data-order-id="' + el.Id + '"]').addClass('accepted');
+                            $('.event[data-order-item-id="' + el.Id + '"]').addClass('accepted');
                             el.State(1);
 
                         }
@@ -148,19 +154,19 @@
                         this.acceptSelected = function () {
                             var el = self.selected();
                             $.post('/api/order/accept/' + el.OrderId);
-                            $('.event[data-order-id="' + el.Id + '"]').addClass('accepted');
+                            $('.event[data-order-item-id="' + el.Id + '"]').addClass('accepted');
                             el.State(1);
                         }
 
                         this.reject = function (el) {
                             $.post('/api/order/reject/' + el.OrderId);
-                            $('.event[data-order-id="' + el.Id + '"]').remove();
+                            $('.event[data-order-id="' + el.OrderId + '"]').remove();
                             self.orders.remove(el);
                         }
                         this.rejectSelected = function () {
                             var el = self.selected();
                             $.post('/api/order/reject/' + el.OrderId);
-                            $('.event[data-order-id="' + el.Id + '"]').remove();
+                            $('.event[data-order-id="' + el.OrderId + '"]').remove();
                             self.orders.remove(el);
                             self.selected(null);
                         }
@@ -170,9 +176,12 @@
                     ko.applyBindings(model, document.getElementById('view'));
 
                     $(".event").click(function () {
+                        $this = $(this);
                         $(".event.active").removeClass('active');
-                        $(this).addClass('active');
-                        model.changeSelected($(this).attr("data-order-id"));
+                        $(".event.activeRelated").removeClass('activeRelated');
+                        $this.addClass('active');
+                        $('.event[data-order-id="' + $this.attr("data-order-id") + '"]').addClass('activeRelated');
+                        model.changeSelected($this.attr("data-order-item-id"));
                     });
                  
             });
