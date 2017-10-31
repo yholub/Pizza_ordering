@@ -33,13 +33,20 @@
     function ViewModel(pizzas) {
         var self = this;
 
+        self.selectedPizzaCount = 0;
         self.pizzas = pizzas;
 
-        self.selectedProducts = ko.observableArray([]),
+        self.selectedProducts = ko.observableArray([]);
         self.addToCard = function (data, event) {
             var pizzaId = Number(event.target.id);
             var pizza = self.pizzas[pizzaId];
-            self.selectedProducts.push({ name: pizza.name, price: pizza.price, ingredients: pizza.ingredients });
+            self.selectedProducts.push({ id: self.selectedPizzaCount, name: pizza.name, price: pizza.price, ingredients: pizza.ingredients });
+            self.selectedPizzaCount += 1;
+        };
+
+        self.deletePizzaItem = function (data, event) {
+            self.selectedProducts.remove(data);
+            console.log(data);
         }
     }
 
