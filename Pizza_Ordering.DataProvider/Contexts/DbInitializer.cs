@@ -1,4 +1,6 @@
-﻿using Pizza_Ordering.Domain.Entities;
+﻿using Pizza_Ordering.DataProvider.Contexts;
+using Pizza_Ordering.Domain.Entities;
+using Pizza_Ordering.Domain.Identity;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -98,6 +100,40 @@ namespace Pizza_Ordering.DataProvider
             context.FixPizzas.AddRange(fixPizzas);
             context.SaveChanges();
 
+            var authContext = new AuthorizationContext();
+            var umanager = new ApplicationUserManager(new CustomUserStore(authContext));
+            var roleManager = new ApplicationRoleManager(new CustomRoleStore(authContext));
+            var task = roleManager.CreateAsync(new CustomRole
+            {
+                Name = "Moderator"
+            });
+
+            task.Wait();
+            User u = new User {
+                Name = "Andriy",
+                Email = "mod1@g",
+                UserName = "mod1@g"
+            };
+
+            var taskU = umanager.CreateAsync(u, "123456") ;
+            taskU.Wait();
+
+            User u2 = new User
+            {
+                Name = "Andriy2",
+                Email = "mod2@g",
+                UserName = "mod2@g"
+            };
+
+            var taskU2 = umanager.CreateAsync(u2, "123456");
+            taskU2.Wait();
+
+            var taskR = umanager.AddToRoleAsync(u.Id, "Moderator");
+            taskR.Wait();
+
+            var taskR2 = umanager.AddToRoleAsync(u2.Id, "Moderator");
+            taskR2.Wait();
+
             List<PizzaHouse> pizzas = new List<PizzaHouse>
             {
                 new PizzaHouse
@@ -112,7 +148,8 @@ namespace Pizza_Ordering.DataProvider
                         HouseNumber = "2",
                         Lat = 49.8360502,
                         Lng = 24.0352977
-                    }
+                    },
+                    ModeratorId = u.Id
                 },
 
                 new PizzaHouse
@@ -127,7 +164,8 @@ namespace Pizza_Ordering.DataProvider
                         HouseNumber = "7",
                         Lat = 49.840367,
                         Lng = 24.024088
-                    }
+                    },
+                    ModeratorId = u2.Id
                 },
             };
 

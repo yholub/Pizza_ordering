@@ -41,22 +41,23 @@ $(function () {
 
 
                 var $lg_username = $('#login_username').val();
-                if ($lg_username == "mod") {
-                    location.href = "moderator/ModeratorLayout.html#/";
-                }
+               
 
                 var $lg_password = $('#login_password').val();
                 $.post("/api/Account/Login", {
                     userName: $lg_username,
                     password: $lg_password
-                }).done(function () {
+                }).done(function (res) {
                     $("#userNamePut").text($lg_username);
                     $(".toShow").hide();
                     $(".toHide").show();
                     $.cookie('name', $lg_username);
                     msgChange($('#div-login-msg'), $('#icon-login-msg'), $('#text-login-msg'), "success", "glyphicon-ok", "Login OK");
-                    setTimeout(function() {
-                        $('#login-modal').modal('hide');
+                    setTimeout(function () {
+                        if (res.redirect_url) {
+                            location.href = res.redirect_url;
+                        } else 
+                             $('#login-modal').modal('hide');
                     }, 2000);
                 }).fail(function(err) {
                     msgChange($('#div-login-msg'), $('#icon-login-msg'), $('#text-login-msg'), "error", "glyphicon-remove", "Invalid credentials");
