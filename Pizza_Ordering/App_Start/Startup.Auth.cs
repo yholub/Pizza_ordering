@@ -28,7 +28,7 @@ namespace Pizza_Ordering
             app.CreatePerOwinContext(ApplicationDbContext.Create);
             app.CreatePerOwinContext(AuthorizationContext.Create);
             app.CreatePerOwinContext<ApplicationUserManager>(ApplicationUserManager.Create);
-           
+
             // Enable the application to use a cookie to store information for the signed in user
             // and to use a cookie to temporarily store information about a user logging in with a third party login provider
             app.UseCookieAuthentication(new CookieAuthenticationOptions()
@@ -37,8 +37,8 @@ namespace Pizza_Ordering
                 AuthenticationType = DefaultAuthenticationTypes.ApplicationCookie,
                 AuthenticationMode = Microsoft.Owin.Security.AuthenticationMode.Active,
                 CookieHttpOnly = false
-            
             });
+
             //app.UseExternalSignInCookie(DefaultAuthenticationTypes.ExternalCookie);
 
             //// Configure the application for OAuth based flow

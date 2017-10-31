@@ -18,6 +18,7 @@ namespace Pizza_Ordering
             config.SuppressDefaultHostAuthentication();
             config.Filters.Add(new HostAuthenticationFilter(OAuthDefaults.AuthenticationType));
             config.Filters.Add(new HostAuthenticationFilter(DefaultAuthenticationTypes.ApplicationCookie));
+
             // Web API routes
             config.MapHttpAttributeRoutes();
 

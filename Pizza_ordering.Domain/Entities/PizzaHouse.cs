@@ -23,6 +23,10 @@ namespace Pizza_Ordering.Domain.Entities
 
         public TimeSpan СloseTime { get; set; }
 
+        public long ModeratorId { get; set; }
+
+        [ForeignKey("ModeratorId")]
+        public virtual User Moderator { get; set; }
 
         // public virtual List<Place> Places { get; set; }
     }

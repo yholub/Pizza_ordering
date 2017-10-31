@@ -1,11 +1,11 @@
-﻿using System;
+﻿using Pizza_Ordering.Services.DTOs;
+using Pizza_Ordering.Services.Interfaces;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
-using Pizza_Ordering.Services.DTOs;
-using Pizza_Ordering.Services.Interfaces;
 
 namespace Pizza_Ordering.Controllers
 {
@@ -29,6 +29,5 @@ namespace Pizza_Ordering.Controllers
         {
            _service.UpdateSettings(set);
         }
-
     }
 }

@@ -19,7 +19,8 @@
         this
              .partial('user/timeAndLocation.html')
              .then(function () {
-                 timeAndLoc.init();
+                 //Pass items
+                 timeAndLoc.init([0, 2]);
              });
     });
 

@@ -29,8 +29,7 @@ namespace Pizza_Ordering.Controllers
     {
         private const string LocalLoginProvider = "Local";
         private ApplicationUserManager _userManager;
-     
-      
+
         public AccountController()
         {
         }
@@ -89,21 +88,29 @@ namespace Pizza_Ordering.Controllers
         {
             User user = await UserManager.FindAsync(credentials.UserName, credentials.Password);
 
+            
             if (user == null)
             {
                 return BadRequest("Unauthorized");
             }
 
-            //ClaimsIdentity oAuthIdentity = await user.GenerateUserIdentityAsync(
-            //    UserManager,
-            //   OAuthDefaults.AuthenticationType);
             ClaimsIdentity cookiesIdentity = await user.GenerateUserIdentityAsync(
                 UserManager, DefaultAuthenticationTypes.ApplicationCookie);
 
-
             Authentication.SignIn(cookiesIdentity);
 
-            return Ok();
+            if (UserManager.IsInRole(user.Id, "Moderator"))
+            {
+                return Json(new { 
+                    status = "success",
+                    redirect_url = "moderator/ModeratorLayout.html#/" 
+                });
+            }
+
+            return Json(new
+            {
+                status = "success"
+            });
         }
 
         // GET api/Account/ManageInfo?returnUrl=%2F&generateState=true

@@ -15,5 +15,7 @@ namespace Pizza_Ordering.Services.DTOs
         public TimeSpan Open { get; set; }
 
         public TimeSpan Close { get; set; }
+
+        public long ModeratorId { get; set; }
     }
 }

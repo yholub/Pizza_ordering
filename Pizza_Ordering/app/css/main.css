@@ -887,3 +887,8 @@ table.ui-timepicker td {
 table.ui-timepicker a {
     box-sizing:content-box;
 }
+
+table.ui-timepicker span {
+    box-sizing:content-box;
+}
+

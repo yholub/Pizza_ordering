@@ -1,19 +1,20 @@
-﻿using Pizza_Ordering.Services.DTOs;
+﻿using Pizza_Ordering.DataProvider.UnitOfWork;
+using Pizza_Ordering.Services.DTOs;
 using Pizza_Ordering.Services.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Pizza_Ordering.DataProvider.UnitOfWork;
 
 namespace Pizza_Ordering.Services.BLs
 {
     public class OrderBL_MOC : IOrderBL
     {
-        static List<Order> Orders { get; set; }
+        private static List<Order> Orders { get; set; }
 
-        static OrderBL_MOC() {
+        static OrderBL_MOC()
+        {
             Orders = new List<Order>();
             Orders.Add(new Order
             {
@@ -68,7 +69,8 @@ namespace Pizza_Ordering.Services.BLs
                 End = new DateTime(2017, 10, 24, 19, 40, 0)
             });
 
-            for(int i = 0; i < Orders.Count; ++i) {
+            for (int i = 0; i < Orders.Count; ++i)
+            {
                 Orders[i].Id = i;
             }
         }
@@ -104,6 +106,11 @@ namespace Pizza_Ordering.Services.BLs
         }
 
         public void CreateOrder(OrderDto orderDto)
+        {
+            throw new NotImplementedException();
+        }
+
+        public List<OrderItemDto> GetOrderItemsSince(DateTime st, long houseId, bool onlyPending = false)
         {
             throw new NotImplementedException();
         }

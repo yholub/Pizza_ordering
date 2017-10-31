@@ -7,13 +7,8 @@ using System.Threading.Tasks;
 
 namespace Pizza_Ordering.Services.DTOs
 {
-
     public class OrderDto : BaseDto
     {
-        public DateTime Start { get; set; }
-
-        public DateTime End { get; set; }
-
         public decimal Price { get; set; }
 
         public string Name { get; set; }

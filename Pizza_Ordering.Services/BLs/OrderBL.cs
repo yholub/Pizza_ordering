@@ -1,13 +1,13 @@
-﻿using Pizza_Ordering.Services.DTOs;
+﻿using Pizza_Ordering.DataProvider.UnitOfWork;
+using Pizza_Ordering.Domain.Entities;
+using Pizza_Ordering.Services.DTOs;
 using Pizza_Ordering.Services.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Pizza_Ordering.DataProvider.UnitOfWork;
-using Pizza_Ordering.Domain.Entities;
-using Pizza_Ordering.Services.DTOs;
+
 namespace Pizza_Ordering.Services.BLs
 {
     public class OrderBL : BaseBL, IOrderBL
@@ -34,7 +34,6 @@ namespace Pizza_Ordering.Services.BLs
                 uow.OrderItems.Create(entity);
 
                 uow.Save();
-
             });
         }
 
@@ -65,13 +64,15 @@ namespace Pizza_Ordering.Services.BLs
             });
         }
 
-        public List<Pizza_Ordering.Services.DTOs.OrderItemDto> GetOrderItemsSince(DateTime st, bool onlyPending = false)
+        public List<Pizza_Ordering.Services.DTOs.OrderItemDto> GetOrderItemsSince(DateTime st, long houseId, bool onlyPending = false)
         {
             List<OrderItemDto> orders = UseDb(db =>
             {
                 var queryFix =
                     from ordItem in db.OrderItems.Query()
-                    where ordItem.EndTime > st && !ordItem.IsModified && (!onlyPending || ordItem.Order.Status == Common.PizzaStatusType.Processed)
+                    where ordItem.Order.PizzaHouseId == houseId && ordItem.EndTime > st && 
+                    !ordItem.IsModified && ((!onlyPending && ordItem.Order.Status != Common.PizzaStatusType.Refused)
+                                                                || ordItem.Order.Status == Common.PizzaStatusType.Processed)
                     join pizza in db.FixPizzas.Query() on ordItem.PizzaId equals pizza.Id
                     select new OrderItemDto
                     {
@@ -87,7 +88,9 @@ namespace Pizza_Ordering.Services.BLs
 
                 var queryMod =
                    from ordItem in db.OrderItems.Query()
-                   where ordItem.EndTime < st && ordItem.IsModified
+                   where ordItem.Order.PizzaHouseId == houseId && ordItem.EndTime > st &&
+                    ordItem.IsModified && ((!onlyPending && ordItem.Order.Status != Common.PizzaStatusType.Refused)
+                                                                || ordItem.Order.Status == Common.PizzaStatusType.Processed)
                    join pizza in db.FixPizzas.Query() on ordItem.PizzaId equals pizza.Id
                    select new OrderItemDto
                    {
@@ -101,13 +104,11 @@ namespace Pizza_Ordering.Services.BLs
                        Status = ordItem.Order.Status
                    };
 
-
                 return queryFix.ToList().Concat(queryMod).ToList();
             });
 
             return orders;
         }
-
 
         public void Reject(int id)
         {
