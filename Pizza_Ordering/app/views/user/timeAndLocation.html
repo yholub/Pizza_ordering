@@ -1,4 +1,9 @@
-﻿<div id="timeAndLocView" class="row pageContent">
+﻿<style>
+    footer {
+        display: none;
+    }
+</style>
+<div id="timeAndLocView" class="row pageContent">
     <div class="col-md-8 col-md-offset-2">
         
         <form class="form-horizontal" >
@@ -35,13 +40,16 @@
                 </div>
             </div>
            
-            <hr />
+            
             <div class="form-group" data-bind="visible: selectedHouse() && selectedHouse().time()">
+                <hr />
                 <div class="col-sm-offset-0 col-sm-12">
                     <button type="button" data-bind="click: next" class="btn btn-default btn-block">Далі</button>
                 </div>
             </div>
         </form>
+
+        <!--<div style="height: 30vh"></div>-->
     </div>
 </div>
 

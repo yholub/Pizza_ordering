@@ -127,7 +127,7 @@ namespace Pizza_Ordering.Services.BLs
                 var entity = db.Orders.GetById(id);
                 if (entity.Status == Common.PizzaStatusType.Processed)
                 {
-                    entity.Status = Common.PizzaStatusType.Refused;
+                    entity.Status = Common.PizzaStatusType.Accepted;
                     db.Save();
                 }
             });
