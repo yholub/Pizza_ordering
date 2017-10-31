@@ -22,23 +22,27 @@
                                 <div id="serverloadedMiniBasketItems" class="product loaded selected miniBasketItems" data-bind="foreach: selectedProducts">
 
                                     <div class="minibasketinner" data-toggle="modal" data-target="#ingredientModal">
-                                        <div class="col-md-10">
+                                        <div class="col-md-9">
                                             <b class="title" data-bind="text: name"></b>
                                         </div>
-                                        <div class="col-md-1">
-                                            <a data-bind="attr:{'id': $index()}, click: $parent.deletePizzaItem">
+                                        <div class="col-md-3">
+                                            <span class="product-buttons2 product-qty-wrapper">
+                                                <a class="product-remove left" data-bind="click: $parent.deletePizzaItem"><span>-</span></a>
+                                                <div class="product-qty left" data-bind="text: countOfPizzas()"> </div>
+                                                <a class="product-add left" data-bind="click: $parent.addPizzaItem"><span>+</span></a>
+                                            </span>
+                                            <!--<a data-bind="attr:{'id': $index()}, click: $parent.deletePizzaItem">
                                                 <span class="glyphicon glyphicon-remove" id="del"></span>
-                                            </a>
+                                            </a>-->
                                         </div>
                                         <div class="col-md-10">
-                                            <p class="title" data-bind="text: ko.utils.arrayMap($data.ingredients, function(v){return ' ' + v;})"></p>
+                                            <p class="title" data-bind="text: ko.utils.arrayMap($data.ingredients(), function(v){return ' ' + v;})"></p>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <h4 class="pizzaModPrice" data-bind="text: (Number(price()) * Number(countOfPizzas()))"></h4>
                                         </div>
 
-                                        <span class="product-buttons2 product-qty-wrapper">
-                                            <!--<a class="product-remove left" data-bind="attr:{'id': pizzaId}, click: delItem"><span>-</span></a>
-                                            <div class="product-qty left" id="prodCount2-@product.ProductInfo.Id"> @product.ProductInfo.SelectedCount </div>
-                                            <a class="product-add left" onclick="addItem('@product.ProductInfo.Id')"><span>+</span></a>--->
-                                        </span>
+
                                     </div>
                                     <!-- Modal -->
                                     <div class="modal fade" id="ingredientModal" role="dialog">
@@ -67,98 +71,54 @@
                                                             <b>Сумарно</b>
                                                         </div>
                                                     </div>
-                                                    <div class="products-elements">
+                                                    <div class="products-elements" data-bind="foreach: $parent.allIngredients">
                                                         <div class="product">
                                                             <div class="row">
                                                                 <div class="col-md-3">
-                                                                    <img class="product-image" src="https://s.cdpn.io/3/dingo-dog-bones.jpg">
-                                                                    <div class="product-title">Помідори</div>
+                                                                    <img class="product-image" data-bind="attr: {'src': imgUrl}">
+                                                                    <div class="product-title" data-bind="text: name" ></div>
                                                                 </div>
                                                                 <div class="col-md-2">
-                                                                    <p class="vertical-center">100</p>
+                                                                    <p class="vertical-center" data-bind="text: weight" ></p>
                                                                 </div>
                                                                 <div class="col-md-2">
-                                                                    <div class="vertical-center">12.99</div>
+                                                                    <div class="vertical-center" data-bind="text: price"></div>
                                                                 </div>
                                                                 <div class="col-md-2 product-quantity">
-                                                                    <input type="number" class="vertical-center" value="2" min="0">
+                                                                    <input type="number" class="vertical-center" data-bind="attr: {'value': count}" min="0" max="3">
                                                                 </div>
                                                                 <div class="col-md-2">
-                                                                    <div class="vertical-center">25.98</div>
+                                                                    <div class="vertical-center" data-bind="text: Number(count()) * Number(price())"></div>
                                                                 </div>
                                                             </div>
 
-                                                        </div>
-
-                                                        <div class="product">
-                                                            <div class="row">
-                                                                <div class="col-md-3">
-                                                                    <img class="product-image" src="https://s.cdpn.io/3/dingo-dog-bones.jpg">
-                                                                    <div class="product-title">Помідори</div>
-                                                                </div>
-                                                                <div class="col-md-2">
-                                                                    <p class="product-description vertical-center">100</p>
-                                                                </div>
-                                                                <div class="col-md-2">
-                                                                    <div class="product-price vertical-center">12.99</div>
-                                                                </div>
-                                                                <div class="col-md-2 product-quantity">
-                                                                    <input type="number" class="vertical-center" value="2" min="0">
-                                                                </div>
-                                                                <div class="col-md-2">
-                                                                    <div class="vertical-center">25.98</div>
-                                                                </div>
-                                                            </div>
-
-                                                        </div>
-
-                                                        <div class="product">
-                                                            <div class="row">
-                                                                <div class="col-md-3">
-                                                                    <img class="product-image" src="https://s.cdpn.io/3/dingo-dog-bones.jpg">
-                                                                    <div class="product-title">Помідори</div>
-                                                                </div>
-                                                                <div class="col-md-2">
-                                                                    <p class="product-description vertical-center">100</p>
-                                                                </div>
-                                                                <div class="col-md-2">
-                                                                    <div class="product-price vertical-center">12.99</div>
-                                                                </div>
-                                                                <div class="col-md-2 product-quantity">
-                                                                    <input type="number" class="vertical-center" value="2" min="0">
-                                                                </div>
-                                                                <div class="col-md-2">
-                                                                    <div class="vertical-center">25.98</div>
-                                                                </div>
-                                                            </div>
-
-                                                        </div>
-                                                      </div>
-                                                    
-                                                        
-                                                    <div class="totals">
-                                                        <div class="row">
-                                                            <div class="col-md-7">
-                                                                <label class="total-right">Інгредієнти</label>
-                                                            </div>
-                                                            <div class="col-md-5">
-                                                                <div class="totals-value" id="cart-subtotal">71.97</div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="row">
-                                                            <div class="col-md-7">
-                                                                <label class="total-right">Сума</label>
-                                                            </div>
-                                                            <div class="col-md-5">
-                                                                <div class="totals-value" id="cart-total">90.57</div>
-                                                            </div>
                                                         </div>
                                                     </div>
-
-                                                </div>
+                                                        
 
                                                 <div class="modal-footer">
-                                                    <div class="col-md-offset-5 col-md-3">
+                                                    <div class="col-md-5">
+                                                        <div class="totals">
+                                                            <div class="row">
+                                                                <div class="col-md-7">
+                                                                    <label class="total-right">Інгредієнти</label>
+                                                                </div>
+                                                                <div class="col-md-5">
+                                                                    <div class="totals-value" id="cart-subtotal">71.97</div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="row">
+                                                                <div class="col-md-7">
+                                                                    <label class="total-right">Сума</label>
+                                                                </div>
+                                                                <div class="col-md-5">
+                                                                    <div class="totals-value" id="cart-total">90.57</div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                     </div>
+
+                                                    <div class="col-md-3">
                                                         <button class="checkout">Додати</button>
                                                     </div>
                                                     <div class="col-md-3">
@@ -166,7 +126,7 @@
                                                     </div>
 
 
-                                                </div>
+                                                    </div>
                                             </div>
                                         </div>
                                     </div>
