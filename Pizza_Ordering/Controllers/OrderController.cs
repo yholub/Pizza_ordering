@@ -32,7 +32,7 @@ namespace Pizza_Ordering.Controllers
         [HttpGet]
         public IHttpActionResult GetCurrent()
         {
-            long userId = 1;
+           long userId = this.User.Identity.GetUserId<long>();
             long houseId = _houses.GetPizzaHouses().First(h => h.ModeratorId == userId).Id;
             DateTime now = DateTime.Now;
             int min = DateTime.Now.Minute;
@@ -45,7 +45,7 @@ namespace Pizza_Ordering.Controllers
         [HttpGet]
         public IHttpActionResult GetNew()
         {
-            long userId = 1;
+            long userId = this.User.Identity.GetUserId<long>();
             long houseId = _houses.GetPizzaHouses().First(h => h.ModeratorId == userId).Id;
             DateTime now = DateTime.Now;
             int min = DateTime.Now.Minute;
