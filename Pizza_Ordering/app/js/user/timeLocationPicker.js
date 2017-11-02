@@ -14,13 +14,13 @@
     };
 
   
-    function init() {
+    function init(items) {
         var locInfo = $.get("/api/pizza")
-        
-        $.when(locInfo)
-            .then(function (data) {
-                lastData = data;
-                model = new TimeLocViewModel(data);
+        var timeInfo = $.get("/api/order/gettime", { qty: items.length });
+        $.when(locInfo, timeInfo)
+            .then(function (locs, time) {
+                lastData =  locs[0];
+                model = new TimeLocViewModel(locs[0], time[0]);
                 $("#gmap").on("change", "select", function () {
                     var val = parseInt($(this).val());
                     if (val > 0) {
@@ -42,16 +42,18 @@
 
     }
 
-    function TimeLocViewModel(locs) {
+    function TimeLocViewModel(locs, time, items) {
         this.houses = locs;
+        this.items = items;
         this.houses.forEach(function (el, i) {
             el.index = i;
+            el.time = ko.observable(null);
         });
 
         this.selectedHouse = ko.observable(null);
         this.showMap = ko.observable(false);
         this.map = null;
-
+        
         this.loaded = ko.observable(window.google === undefined || window.google === null);
 
         var self = this;
@@ -73,9 +75,55 @@
 
            
         }
+
+        this.afterPickerRender = function (dom, el) {
+            $(dom).find(".timepicker").timepicker({
+                showPeriod: false,
+                altField: '#timepickerInput' + el.Id,
+                onSelect: timeChanged,
+                onHourShow: createHourCallback(el.Id, time),
+                onMinuteShow: createMinuteCallback(el.Id, time)
+            });
+        }
+
+        this.next = function () {
+            var data = {
+                id: self.selectedHouse().Id,
+                time: self.selectedHouse().time(),
+                items: self.items
+            };
+        }
+        
+        function timeChanged(time) {
+            self.selectedHouse().time(time);
+        }
+        
     }
 
-  
+    function createHourCallback(id, time) {
+        return function (hour) {
+            if (time[id].Hours[hour]) {
+                return true;
+            } else {
+                return false;
+            }
+        }
+    }
+
+    function createMinuteCallback(id, time) {
+        return function (hour, min) {
+            if (time[id].Hours[hour]) {
+                if (time[id].Time[hour][min]) {
+                    return true;
+                } else {
+                    return false;
+                }
+            } else {
+                return false;
+            }
+        }
+    }
+
     function createMapPlace(locs) {
         return new Maplace({
             locations: $.map(locs, function (el, i) {

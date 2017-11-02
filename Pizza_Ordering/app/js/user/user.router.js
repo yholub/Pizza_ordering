@@ -19,7 +19,8 @@
         this
              .partial('user/timeAndLocation.html')
              .then(function () {
-                 timeAndLoc.init();
+                 //Pass items
+                 timeAndLoc.init(window.cacheOrders);
              });
     });
 
@@ -32,17 +33,6 @@
              .then(function () {
                  userInfo.init();
              });
-    });
-
-    this.get('#/payment', function (context) {
-        updateHref();
-        $("a.router-href.navactive").removeClass("navactive");
-        $('a.router-href[href="#/uinfo"]').addClass("navactive");
-        this
-            .partial('user/paymentPage.html')
-            .then(function () {
-                userInfo.init();
-            });
     });
 
     this.get('#/', function (context) {

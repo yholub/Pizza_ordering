@@ -31,10 +31,11 @@ namespace Pizza_Ordering.Services.BLs
                             Lat = p.Location.Lat,
                             City = p.Location.City,
                             HouseNumber = p.Location.HouseNumber,
-                            StreetName = p.Location.Street
+                            StreetName = p.Location.Street,
                         },
                         Close = p.СloseTime,
-                        Open = p.OpenTime
+                        Open = p.OpenTime,
+                        ModeratorId = p.ModeratorId
                     }).ToList();
             });
         }

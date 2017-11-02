@@ -85,7 +85,7 @@
         if (this.ev.state == 1) {
             acceptClass = 'accepted';
         }
-        this.el = $('<div id="' + this.id + '" class="event ' + acceptClass + '" data-order-id=' + ev.ordId+ '><span class="title">' + ev.title + '</span><br /><span class="subtitle">' + ev.description + '</span><br /><span class="debug">' + this.ev.start + ":" + this.ev.end + "</span></div>");
+        this.el = $('<div data-order-item-id="' + this.ev.id + '" id="' + this.id + '" class="event ' + acceptClass + '" data-order-id=' + ev.ordId+ '><span class="title">' + ev.title + '</span><br /><span class="subtitle">' + ev.description + '</span><br /><span class="debug">' + this.ev.start + ":" + this.ev.end + "</span></div>");
         var unit = settings.calendar_height / (settings.calendar_end-settings.calendar_start);
         $(this.el).css('height', unit*(Math.abs(this.ev.start-this.ev.end)));
         $(this.el).css('top', unit*(this.ev.start-settings.calendar_start));

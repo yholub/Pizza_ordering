@@ -10,7 +10,7 @@ namespace Pizza_Ordering.Services.Interfaces
 {
     public interface IOrderBL
     {
-       List<OrderItemDto> GetOrderItemsSince(DateTime st, bool onlyPending = false);
+        List<OrderItemDto> GetOrderItemsSince(DateTime st, long houseId, bool onlyPending = false);
 
        void Accept(int id);
 

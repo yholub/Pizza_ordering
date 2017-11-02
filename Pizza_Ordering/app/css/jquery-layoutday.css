@@ -26,12 +26,17 @@
   border-left:4px solid #5cb85c;
 
 }
+
+.jquery-layoutday .events .event.activeRelated {
+
+  border-left:4px solid #d9534f;
+
+}
 .jquery-layoutday .events .event.active {
 
   border-left:4px solid #f0ad4e;
 
 }
-
 
 
 .jquery-layoutday .events .event .title {

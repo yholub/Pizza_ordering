@@ -109,5 +109,10 @@ namespace Pizza_Ordering.Services.BLs
         {
             throw new NotImplementedException();
         }
+
+        public List<OrderItemDto> GetOrderItemsSince(DateTime st, long houseId, bool onlyPending = false)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

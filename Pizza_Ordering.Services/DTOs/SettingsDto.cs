@@ -20,7 +20,7 @@ namespace Pizza_Ordering.Services.DTOs
         public SettingsDto()
         {
             StartHour = 9;
-            EndHour = 21;
+            EndHour = 24;
             Capacity = 2;
             Locked = new List<IngredientDto>
             {
