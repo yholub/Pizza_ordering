@@ -134,15 +134,19 @@
             });
 
             self.allIngredientsForPizza(ingredientWithCount);
-        }
+        };
 
-        self.calculatePizzaPriceWithAdditionalIngredients = ko.computed(function () {
-            var total = self.selectedProducts().reduce(function (y, x) {
-                return y + (x.price() * x.countOfPizzas());
-            }, 0);
+        self.calculatePizzaPriceWithAdditionalIngredients = function () {
+            consle.log("123");
+            return 123;
+            /*return ko.computed(function () {
+                var total = pizza.price() + allIngredientsForPizza().reduce(function (y, x) {
+                    return y + ((x.initCount > 1) ? (x.count() - x.initCount) : x.count()) * x.price();
+                }, 0);
 
-            return total;
-        });
+                return total;
+            });*/
+        };
 
         //Math.max(initCount, Number(count())) * Number(price())
     }

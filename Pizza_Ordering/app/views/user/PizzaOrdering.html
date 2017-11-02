@@ -19,7 +19,7 @@
                     <div id="related-cart-open">
                         <div class="content">
                             <div class="products">
-                                <div id="serverloadedMiniBasketItems" class="product loaded selected miniBasketItems" data-bind="foreach: selectedProducts">
+                                <div id="serverloadedMiniBasketItems" class="productSel loaded selected miniBasketItems" data-bind="foreach: selectedProducts()">
 
                                     <div class="minibasketinner" data-toggle="modal" data-target="#ingredientModal" data-bind="click: $parent.ingredientsSetCount">
                                         <div class="col-md-9">
@@ -73,10 +73,10 @@
                                                             <div class="row">
                                                                 <div class="col-md-3">
                                                                     <img class="product-image" data-bind="attr: {'src': imgUrl}">
-                                                                    <div class="product-title" data-bind="text: name" ></div>
+                                                                    <div class="product-title" data-bind="text: name"></div>
                                                                 </div>
                                                                 <div class="col-md-2">
-                                                                    <p class="vertical-center" data-bind="text: weight" ></p>
+                                                                    <p class="vertical-center" data-bind="text: weight"></p>
                                                                 </div>
                                                                 <div class="col-md-2">
                                                                     <div class="vertical-center" data-bind="text: price"></div>
@@ -91,71 +91,70 @@
 
                                                         </div>
                                                     </div>
-                                                        
 
-                                                <div class="modal-footer">
-                                                    <div class="col-md-5">
-                                                        <div class="totals">
-                                                            <div class="row">
-                                                                <div class="col-md-7">
-                                                                    <label class="total-right">Сума</label>
-                                                                </div>
-                                                                <div class="col-md-5">
-                                                                    <div class="totals-value" id="cart-total" data-bind="text: calculatePizzaPriceWithAdditionalIngredients"></div>
+
+                                                    <div class="modal-footer">
+                                                        <div class="col-md-5">
+                                                            <div class="totals">
+                                                                <div class="row">
+                                                                    <div class="col-md-7">
+                                                                        <label class="total-right">Ціна за піцу</label>
+                                                                    </div>
+                                                                    <div class="col-md-5">
+                                                                        <div class="totals-value" id="cart-total" data-bind="text: $parent.calculatePizzaPriceWithAdditionalIngredients()"> </div>
+                                                                    </div>
                                                                 </div>
                                                             </div>
                                                         </div>
-                                                     </div>
 
-                                                    <div class="col-md-3">
-                                                        <button class="checkout">Додати</button>
-                                                    </div>
-                                                    <div class="col-md-3">
-                                                        <button class="close-btn" data-dismiss="modal">Скасувати</button>
-                                                    </div>
+                                                        <div class="col-md-3">
+                                                            <button class="checkout">Додати</button>
+                                                        </div>
+                                                        <div class="col-md-3">
+                                                            <button class="close-btn" data-dismiss="modal">Скасувати</button>
+                                                        </div>
 
 
                                                     </div>
+                                                </div>
                                             </div>
                                         </div>
+
                                     </div>
-
                                 </div>
-                            </div>
-                            <a data-bind="click: order" class="go-checkout-btn">Замовити</a>
+                                <a data-bind="click: order" class="go-checkout-btn">Замовити</a>
 
+                            </div>
                         </div>
                     </div>
                 </div>
+                <br /><br />
             </div>
-            <br /><br />
+
+
         </div>
 
 
-    </div>
 
+        <div class="row pizzas" data-bind="foreach: pizzas">
+            <div class="col-md-3 col-lg-3 products-list">
+                <div class="product-gallery">
+                    <div class="hovereffect">
+                        <img class="img-responsive" data-bind="attr: { 'src': imgUrl }" alt="Alternate Text" />
+                        <div class="overlay">
+                            <h5>Інгредієнти</h5>
+                            <h6 data-bind="text: ko.utils.arrayMap($data.ingredients, function(v){return ' ' + v.name;})"></h6>
+                        </div>
+                    </div>
 
+                    <p class="product-name" data-bind="text: name"></p>
 
-    <div class="row pizzas" data-bind="foreach: pizzas">
-        <div class="col-md-3 col-lg-3 products-list">
-            <div class="product-gallery">
-                <div class="hovereffect">
-                    <img class="img-responsive" data-bind="attr: { 'src': imgUrl }" alt="Alternate Text" />
-                    <div class="overlay">
-                        <h5>Інгредієнти</h5>
-                        <h6 data-bind="text: ko.utils.arrayMap($data.ingredients, function(v){return ' ' + v.name;})">
-                        </h6>
+                    <div class="product-price secondprice ">
+                        <el data-bind="text: price"></el> грн
+                        <a class="product-buy" data-bind="attr:{'id': $index()}, click: $parent.addToCard" title="Add to сart">В корзину</a>
                     </div>
                 </div>
-                
-                <p class="product-name" data-bind="text: name"></p>
-
-                <div class="product-price secondprice ">
-                    <el data-bind="text: price"></el> грн
-                    <a class="product-buy" data-bind="attr:{'id': $index()}, click: $parent.addToCard" title="Add to сart">В корзину</a>
-                </div>
             </div>
         </div>
     </div>
-
 </div>

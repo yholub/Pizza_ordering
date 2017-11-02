@@ -7,7 +7,7 @@
     this.get('#/order', function (context) {
         updateHref();
         this
-           .partial('user/pizzaOrdering.html')
+           .partial('user/pizzaOrdering.html', { cache: false })
            .then(function () {
               
                pizzaOrdering.init();
@@ -17,7 +17,7 @@
 
     this.get('#/time', function () {
         this
-             .partial('user/timeAndLocation.html')
+             .partial('user/timeAndLocation.html', { cache: false })
              .then(function () {
                  //Pass items
                  timeAndLoc.init([0, 2]);
