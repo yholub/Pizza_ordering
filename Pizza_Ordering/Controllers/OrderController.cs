@@ -1,6 +1,8 @@
 ﻿using Pizza_Ordering.Models;
+using Pizza_Ordering.Models.Order;
 using Pizza_Ordering.Models.OrderViewModel;
 using Pizza_Ordering.Services.BLs;
+using Pizza_Ordering.Services.DTOs;
 using Pizza_Ordering.Services.Interfaces;
 using System;
 using System.Collections.Generic;
@@ -11,47 +13,67 @@ using System.Web.Http;
 
 namespace Pizza_Ordering.Controllers
 {
+    [RoutePrefix("api/order")]
     public class OrderController : BaseController
     {
-        private IOrderBL _service;
+        private IOrderBL _orderBL;
 
-        public OrderController(IOrderBL service)
+        public OrderController(IOrderBL orderBL)
         {
-            _service = service;
+            _orderBL = orderBL;
         }
 
-        [Route("api/order/GetCurrent")]
+        [Route("GetCurrent")]
         [HttpGet]
         public IHttpActionResult GetCurrent()
         {
             DateTime now = DateTime.Now;
             int min = DateTime.Now.Minute;
             DateTime start = now - TimeSpan.FromMinutes((min / 10 * 10) + 10);
-            return Json(_service.GetOrderItemsSince(start).Select(o => new OrderViewModel(o)).ToList());
+            return Json(_orderBL.GetOrderItemsSince(start).Select(o => new OrderViewModel(o)).ToList());
         }
 
-        [Route("api/order/GetNew")]
+        [Route("GetNew")]
         [HttpGet]
         public IHttpActionResult GetNew()
         {
             DateTime now = DateTime.Now;
             int min = DateTime.Now.Minute;
             DateTime start = now - TimeSpan.FromMinutes((min / 10 * 10) + 10);
-            return Json(_service.GetOrderItemsSince(start, false).Select(o => new OrderViewModel(o)).ToList());
+            return Json(_orderBL.GetOrderItemsSince(start, false).Select(o => new OrderViewModel(o)).ToList());
         }
 
-        [Route("api/order/accept/{id:long}")]
+        [Route("accept/{id:long}")]
         [HttpPost]
         public void Accept(int id)
         {
-            _service.Accept(id);
+            _orderBL.Accept(id);
         }
 
-        [Route("api/order/reject/{id:long}")]
+        [Route("reject/{id:long}")]
         [HttpPost]
         public void Reject(int id)
         {
-            _service.Reject(id);
+            _orderBL.Reject(id);
+        }
+
+        [HttpPost]
+        public void Post(CreateOrderModel model)
+        {
+            _orderBL.CreateOrder(new OrderDto
+            {
+                PizzaHouseId = model.PizzaHouseId,
+                UserId = UserIsAuthenticated ? UserId : (long?)null,
+                Name = model.Name,
+                //Start = model.Start,
+                //End = model.End,
+                //TimeToTake = model.TimeToTake,
+                Status = Common.PizzaStatusType.Processed,
+                Items = model.Items.Select(x => new OrderItemDto
+                {
+                    PizzaId = x.PizzaId
+                }).ToList()
+            });
         }
     }
 }

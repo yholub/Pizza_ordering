@@ -34,6 +34,17 @@
              });
     });
 
+    this.get('#/payment', function (context) {
+        updateHref();
+        $("a.router-href.navactive").removeClass("navactive");
+        $('a.router-href[href="#/uinfo"]').addClass("navactive");
+        this
+            .partial('user/paymentPage.html')
+            .then(function () {
+                userInfo.init();
+            });
+    });
+
     this.get('#/', function (context) {
         updateHref();
         this.partial('Home.html').then(function () {
