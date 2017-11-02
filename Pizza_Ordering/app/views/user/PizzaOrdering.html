@@ -21,7 +21,7 @@
                             <div class="products">
                                 <div id="serverloadedMiniBasketItems" class="product loaded selected miniBasketItems" data-bind="foreach: selectedProducts">
 
-                                    <div class="minibasketinner" data-toggle="modal" data-target="#ingredientModal">
+                                    <div class="minibasketinner" data-toggle="modal" data-target="#ingredientModal" data-bind="click: $parent.ingredientsSetCount">
                                         <div class="col-md-9">
                                             <b class="title" data-bind="text: name"></b>
                                         </div>
@@ -31,12 +31,9 @@
                                                 <div class="product-qty left" data-bind="text: countOfPizzas()"> </div>
                                                 <a class="product-add left" data-bind="click: $parent.addPizzaItem"><span>+</span></a>
                                             </span>
-                                            <!--<a data-bind="attr:{'id': $index()}, click: $parent.deletePizzaItem">
-                                                <span class="glyphicon glyphicon-remove" id="del"></span>
-                                            </a>-->
                                         </div>
                                         <div class="col-md-10">
-                                            <p class="title" data-bind="text: ko.utils.arrayMap($data.ingredients(), function(v){return ' ' + v;})"></p>
+                                            <p class="title" data-bind="text: $parent.showIngredients($data)"></p>
                                         </div>
                                         <div class="col-md-2">
                                             <h4 class="pizzaModPrice" data-bind="text: (Number(price()) * Number(countOfPizzas()))"></h4>
@@ -71,8 +68,8 @@
                                                             <b>Сумарно</b>
                                                         </div>
                                                     </div>
-                                                    <div class="products-elements" data-bind="foreach: $parent.allIngredients">
-                                                        <div class="product">
+                                                    <div class="products-elements" data-bind="foreach: $parent.allIngredientsForPizza()">
+                                                        <div class="product" data-bind="style: {background: (initCount >= 1) ? 'antiquewhite' : 'none'}">
                                                             <div class="row">
                                                                 <div class="col-md-3">
                                                                     <img class="product-image" data-bind="attr: {'src': imgUrl}">
@@ -88,7 +85,7 @@
                                                                     <input type="number" class="vertical-center" data-bind="value: count" min="0" max="3">
                                                                 </div>
                                                                 <div class="col-md-2">
-                                                                    <div class="vertical-center" data-bind="text: Number(count()) * Number(price())"></div>
+                                                                    <div class="vertical-center" data-bind="text: (count() > initCount) ? Number(count() - initCount) * Number(price()) : Number(0)"></div>
                                                                 </div>
                                                             </div>
 
@@ -101,18 +98,10 @@
                                                         <div class="totals">
                                                             <div class="row">
                                                                 <div class="col-md-7">
-                                                                    <label class="total-right">Інгредієнти</label>
-                                                                </div>
-                                                                <div class="col-md-5">
-                                                                    <div class="totals-value" id="cart-subtotal">71.97</div>
-                                                                </div>
-                                                            </div>
-                                                            <div class="row">
-                                                                <div class="col-md-7">
                                                                     <label class="total-right">Сума</label>
                                                                 </div>
                                                                 <div class="col-md-5">
-                                                                    <div class="totals-value" id="cart-total">90.57</div>
+                                                                    <div class="totals-value" id="cart-total" data-bind="text: calculatePizzaPriceWithAdditionalIngredients"></div>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -148,13 +137,13 @@
 
 
     <div class="row pizzas" data-bind="foreach: pizzas">
-        <div class="col-lg-3 products-list">
+        <div class="col-md-3 col-lg-3 products-list">
             <div class="product-gallery">
                 <div class="hovereffect">
                     <img class="img-responsive" data-bind="attr: { 'src': imgUrl }" alt="Alternate Text" />
                     <div class="overlay">
                         <h5>Інгредієнти</h5>
-                        <h6 data-bind="text: ko.utils.arrayMap($data.ingredients, function(v){return ' ' + v;})">
+                        <h6 data-bind="text: ko.utils.arrayMap($data.ingredients, function(v){return ' ' + v.name;})">
                         </h6>
                     </div>
                 </div>
@@ -164,24 +153,9 @@
                 <div class="product-price secondprice ">
                     <el data-bind="text: price"></el> грн
                     <a class="product-buy" data-bind="attr:{'id': $index()}, click: $parent.addToCard" title="Add to сart">В корзину</a>
-                    <!--@if (@Model.Products[i + j].SelectedCount == 0)
-                    {
-                    <a class="product-buy" id="@Model.Products[i + j].Id" onclick="addToCart('@Model.Products[i + j].Id', '@Model.Products[i + j].Name', '@Model.Products[i + j].SelectedCount')" title="Add to сart">Add to сart</a>
-                    }
-                    else
-                    {
-                    <span id='buyCount-@Model.Products[i + j].Id' class="product-buttons product-qty-wrapper">
-                        <a id="delBtn-@Model.Products[i + j].Id" class="product-remove left" onclick="delItem(@Model.Products[i + j].Id)"><span>-</span></a>
-                        <div class="product-qty left" id="prodCount1-@Model.Products[i + j].Id">
-                            @Nemlig.BusinessLogic.SelectedProducts.Products.First(c => c.ProductInfo.Id == Model.Products[i + j].Id).ProductInfo.SelectedCount
-                        </div>
-                        <a class="product-add left" onclick="addItem(@Model.Products[i + j].Id)"><span>+</span></a>
-                    </span>
-                    }-->
                 </div>
             </div>
         </div>
-        <!--</div>-->
     </div>
 
 </div>

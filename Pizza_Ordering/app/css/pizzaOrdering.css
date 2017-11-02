@@ -13,6 +13,8 @@
     padding-right: 10px;
     background-color: rgba(237, 180, 50, 0.19);
     border: 1px solid #edb432;
+    margin-top: 20px;
+    border-radius: 3px;
 }
 
 .modal {
@@ -347,7 +349,7 @@ textarea {
     width: 300px;
     float: left;
     position: relative;
-    margin-left: -35px;
+    margin-left: -55px;
     margin-top: -4px;
     font-size: 11px;
 }
@@ -618,7 +620,7 @@ textarea {
 
 .products-list{
     padding-right: 0px;
-    padding-left: 10px;
+    padding-left: 0px !important;
 }
 
 select{
