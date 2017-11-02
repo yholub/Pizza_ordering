@@ -137,7 +137,7 @@
         };
 
         self.calculatePizzaPriceWithAdditionalIngredients = function () {
-            consle.log("123");
+            console.log("123");
             return 123;
             /*return ko.computed(function () {
                 var total = pizza.price() + allIngredientsForPizza().reduce(function (y, x) {
