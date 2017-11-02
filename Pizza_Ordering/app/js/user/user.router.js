@@ -20,7 +20,7 @@
              .partial('user/timeAndLocation.html')
              .then(function () {
                  //Pass items
-                 timeAndLoc.init(window.cacheOrders);
+                 timeAndLoc.init([0, 2]);
              });
     });
 
