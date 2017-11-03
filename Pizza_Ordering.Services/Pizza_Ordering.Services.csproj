@@ -58,6 +58,7 @@
     <Compile Include="DTOs\AddressDto.cs" />
     <Compile Include="DTOs\BaseDto.cs" />
     <Compile Include="DTOs\IngredientDto.cs" />
+    <Compile Include="DTOs\IngredientQuantityDto.cs" />
     <Compile Include="DTOs\Order.cs" />
     <Compile Include="DTOs\OrderDto.cs" />
     <Compile Include="DTOs\OrderItemDto.cs" />

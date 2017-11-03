@@ -25,9 +25,11 @@ namespace Pizza_Ordering.Domain.Entities
 
         public long ModeratorId { get; set; }
 
+        public int Capacity { get; set; }
+
         [ForeignKey("ModeratorId")]
         public virtual User Moderator { get; set; }
 
-        // public virtual List<Place> Places { get; set; }
+        public virtual List<IngredientAmount> InStock { get; set; }
     }
 }

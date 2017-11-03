@@ -24,13 +24,13 @@ namespace Pizza_Ordering.Services.BLs
 
         public void UpdateSettings(SettingEditDto settings)
         {
-            _default.Capacity = settings.Capacity;
-            _default.EndHour = settings.EndHour;
-            _default.StartHour = settings.StartHour;
-            for (int i = 0; i < settings.IngState.Count; ++i)
-            {
-                _default.Locked[settings.IngState[i].Id].IsLocked = settings.IngState[i].IsLocked;
-            }
+            //_default.Capacity = settings.Capacity;
+            //_default.EndHour = settings.EndHour;
+            //_default.StartHour = settings.StartHour;
+            //for (int i = 0; i < settings.IngState.Count; ++i)
+            //{
+            //    _default.Locked[settings.IngState[i].Id].IsLocked = settings.IngState[i].IsLocked;
+            //}
         }
     }
 }

@@ -38,6 +38,8 @@ namespace Pizza_Ordering.DataProvider.UnitOfWork
 
         private IRepository<UserBonus> userBonusRepository;
 
+        private IRepository<IngredientAmount> ingregientAmountsRepository;
+
         private RoleRepository rolesRepository;
 
         public UserRepository Users
@@ -206,6 +208,19 @@ namespace Pizza_Ordering.DataProvider.UnitOfWork
                 }
 
                 return addressesRepository;
+            }
+        }
+
+        public IRepository<IngredientAmount> IngredientAmounts
+        {
+            get
+            {
+                if (ingregientAmountsRepository == null)
+                {
+                    ingregientAmountsRepository = new Repository<IngredientAmount>(db);
+                }
+
+                return ingregientAmountsRepository;
             }
         }
 

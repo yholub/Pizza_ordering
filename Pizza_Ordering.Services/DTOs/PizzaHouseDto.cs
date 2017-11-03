@@ -12,10 +12,14 @@ namespace Pizza_Ordering.Services.DTOs
 
         public long Id { get; set; }
 
-        public TimeSpan Open { get; set; }
+        public int Open { get; set; }
 
-        public TimeSpan Close { get; set; }
+        public int Close { get; set; }
 
         public long ModeratorId { get; set; }
+
+        public int Capacity { get; set; }
+
+        public List<IngredientQuantityDto> InStock { get; set; }
     }
 }

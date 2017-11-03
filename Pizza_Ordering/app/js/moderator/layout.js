@@ -12,22 +12,30 @@ $.sammy("#main", function () {
             clearInterval(window.task);
             window.task = null;
         }
-        
-        $.get('/api/settings').then(function (data) {
+        var sets = $.get('/api/settings');
+        var ings = $.get('/api/ingredients');
+        $.when(sets, ings).then(function (packedSettings, packedIngs) {
+           
             $("#sHref").addClass("navactive");
             $("#oHref").removeClass("navactive");
             self.render('settings.html').replace("#main").then(function() {
                 
-                function SettingsFormModel(data) {
-                    this.start = ko.observable(data.StartHour);
-                    this.end = ko.observable(data.EndHour);
-                    this.cap = ko.observable(data.Capacity);
-                    var list = $.map(data.Locked, function(el) {
+                function SettingsFormModel(settings, ings) {
+                    this.start = ko.observable(settings.Open);
+                    this.end = ko.observable(settings.Close);
+                    this.cap = ko.observable(settings.Capacity);
+
+                    var dict = {};
+                    settings.InStock.forEach(function (el) {
+                        dict[el.IngredientDto.Id] = el.Quantity;
+                    });
+
+                    var list = $.map(ings, function(el) {
                         return {
                             name: el.Name,
                             price: el.Price,
                             id: el.Id,
-                            lock: ko.observable(el.IsLocked)
+                            quantity: ko.observable(dict[el.Id] ? dict[el.Id] : 0)
                         };
                     });
 
@@ -43,7 +51,7 @@ $.sammy("#main", function () {
                             IngState: $.map(self.ing, function(el) {
                                 return {
                                     Id: el.id,
-                                    IsLocked: el.lock()
+                                    Quantity: el.quantity()
                                 }
                             })
                         }).then(function() {
@@ -55,7 +63,7 @@ $.sammy("#main", function () {
                     }
                 }
                 
-                var model = new SettingsFormModel(data);
+                var model = new SettingsFormModel(packedSettings[0], packedIngs[0]);
                 ko.applyBindings(model, document.getElementById('setview'));
                
             });
@@ -87,22 +95,24 @@ $.sammy("#main", function () {
                 var now = new Date();
                 var stHour = now.getHours();
                 var stMin = now.getMinutes();
-                if (stHour < settings.StartHour) {
-                    stHour = settings.StartHour;
+                if (stHour < settings.Open) {
+                    stHour = settings.Open;
                 }
-                for (var i = stHour; i < settings.EndHour; ++i) {
+
+                var endHour = (settings.Close - stHour + 24) % 24 + stHour;
+                for (var i = stHour; i < endHour; i++) {
                     for (var j = 0; j < 60; j = j + 10) {
                         var jText = '' + j;
                         if (j < 10) {
                             jText = '0' + jText;
                         }
-                        list.push('' + i + ':' + jText);
+                        list.push('' + i % 24 + ':' + jText);
                     }
                 }
                 
                 self.partial('orders.html', { hours: list, cache: false }).then(function () {
                     
-                    $('#calendar').height(((settings.EndHour - stHour) * 60) * 3);
+                    $('#calendar').height(((endHour - stHour) * 60) * 3);
                     
                     var layOutDay = function (cal_events) {
                         $('#calendar').addEvents(cal_events);
@@ -110,7 +120,7 @@ $.sammy("#main", function () {
                   
                     $('#calendar').layOutDay({
                         'calendar_start': stHour * 60,
-                        'calendar_end': settings.EndHour * 60,
+                        'calendar_end': endHour * 60,
                         'time_selector': 'body .time'
                     });
                    

@@ -6,28 +6,33 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using Microsoft.AspNet.Identity;
 
 namespace Pizza_Ordering.Controllers
 {
+    [Authorize(Roles = "Moderator")]
     public class SettingsController : ApiController
     {
-        private ISettingsBL _service;
+        private IPizzaHouseBL _service;
 
-        public SettingsController(ISettingsBL service)
+        public SettingsController(IPizzaHouseBL service)
         {
             _service = service;
         }
 
         [HttpGet]
-        public SettingsDto Get()
+        public PizzaHouseDto Get()
         {
-            return _service.GetSettings();
+            return _service.GetPizzaHouse(User.Identity.GetUserId<long>());
         }
+
 
         [HttpPost]
         public void Post(SettingEditDto set)
         {
-           _service.UpdateSettings(set);
+            var h = _service.GetPizzaHouse(User.Identity.GetUserId<long>());
+            set.PizzaHouseId = h.Id;
+            _service.UpdatePizzaHouse(set);
         }
     }
 }

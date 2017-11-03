@@ -55,6 +55,7 @@
     <Compile Include="Entities\Address.cs" />
     <Compile Include="Entities\CapacityPlan.cs" />
     <Compile Include="Entities\FixPizza.cs" />
+    <Compile Include="Entities\IngredientAmount.cs" />
     <Compile Include="Entities\ModifiedPizza.cs" />
     <Compile Include="Entities\Order.cs" />
     <Compile Include="Entities\OrderItem.cs" />
