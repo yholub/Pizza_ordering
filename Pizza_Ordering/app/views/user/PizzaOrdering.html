@@ -33,7 +33,7 @@
                                             </span>
                                         </div>
                                         <div class="col-md-10">
-                                            <p class="title" data-bind="text: $parent.showIngredients($data)"></p>
+                                            <p class="title" data-bind="text: ko.utils.arrayMap($data.ingredients(), function(x){return (x.count() > 0)? (' ' + x.name() + ((x.count() > 1) ? '(' + x.count() + ')' : '')): ''})"></p>
                                         </div>
                                         <div class="col-md-2">
                                             <h4 class="pizzaModPrice" data-bind="text: (Number(price()) * Number(countOfPizzas()))"></h4>
@@ -68,12 +68,12 @@
                                                             <b>Сумарно</b>
                                                         </div>
                                                     </div>
-                                                    <div class="products-elements" data-bind="foreach: $parent.allIngredientsForPizza()">
+                                                    <div class="products-elements" data-bind="foreach: $parent.allIngredientsForPizza().ingredients">
                                                         <div class="product" data-bind="style: {background: (initCount >= 1) ? 'antiquewhite' : 'none'}">
                                                             <div class="row">
                                                                 <div class="col-md-3">
                                                                     <img class="product-image" data-bind="attr: {'src': imgUrl}">
-                                                                    <div class="product-title" data-bind="text: name"></div>
+                                                                    <div class="product-title" data-bind="text: name()"></div>
                                                                 </div>
                                                                 <div class="col-md-2">
                                                                     <p class="vertical-center" data-bind="text: weight"></p>
@@ -98,7 +98,7 @@
                                                             <div class="totals">
                                                                 <div class="row">
                                                                     <div class="col-md-7">
-                                                                        <label class="total-right">Ціна за піцу</label>
+                                                                        <label class="total-right">Ціна</label>
                                                                     </div>
                                                                     <div class="col-md-5">
                                                                         <div class="totals-value" id="cart-total" data-bind="text: $parent.calculatePizzaPriceWithAdditionalIngredients()"> </div>
@@ -108,7 +108,7 @@
                                                         </div>
 
                                                         <div class="col-md-3">
-                                                            <button class="checkout">Додати</button>
+                                                            <button class="checkout" data-bind="click: $parent.addAdditionalIngredients">Додати</button>
                                                         </div>
                                                         <div class="col-md-3">
                                                             <button class="close-btn" data-dismiss="modal">Скасувати</button>
@@ -143,7 +143,7 @@
                         <img class="img-responsive" data-bind="attr: { 'src': imgUrl }" alt="Alternate Text" />
                         <div class="overlay">
                             <h5>Інгредієнти</h5>
-                            <h6 data-bind="text: ko.utils.arrayMap($data.ingredients, function(v){return ' ' + v.name;})"></h6>
+                            <h6 data-bind="text: ko.utils.arrayMap($data.ingredients(), function(v){return ' ' + v.name();})"></h6>
                         </div>
                     </div>
 

@@ -427,6 +427,7 @@ textarea {
 
 .go-checkout-btn{
     display: block;
+    cursor: pointer;
     float: right;
     position: absolute;
     bottom: 0;
