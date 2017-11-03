@@ -257,6 +257,7 @@
     <Content Include="app\assets\images\img2.PNG" />
     <Content Include="app\assets\images\img3.jpg" />
     <Content Include="app\assets\images\img4.PNG" />
+    <Content Include="app\assets\images\payment_symbols.png" />
     <Content Include="app\assets\images\pizza1.jpg" />
     <Content Include="app\assets\images\pizza11.jpg" />
     <Content Include="app\assets\images\pizza12.jpg" />
@@ -320,6 +321,7 @@
     <Content Include="app\css\jquery.ui.timepicker.css" />
     <Content Include="app\css\main.css" />
     <Content Include="app\css\normalize.css" />
+    <Content Include="app\css\payment.css" />
     <Content Include="app\css\picto-foundry-food.css" />
     <Content Include="app\css\pizzaOrdering.css" />
     <Content Include="app\css\style-portfolio.css" />
@@ -340,6 +342,7 @@
     <Content Include="app\js\libs\sammy-0.7.6.min.js" />
     <Content Include="app\js\libs\sammy.handlebars.js" />
     <Content Include="app\js\main.js" />
+    <Content Include="app\js\user\payment.js" />
     <Content Include="app\js\user\pizzaOrdering.js" />
     <Content Include="app\js\user\timeLocationPicker.js" />
     <Content Include="app\js\user\user.router.js" />
@@ -350,6 +353,7 @@
     <Content Include="app\views\moderator\ModeratorLayout.html" />
     <Content Include="app\views\moderator\orders.html" />
     <Content Include="app\views\moderator\settings.html" />
+    <Content Include="app\views\user\payment.html" />
     <Content Include="app\views\user\pizzaOrdering.html" />
     <Content Include="app\views\user\timeAndLocation.html" />
     <Content Include="app\views\user\userInfoPage.html" />
