@@ -10,5 +10,9 @@ namespace Pizza_Ordering.Services.Interfaces
     public interface IPizzaHouseBL
     {
         List<PizzaHouseDto> GetPizzaHouses();
+
+        PizzaHouseDto GetPizzaHouse(long moderatorId);
+
+        void UpdatePizzaHouse(SettingEditDto dto);
     }
 }
