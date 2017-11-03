@@ -27,7 +27,7 @@ namespace Pizza_Ordering.Controllers
             _settings = settings;
         }
 
-       // [Authorize(Roles = "Moderator")]
+        [Authorize(Roles = "Moderator")]
         [Route("api/order/GetCurrent")]
         [HttpGet]
         public IHttpActionResult GetCurrent()
@@ -40,7 +40,7 @@ namespace Pizza_Ordering.Controllers
             return Json(_orders.GetOrderItemsSince(start, houseId).Select(o => new OrderViewModel(o)).ToList());
         }
 
-       // [Authorize(Roles = "Moderator")]
+        [Authorize(Roles = "Moderator")]
         [Route("api/order/GetNew")]
         [HttpGet]
         public IHttpActionResult GetNew()

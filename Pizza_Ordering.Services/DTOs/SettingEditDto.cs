@@ -10,11 +10,13 @@ namespace Pizza_Ordering.Services.DTOs
     {
         public int Id { get; set; }
 
-        public bool IsLocked { get; set; }
+        public int Quantity { get; set; }
     }
 
     public class SettingEditDto
     {
+        public long PizzaHouseId { get; set; }
+
         public int StartHour { get; set; }
 
         public int EndHour { get; set; }

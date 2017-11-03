@@ -36,6 +36,8 @@ namespace Pizza_Ordering.DataProvider.UnitOfWork
 
         IRepository<UserBonus> UserBonuses { get; }
 
+        IRepository<IngredientAmount> IngredientAmounts { get; }
+
         RoleRepository Roles { get; }
 
         void Save();

@@ -146,7 +146,8 @@ namespace Pizza_Ordering.DataProvider
                         Lat = 49.8360502,
                         Lng = 24.0352977
                     },
-                    ModeratorId = u.Id
+                    ModeratorId = u.Id,
+                    Capacity = 3
                 },
 
                 new PizzaHouse
@@ -162,7 +163,8 @@ namespace Pizza_Ordering.DataProvider
                         Lat = 49.840367,
                         Lng = 24.024088
                     },
-                    ModeratorId = u2.Id
+                    ModeratorId = u2.Id,
+                    Capacity = 3
                 },
             };
 

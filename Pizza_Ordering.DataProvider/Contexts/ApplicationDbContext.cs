@@ -45,6 +45,8 @@ namespace Pizza_Ordering.DataProvider
 
         public virtual DbSet<UserBonus> UserBonuses { get; set; }
 
+        public virtual DbSet<IngredientAmount> IngredientAmounts { get; set; } 
+
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             ConfigureIdentityTables(modelBuilder);
