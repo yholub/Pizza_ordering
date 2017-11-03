@@ -5,8 +5,10 @@
 </style>
 <div id="timeAndLocView" class="row pageContent">
     <div class="col-md-8 col-md-offset-2">
-        
-        <form class="form-horizontal" >
+        <div class="alert alert-danger" data-bind="if: houses().length == 0">
+            На жаль, ваше замовлення не може бути виконано в жодній піцерії
+        </div>
+        <form class="form-horizontal" data-type="if: houses().length > 0">
             <h4> Виберіть місце:  <label class="switch"> <input type="checkbox" data-bind="checked: showMap, event: { change: toggle }"><span class="slider round"></span></label></h4>
             <hr />
             <div class="form-group" data-bind="if: !showMap()">
