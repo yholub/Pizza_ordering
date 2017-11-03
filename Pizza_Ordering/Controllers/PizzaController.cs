@@ -1,4 +1,5 @@
-﻿using Pizza_Ordering.Services.DTOs;
+﻿using Pizza_Ordering.Models.Order;
+using Pizza_Ordering.Services.DTOs;
 using Pizza_Ordering.Services.Interfaces;
 using System;
 using System.Collections.Generic;
@@ -23,6 +24,40 @@ namespace Pizza_Ordering.Controllers
         public List<PizzaHouseDto> Get()
         {
             return _service.GetPizzaHouses();
+        }
+
+        [HttpPost]
+        public List<PizzaHouseDto> Get(OrderBindingModel model)
+        {
+            int qty = model.OrderItems.Sum(o => o.Count);
+            var houses = _service.GetPizzaHouses();
+
+            var checkIngs = model.OrderItems
+                .SelectMany(o => o.Ingredients)
+                .GroupBy(i => i.Id)
+                .Select(g => new
+                {
+                    Id = g.Key,
+                    Count = g.Sum(i => i.Count)
+                })
+                .Where(g => g.Count > 0);
+
+
+            var filteredHouses = houses.Where(h =>
+            {
+                return checkIngs.All(i =>
+                {
+                    var found = h.InStock.FirstOrDefault(el => el.IngredientDto.Id == i.Id);
+                    if (found == null)
+                        return false;
+
+                    return found.Quantity >= i.Count;
+                });
+
+            });
+
+
+            return filteredHouses.ToList();
         }
     }
 }

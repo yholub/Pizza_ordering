@@ -70,7 +70,7 @@ namespace Pizza_Ordering.Controllers
         }
 
         [Route("api/order/gettime")]
-        [HttpGet]
+        [HttpPost]
         public Dictionary<long, PizzaHouseTimeViewModel> GetFreeTime(OrderBindingModel model)
         {
             Dictionary<long, PizzaHouseTimeViewModel> res = new Dictionary<long, PizzaHouseTimeViewModel>();
@@ -146,6 +146,7 @@ namespace Pizza_Ordering.Controllers
                 res[resModel.PizzaHouseId] = resModel;
             }
 
+            
             return res;
 
         }
