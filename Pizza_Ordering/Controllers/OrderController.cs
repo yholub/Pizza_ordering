@@ -10,6 +10,7 @@ using System.Net.Http;
 using System.Web.Http;
 using Microsoft.AspNet.Identity;
 using Pizza_Ordering.Services.DTOs;
+using Pizza_Ordering.Models.Order;
 
 namespace Pizza_Ordering.Controllers
 {
@@ -70,9 +71,36 @@ namespace Pizza_Ordering.Controllers
 
         [Route("api/order/gettime")]
         [HttpGet]
-        public Dictionary<long, PizzaHouseTimeViewModel> GetFreeTime(int qty = 2)
+        public Dictionary<long, PizzaHouseTimeViewModel> GetFreeTime(OrderBindingModel model)
         {
             Dictionary<long, PizzaHouseTimeViewModel> res = new Dictionary<long, PizzaHouseTimeViewModel>();
+            int qty =  model.OrderItems.Sum(o => o.Count);
+            var houses = _houses.GetPizzaHouses();
+
+            var checkIngs = model.OrderItems
+                .SelectMany(o => o.Ingredients)
+                .GroupBy(i => i.Id)
+                .Select(g => new
+                {
+                    Id = g.Key,
+                    Count = g.Sum(i => i.Count)
+                })
+                .Where(g => g.Count > 0);
+
+
+            var filteredHouses = houses.Where(h =>
+            {
+                return checkIngs.All(i =>
+                {
+                    var found = h.InStock.FirstOrDefault(el => el.IngredientDto.Id == i.Id);
+                    if (found == null)
+                        return false;
+
+                    return found.Quantity >= i.Count;
+                });
+
+            });
+
 
             DateTime now = DateTime.Now;
             int min = DateTime.Now.Minute;
@@ -83,12 +111,14 @@ namespace Pizza_Ordering.Controllers
             TimeSpan step = TimeSpan.FromMinutes(5);
             TimeSpan interval = endStart - dayStart;
 
-            int[] counts = new int[(int)Math.Round(interval.TotalMinutes / step.TotalMinutes)];
-            var houses = _houses.GetPizzaHouses();
-            
-            foreach (var house in houses)
+
+
+
+            foreach (var house in filteredHouses)
             {
-                PizzaHouseTimeViewModel model = new PizzaHouseTimeViewModel
+                int[] counts = new int[(int)Math.Round(interval.TotalMinutes / step.TotalMinutes)];
+
+                PizzaHouseTimeViewModel resModel = new PizzaHouseTimeViewModel
                 {
                     PizzaHouseId = house.Id
                 };
@@ -109,11 +139,11 @@ namespace Pizza_Ordering.Controllers
                     //4 * 5 == 20 minutes of preparation - make dynamic later
                     if (i >= start && CheckTimeArrBack(counts, k, settings.Capacity, qty, 4))
                     {
-                        model.Set(i.Hour, i.Minute);
+                        resModel.Set(i.Hour, i.Minute);
                     }
                 }
 
-                res[model.PizzaHouseId] = model;
+                res[resModel.PizzaHouseId] = resModel;
             }
 
             return res;
