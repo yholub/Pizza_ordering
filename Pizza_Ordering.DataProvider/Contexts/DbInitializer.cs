@@ -16,27 +16,27 @@ namespace Pizza_Ordering.DataProvider
         {
             List<Ingredient> defaultIngredients = new List<Ingredient>
             {
-                new Ingredient { Name = "моцарела", Price = 24, Weight = 100 },
-                new Ingredient { Name = "пармезан", Price = 12, Weight = 10 },
-                new Ingredient { Name = "балик", Price = 24, Weight = 100 },
-                new Ingredient { Name = "шинка", Price = 25, Weight = 100 },
-                new Ingredient { Name = "артишок", Price = 40, Weight = 60 },
-                new Ingredient { Name = "салямі", Price = 14, Weight = 30 },
-                new Ingredient { Name = "ковбаски мисливські", Price = 12, Weight = 30 },
-                new Ingredient { Name = "перець болгарський", Price = 10, Weight = 40 },
-                new Ingredient { Name = "курка", Price = 21, Weight = 100 },
-                new Ingredient { Name = "бекон", Price = 23, Weight = 100 },
-                new Ingredient { Name = "ананас", Price = 14, Weight = 40 },
-                new Ingredient { Name = "баклажани", Price = 7, Weight = 40 },
-                new Ingredient { Name = "помідори", Price = 10, Weight = 50 },
-                new Ingredient { Name = "петрушка", Price = 5, Weight = 5 },
-                new Ingredient { Name = "печериці", Price = 6, Weight = 50 },
-                new Ingredient { Name = "маслини", Price = 22, Weight = 30 },
-                new Ingredient { Name = "кукурудза", Price = 14, Weight = 50 },
-                new Ingredient { Name = "айсберг", Price = 15, Weight = 50 },
-                new Ingredient { Name = "броколі", Price = 15, Weight = 150 },
-                new Ingredient { Name = "рукола", Price = 7, Weight = 15 },
-                new Ingredient { Name = "базилік", Price = 6, Weight = 10 }
+                new Ingredient { Id = 1, Name = "моцарела", Price = 24, Weight = 100 },
+                new Ingredient { Id = 2, Name = "пармезан", Price = 12, Weight = 10 },
+                new Ingredient { Id = 3, Name = "балик", Price = 24, Weight = 100 },
+                new Ingredient { Id = 4, Name = "шинка", Price = 25, Weight = 100 },
+                new Ingredient { Id = 5, Name = "артишок", Price = 40, Weight = 60 },
+                new Ingredient { Id = 6, Name = "салямі", Price = 14, Weight = 30 },
+                new Ingredient { Id = 7, Name = "ковбаски мисливські", Price = 12, Weight = 30 },
+                new Ingredient { Id = 8, Name = "перець болгарський", Price = 10, Weight = 40 },
+                new Ingredient { Id = 9, Name = "курка", Price = 21, Weight = 100 },
+                new Ingredient { Id = 10, Name = "бекон", Price = 23, Weight = 100 },
+                new Ingredient { Id = 11, Name = "ананас", Price = 14, Weight = 40 },
+                new Ingredient { Id = 12, Name = "баклажани", Price = 7, Weight = 40 },
+                new Ingredient { Id = 13, Name = "помідори", Price = 10, Weight = 50 },
+                new Ingredient { Id = 14, Name = "петрушка", Price = 5, Weight = 5 },
+                new Ingredient { Id = 15, Name = "печериці", Price = 6, Weight = 50 },
+                new Ingredient { Id = 16, Name = "маслини", Price = 22, Weight = 30 },
+                new Ingredient { Id = 17, Name = "кукурудза", Price = 14, Weight = 50 },
+                new Ingredient { Id = 18, Name = "айсберг", Price = 15, Weight = 50 },
+                new Ingredient { Id = 19, Name = "броколі", Price = 15, Weight = 150 },
+                new Ingredient { Id = 20, Name = "рукола", Price = 7, Weight = 15 },
+                new Ingredient { Id = 21, Name = "базилік", Price = 6, Weight = 10 }
             };
 
             context.Ingredients.AddRange(defaultIngredients);

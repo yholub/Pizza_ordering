@@ -31,6 +31,7 @@ namespace Pizza_Ordering.Services.BLs
                     Ingredients = x.IngredientItems.Select(i => new IngredientDto
                     {
                         Id = i.Id,
+                        IngredientId = i.Ingredient.Id,
                         Name = i.Ingredient.Name,
                         Price = i.Ingredient.Price,
                         Weight = i.Ingredient.Weight,

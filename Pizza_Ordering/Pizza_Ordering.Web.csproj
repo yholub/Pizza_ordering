@@ -233,6 +233,9 @@
     </Compile>
     <Compile Include="Models\AccountBindingModels.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\Order\IngredientBindingModel.cs" />
+    <Compile Include="Models\Order\OrderBindingModel.cs" />
+    <Compile Include="Models\Order\OrderItemBindingModel.cs" />
     <Compile Include="Models\Order\OrderViewModel.cs" />
     <Compile Include="Models\PizzaHouseTimeViewModel.cs" />
     <Compile Include="Models\Pizza\CreateFixPizzaModel.cs" />
@@ -244,6 +247,7 @@
     <Compile Include="Models\Product\CreateProductModel.cs" />
     <Compile Include="Models\Product\ProductModel.cs" />
     <Compile Include="Models\Product\UpdateProductModel.cs" />
+    <Compile Include="Models\TimePickerViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Providers\ApplicationOAuthProvider.cs" />
     <Compile Include="Results\ChallengeResult.cs" />

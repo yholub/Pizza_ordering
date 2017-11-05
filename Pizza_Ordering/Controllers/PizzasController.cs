@@ -27,7 +27,6 @@ namespace Pizza_Ordering.Controllers
         {
             var dtos = _pizzasBL.GetFixPizzas();
             var models = dtos;
-
             return Json(models);
         }
 

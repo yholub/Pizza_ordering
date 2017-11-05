@@ -17,5 +17,7 @@ namespace Pizza_Ordering.Services.DTOs
         public int Quantity { get; set; }
 
         public bool IsLocked { get; set; }
+
+        public long IngredientId { get; set; }
     }
 }

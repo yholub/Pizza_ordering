@@ -17,12 +17,13 @@
                     var pizza = data[i];
                     var ingredients = [];
                     for (var j = 0; j < pizza.Ingredients.length; j++) {
-                        ingredients.push({ name: ko.observable(pizza.Ingredients[j].Name), count: ko.observable(1), id: pizza.Ingredients[j].Id, price: pizza.Ingredients[j].Price, initCount: 1});
+                        ingredients.push({ name: ko.observable(pizza.Ingredients[j].Name), count: ko.observable(1), id: pizza.Ingredients[j].IngredientId, price: pizza.Ingredients[j].Price, initCount: 1 });
                     }
-
+                    console.log(ingredients);
                     pizzasArr.push({ id: pizza.Id, imgUrl: "../assets/images/" + pizza.Name + ".jpg", name: pizza.Name, price: pizza.Price, ingredients: ko.observableArray(ingredients) });
                 }
 
+                
                 return pizzasArr;
             });
 

@@ -12,7 +12,7 @@ namespace Pizza_Ordering.Domain.Abstract
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public long Id { get; private set; }
+        public long Id { get; set; }
 
         public BaseEntity()
         {
