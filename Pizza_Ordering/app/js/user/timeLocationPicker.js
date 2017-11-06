@@ -20,7 +20,7 @@
         $.when(locInfo, timeInfo)
             .then(function (locs, time) {
                 lastData =  locs[0];
-                model = new TimeLocViewModel(locs[0], time[0]);
+                model = new TimeLocViewModel(locs[0], time[0], items);
                 $("#gmap").on("change", "select", function () {
                     var val = parseInt($(this).val());
                     if (val > 0) {
