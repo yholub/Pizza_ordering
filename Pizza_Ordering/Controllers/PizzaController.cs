@@ -33,12 +33,14 @@ namespace Pizza_Ordering.Controllers
             var houses = _service.GetPizzaHouses();
 
             var checkIngs = model.OrderItems
-                .SelectMany(o => o.Ingredients)
-                .GroupBy(i => i.Id)
+                
+                .SelectMany(o => o.Ingredients
+                    .Select( i => new { Ing = i, Am = o.Count }) )
+                .GroupBy(i => i.Ing.Id)
                 .Select(g => new
                 {
                     Id = g.Key,
-                    Count = g.Sum(i => i.Count)
+                    Count = g.Sum(i => i.Ing.Count * i.Am)
                 })
                 .Where(g => g.Count > 0);
 
