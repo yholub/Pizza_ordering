@@ -12,5 +12,10 @@ namespace Pizza_Ordering.Models.Order
         public long PizzaId { get; set; }
 
         public List<OrderItemBindingModel> OrderItems { get; set; }
+
+        public OrderBindingModel()
+        {
+            OrderItems = new List<OrderItemBindingModel>();
+        }
     }
 }

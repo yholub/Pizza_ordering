@@ -14,5 +14,10 @@ namespace Pizza_Ordering.Models.Order
         public int Count { get; set; }
 
         public List<IngredientBindingModel> Ingredients { get; set; }
+
+        public OrderItemBindingModel()
+        {
+            Ingredients = new List<IngredientBindingModel>();
+        }
     }
 }
