@@ -21,7 +21,7 @@ namespace Pizza_Ordering.Domain.Entities
 
         public TimeSpan OpenTime { get; set; }
 
-        public TimeSpan СloseTime { get; set; }
+        public TimeSpan CloseTime { get; set; }
 
         public long ModeratorId { get; set; }
 

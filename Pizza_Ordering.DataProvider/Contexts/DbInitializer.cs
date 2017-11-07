@@ -136,7 +136,7 @@ namespace Pizza_Ordering.DataProvider
                 new PizzaHouse
                 {
                     OpenTime = TimeSpan.FromHours(9),
-                    СloseTime = TimeSpan.FromHours(23),
+                    CloseTime = TimeSpan.FromHours(23),
                     Location = new Address
                     {
                         City = "Львів",
@@ -153,7 +153,7 @@ namespace Pizza_Ordering.DataProvider
                 new PizzaHouse
                 {
                     OpenTime = TimeSpan.FromHours(9),
-                    СloseTime = TimeSpan.FromHours(23),
+                    CloseTime = TimeSpan.FromHours(23),
                     Location = new Address
                     {
                         City = "Львів",
