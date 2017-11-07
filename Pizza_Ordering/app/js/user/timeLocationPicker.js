@@ -87,11 +87,13 @@
         }
 
         this.next = function () {
-            var data = {
+            window.cacheOrder = {
                 id: self.selectedHouse().Id,
                 time: self.selectedHouse().time(),
                 items: self.items
             };
+            
+            location.href = "#/payment";
         }
         
         function timeChanged(time) {
