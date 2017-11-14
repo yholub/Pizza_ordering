@@ -25,13 +25,11 @@
     });
 
     this.get('#/payment', function () {
-        updateHref();
-        $("a.router-href.navactive").removeClass("navactive");
-        $('a.router-href[href="#/uinfo"]').addClass("navactive");
         this
-            .partial('user/payment.html')
+            .partial('user/payment.html', { cache: false })
             .then(function () {
-                payment.init();
+                // Pass orders
+                payment.init(window.cacheOrder);
             });
     });
 
