@@ -403,6 +403,7 @@
     <Content Include="app\fonts\picto-foundry-food.eot" />
     <Content Include="app\fonts\picto-foundry-food.ttf" />
     <Content Include="app\fonts\picto-foundry-food.woff" />
+    <Content Include="app\js\libs\jquery.caret.js" />
     <None Include="app\js\libs\jquery.validate-vsdoc.js" />
     <Content Include="app\js\libs\jquery.validate.js" />
     <Content Include="app\js\libs\jquery.validate.unobtrusive.js" />

@@ -98,10 +98,11 @@
                     }
                 });
                 $(element).focus(function () {
-                    var val = $(this).val();
+                    var self = $(this);
+                    var val = self.val();
                     if (!val || val.trim() == "") {
-                        if ($(element).is("input[type=text]")) {
-                            $(element).caretTo(0);
+                        if (self.is("input[type=text]")) {
+                            self.caret(0);
                         }
                     }
                 });
