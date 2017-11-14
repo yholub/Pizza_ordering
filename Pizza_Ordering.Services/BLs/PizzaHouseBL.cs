@@ -34,7 +34,7 @@ namespace Pizza_Ordering.Services.BLs
                             HouseNumber = p.Location.HouseNumber,
                             StreetName = p.Location.Street,
                         },
-                        Close = p.СloseTime.Hours,
+                        Close = p.CloseTime.Hours,
                         Open = p.OpenTime.Hours,
                         ModeratorId = p.ModeratorId,
                         Capacity = p.Capacity,
@@ -71,7 +71,7 @@ namespace Pizza_Ordering.Services.BLs
                             HouseNumber = p.Location.HouseNumber,
                             StreetName = p.Location.Street,
                         },
-                        Close = p.СloseTime.Hours,
+                        Close = p.CloseTime.Hours,
                         Open = p.OpenTime.Hours,
                         ModeratorId = p.ModeratorId,
                         Capacity = p.Capacity,
@@ -98,7 +98,7 @@ namespace Pizza_Ordering.Services.BLs
                 dto.StartHour = dto.StartHour % 24;
                 dto.EndHour = dto.EndHour % 24;
                 entity.OpenTime = TimeSpan.FromHours(dto.StartHour);
-                entity.СloseTime = TimeSpan.FromHours(dto.EndHour);
+                entity.CloseTime = TimeSpan.FromHours(dto.EndHour);
                 db.PizzaHouses.Update(entity);
 
                 var ams = db.IngredientAmounts.Query()
