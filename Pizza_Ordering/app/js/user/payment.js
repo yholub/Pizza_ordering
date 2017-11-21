@@ -19,7 +19,7 @@
         self.submitBonusesPayment = function (e) {
             if (self.bonusesHas() >= self.bonusesToPay()) {
                 // TODO
-                successfullyPaid();
+                createOrder();
             }
             else {
                 failedToPay('У вас недостатньо бонусів =(');
@@ -27,8 +27,8 @@
         }
 
         self.submitMoneyPayment = function (e) {
-            payWithStripe(e);
-            //successfullyPaid();
+            //payWithStripe(e);
+            createOrder();
         }
 
         function payWithStripe(e) {
@@ -98,11 +98,10 @@
                     }
                 });
                 $(element).focus(function () {
-                    var self = $(this);
-                    var val = self.val();
+                    var val = $(this).val();
                     if (!val || val.trim() == "") {
-                        if (self.is("input[type=text]")) {
-                            self.caret(0);
+                        if ($(element).is("input[type=text]")) {
+                            $(element).caret(0);
                         }
                     }
                 });
@@ -118,7 +117,49 @@
         };
     }
 
+    function createOrder() {
+        //window.cacheOrder = {
+        //    pizzaHouseId: self.selectedHouse().Id,
+        //    time: self.selectedHouse().time(),
+        //    items: self.items
+        //};
+
+        var receivedFromPrevStep = window.cacheOrder;
+
+        var postObj = {
+            pizzaHouseId: receivedFromPrevStep.pizzaHouseId,
+            timeToTake: receivedFromPrevStep.time,
+            items : [
+                {
+                    id : 0,
+                    pizzaId : 0,
+                    pizzaName : null,
+                    isModified : false,
+                    startTime : '0001-01-01T00:00:00',
+                    endTime : '0001-01-01T00:00:00',
+                    price : 0.0,
+                    orderId : 0,
+                    status : 0
+                }
+            ],
+            id : 0
+        };
+
+        $.post('/order', {
+            // my data
+            token: token
+        })
+            // Assign handlers immediately after making the request,
+            .done(function (data, textStatus, jqXHR) {
+                successfullyPaid();
+            })
+            .fail(function (jqXHR, textStatus, errorThrown) {
+                failedToPay();
+            });
+    }
+
     function successfullyPaid() {
+        location.href = '#/paymentSuccessful';
         $.notify({
             message: 'Оплата пройшла успішно',
             type: 'success'

@@ -26,5 +26,7 @@ namespace Pizza_Ordering.Services.DTOs
         public long OrderId { get; set; }
 
         public PizzaStatusType Status { get; set; }
+
+        public int Quantity { get; set; }
     }
 }

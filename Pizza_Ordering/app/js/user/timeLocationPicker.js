@@ -15,6 +15,7 @@
 
   
     function init(items) {
+        self.items = items;
         var locInfo = $.post("/api/pizza", items)
         var timeInfo = $.post("/api/order/gettime", items);
         $.when(locInfo, timeInfo)
@@ -88,7 +89,7 @@
 
         this.next = function () {
             window.cacheOrder = {
-                id: self.selectedHouse().Id,
+                pizzaHouseId: self.selectedHouse().Id,
                 time: self.selectedHouse().time(),
                 items: self.items
             };

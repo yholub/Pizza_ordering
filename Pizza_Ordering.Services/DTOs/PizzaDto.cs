@@ -11,7 +11,7 @@ namespace Pizza_Ordering.Services.DTOs
     {
         public long BasePizzaId { get; set; }
 
-        public long UserId { get; set; }
+        public long? UserId { get; set; }
 
         public string Name { get; set; }
 

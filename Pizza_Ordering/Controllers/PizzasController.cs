@@ -75,10 +75,11 @@ namespace Pizza_Ordering.Controllers
             {
                 BasePizzaId = model.BasePizzaId,
                 PizzaType = PizzaType.Saved,
-                Ingredients = model.Ingredients
+                Ingredients = model.Ingredients,
+                UserId = UserId
             };
 
-            _pizzasBL.CreateModifiedPizza(model.UserId, dto);
+            _pizzasBL.CreateModifiedPizza(dto);
 
             return Ok();
         }

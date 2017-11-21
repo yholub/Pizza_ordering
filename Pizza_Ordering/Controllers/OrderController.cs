@@ -14,18 +14,19 @@ using Pizza_Ordering.Models.Order;
 
 namespace Pizza_Ordering.Controllers
 {
-    
     public class OrderController : BaseController
     {
         private IOrderBL _orders;
+        private IPizzasBL _pizzas;
         private IPizzaHouseBL _houses;
         private ISettingsBL _settings;
 
-        public OrderController(IOrderBL service, IPizzaHouseBL houses, ISettingsBL settings)
+        public OrderController(IOrderBL service, IPizzaHouseBL houses, ISettingsBL settings, IPizzasBL pizzas)
         {
-            _orders = service; 
+            _orders = service;
             _houses = houses;
             _settings = settings;
+            _pizzas = pizzas;
         }
 
         [Authorize(Roles = "Moderator")]
@@ -194,7 +195,73 @@ namespace Pizza_Ordering.Controllers
             return Ok();
         }
 
+        [Route("api/order")]
+        [HttpPost]
+        public IHttpActionResult Post(OrderCreateModel model)
+        {
+            var listOfOrderItemDtos = new List<OrderItemDto>(model.Items.Count);
 
-        
+            foreach (var x in model.Items)
+            {
+                var fixPizzaDto = _pizzas.GetPizzaById(Common.PizzaType.Fix, x.PizzaId);
+
+                bool isFixPizza = fixPizzaDto.Ingredients.All(fi => x.Ingredients.Any(mi => mi.Id == fi.Id && mi.Quantity == fi.Quantity));
+
+                if (!isFixPizza)
+                {
+                    long modifiedPizzaId = _pizzas.CreateModifiedPizza(new PizzaDto
+                    {
+                        BasePizzaId = x.PizzaId,
+                        UserId = UserId,
+                        Ingredients = x.Ingredients,
+                        Name = x.Name
+                    });
+
+                    var modifiedPizzaDto = _pizzas.GetPizzaById(Common.PizzaType.Modified, modifiedPizzaId);
+
+                    var orderItemDto = new OrderItemDto
+                    {
+                        PizzaId = modifiedPizzaDto.Id,
+                        PizzaName = modifiedPizzaDto.Name,
+                        StartTime = DateTime.Today + TimeSpan.FromHours(20),
+                        EndTime = DateTime.Today + TimeSpan.FromHours(20) + TimeSpan.FromMinutes(20),
+                        Price = modifiedPizzaDto.Price,
+                        Status = Common.PizzaStatusType.Processed,
+                        IsModified = true,
+                        Quantity = x.Quantity
+                    };
+
+                    listOfOrderItemDtos.Add(orderItemDto);
+                }
+                else
+                {
+                    var orderItemDto = new OrderItemDto
+                    {
+                        PizzaId = fixPizzaDto.Id,
+                        PizzaName = fixPizzaDto.Name,
+                        StartTime = DateTime.Today + TimeSpan.FromHours(20),
+                        EndTime = DateTime.Today + TimeSpan.FromHours(20) + TimeSpan.FromMinutes(20),
+                        Price = fixPizzaDto.Price,
+                        Status = Common.PizzaStatusType.Processed,
+                        IsModified = false,
+                        Quantity = x.Quantity
+                    };
+
+                    listOfOrderItemDtos.Add(orderItemDto);
+                }
+            }
+
+            _orders.CreateOrder(new Services.DTOs.OrderDto
+            {
+                UserId = UserId,
+                // Price is set in the BL level
+                PizzaHouseId = model.PizzaHouseId,
+                TimeToTake = model.TimeToTake,
+                Status = Common.PizzaStatusType.Processed,
+                Items = listOfOrderItemDtos
+            });
+
+            return Ok();
+        }
     }
 }

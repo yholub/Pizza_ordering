@@ -9,11 +9,11 @@ namespace Pizza_Ordering.Controllers
 {
     public class BaseController : ApiController
     {
-        public long UserId
+        public long? UserId
         {
             get
             {
-                return User.Identity.GetUserId<long>();
+                return User?.Identity?.GetUserId<long>();
                 //return 1;
             }
         }

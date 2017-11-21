@@ -33,6 +33,13 @@
             });
     });
 
+    this.get('#/paymentSuccessful', function () {
+        this
+            .partial('user/paymentSuccessful.html', { cache: false })
+            .then(function () {
+            });
+    });
+
     this.get('#/uinfo', function (context) {
         updateHref();
         $("a.router-href.navactive").removeClass("navactive");

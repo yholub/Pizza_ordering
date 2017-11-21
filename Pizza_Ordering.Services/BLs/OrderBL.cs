@@ -41,21 +41,31 @@ namespace Pizza_Ordering.Services.BLs
         {
             UseDb(uow =>
             {
+                var orderItems = new List<OrderItem>(orderDto.Items.Count);
+
+                foreach (var x in orderDto.Items)
+                {
+                    for (int i = 0; i < x.Quantity; i++)
+                    {
+                        orderItems.Add(new OrderItem
+                        {
+                            PizzaId = x.PizzaId,
+                            IsModified = x.IsModified,
+                            StartTime = x.StartTime,
+                            EndTime = x.EndTime,
+                            Price = x.Price
+                        });
+                    }
+                }
+
                 var entity = new Domain.Entities.Order
                 {
                     UserId = orderDto.UserId,
-                    Price = orderDto.Price,
+                    Price = orderItems.Sum(x => x.Price),
                     PizzaHouseId = orderDto.PizzaHouseId,
                     TimeToTake = orderDto.TimeToTake,
                     Status = orderDto.Status,
-                    Items = orderDto.Items.Select(x => new OrderItem
-                    {
-                        PizzaId = x.PizzaId,
-                        IsModified = x.IsModified,
-                        StartTime = x.StartTime,
-                        EndTime = x.EndTime,
-                        Price = x.Price
-                    }).ToList()
+                    Items = orderItems
                 };
 
                 uow.Orders.Create(entity);
@@ -64,7 +74,7 @@ namespace Pizza_Ordering.Services.BLs
             });
         }
 
-        public List<Pizza_Ordering.Services.DTOs.OrderItemDto> GetOrderItemsSince(DateTime st, long houseId, bool onlyPending = false)
+        public List<OrderItemDto> GetOrderItemsSince(DateTime st, long houseId, bool onlyPending = false)
         {
             List<OrderItemDto> orders = UseDb(db =>
             {

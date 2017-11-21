@@ -30,8 +30,7 @@ namespace Pizza_Ordering.Services.BLs
                     PizzaType = Common.PizzaType.Fix,
                     Ingredients = x.IngredientItems.Select(i => new IngredientDto
                     {
-                        Id = i.Id,
-                        IngredientId = i.Ingredient.Id,
+                        Id = i.Ingredient.Id,
                         Name = i.Ingredient.Name,
                         Price = i.Ingredient.Price,
                         Weight = i.Ingredient.Weight,
@@ -121,14 +120,38 @@ namespace Pizza_Ordering.Services.BLs
 
                     return dto;
                 }
+                else if (pizzaType == PizzaType.Modified)
+                {
+                    var entity = uow.ModifiedPizzas.GetById(pizzaId);
+
+                    var dto = new PizzaDto
+                    {
+                        Id = entity.Id,
+                        Name = $"{entity.BasePizza.Name} (customized)",
+                        Price = entity.BasePizza.Price > entity.IngredientItems.Sum(i => i.Quantity * i.Ingredient.Price)
+                                ? entity.BasePizza.Price
+                                : entity.IngredientItems.Sum(i => i.Quantity * i.Ingredient.Price),
+                        PizzaType = Common.PizzaType.Modified,
+                        Ingredients = entity.IngredientItems.Select(i => new IngredientDto
+                        {
+                            Id = i.Ingredient.Id,
+                            Name = i.Ingredient.Name,
+                            Price = i.Ingredient.Price,
+                            Weight = i.Ingredient.Weight,
+                            Quantity = i.Quantity
+                        }).ToList()
+                    };
+
+                    return dto;
+                }
 
                 return null;
             });
         }
 
-        public void CreateFixPizza(PizzaDto pizzaDto)
+        public long CreateFixPizza(PizzaDto pizzaDto)
         {
-            UseDb(uow =>
+            return UseDb(uow =>
             {
                 var entity = new FixPizza
                 {
@@ -146,12 +169,14 @@ namespace Pizza_Ordering.Services.BLs
                 uow.FixPizzas.Create(entity);
 
                 uow.Save();
+
+                return entity.Id;
             });
         }
 
-        public void CreateModifiedPizza(long userId, PizzaDto pizzaDto)
+        public long CreateModifiedPizza(PizzaDto pizzaDto)
         {
-            UseDb(uow =>
+            return UseDb(uow =>
             {
                 var ingredientItems = pizzaDto.Ingredients.Select(x => new IngredientItem
                 {
@@ -166,23 +191,23 @@ namespace Pizza_Ordering.Services.BLs
 
                 uow.Save();
 
-                var entity = new SavedPizza
+                var entity = new ModifiedPizza
                 {
                     FixPizzaId = pizzaDto.BasePizzaId,
-                    UserId = userId,
-                    Name = pizzaDto.Name,
                     IngredientItems = ingredientItems
                 };
 
-                uow.SavedPizzas.Create(entity);
+                uow.ModifiedPizzas.Create(entity);
 
                 uow.Save();
+
+                return entity.Id;
             });
         }
 
-        public void CreateSavedPizza(long userId, PizzaDto pizzaDto)
+        public long CreateSavedPizza(long userId, PizzaDto pizzaDto)
         {
-            UseDb(uow =>
+            return UseDb(uow =>
             {
                 var ingredientItems = pizzaDto.Ingredients.Select(x => new IngredientItem
                 {
@@ -208,6 +233,8 @@ namespace Pizza_Ordering.Services.BLs
                 uow.SavedPizzas.Create(entity);
 
                 uow.Save();
+
+                return entity.Id;
             });
         }
 

@@ -16,11 +16,11 @@ namespace Pizza_Ordering.Services.Interfaces
 
         PizzaDto GetPizzaById(PizzaType pizzaType, long pizzaId);
 
-        void CreateFixPizza(PizzaDto pizzaDto);
+        long CreateFixPizza(PizzaDto pizzaDto);
 
-        void CreateSavedPizza(long userId, PizzaDto pizzaDto);
+        long CreateSavedPizza(long userId, PizzaDto pizzaDto);
 
-        void CreateModifiedPizza(long userId, PizzaDto pizzaDto);
+        long CreateModifiedPizza(PizzaDto pizzaDto);
 
         void DeleteFixPizza(long pizzaId);
     }
