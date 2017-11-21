@@ -126,29 +126,9 @@
 
         var receivedFromPrevStep = window.cacheOrder;
 
-        var postObj = {
-            pizzaHouseId: receivedFromPrevStep.pizzaHouseId,
-            timeToTake: receivedFromPrevStep.time,
-            items : [
-                {
-                    id : 0,
-                    pizzaId : 0,
-                    pizzaName : null,
-                    isModified : false,
-                    startTime : '0001-01-01T00:00:00',
-                    endTime : '0001-01-01T00:00:00',
-                    price : 0.0,
-                    orderId : 0,
-                    status : 0
-                }
-            ],
-            id : 0
-        };
+        var postObj = receivedFromPrevStep
 
-        $.post('/order', {
-            // my data
-            token: token
-        })
+        $.post('/order', postObj)
             // Assign handlers immediately after making the request,
             .done(function (data, textStatus, jqXHR) {
                 successfullyPaid();
