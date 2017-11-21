@@ -27,7 +27,7 @@ namespace Pizza_Ordering.Services.BLs
                     Id = x.Id,
                     Name = x.Name,
                     Price = x.Price,
-                    PizzaType = Common.PizzaType.Fix,
+                    PizzaType = PizzaType.Fix,
                     Ingredients = x.IngredientItems.Select(i => new IngredientDto
                     {
                         Id = i.Ingredient.Id,
@@ -55,7 +55,7 @@ namespace Pizza_Ordering.Services.BLs
                     Price = x.BasePizza.Price > x.IngredientItems.Sum(i => i.Quantity * i.Ingredient.Price)
                                 ? x.BasePizza.Price
                                 : x.IngredientItems.Sum(i => i.Quantity * i.Ingredient.Price),
-                    PizzaType = Common.PizzaType.Saved,
+                    PizzaType = PizzaType.Saved,
                     Ingredients = x.IngredientItems.Select(i => new IngredientDto
                     {
                         Id = i.Ingredient.Id,
@@ -83,10 +83,10 @@ namespace Pizza_Ordering.Services.BLs
                         Id = entity.Id,
                         Name = entity.Name,
                         Price = entity.Price,
-                        PizzaType = Common.PizzaType.Fix,
+                        PizzaType = PizzaType.Fix,
                         Ingredients = entity.IngredientItems.Select(i => new IngredientDto
                         {
-                            Id = i.Id,
+                            Id = i.Ingredient.Id,
                             Name = i.Ingredient.Name,
                             Price = i.Ingredient.Price,
                             Weight = i.Ingredient.Weight,
@@ -107,7 +107,7 @@ namespace Pizza_Ordering.Services.BLs
                         Price = entity.BasePizza.Price > entity.IngredientItems.Sum(i => i.Quantity * i.Ingredient.Price)
                                 ? entity.BasePizza.Price
                                 : entity.IngredientItems.Sum(i => i.Quantity * i.Ingredient.Price),
-                        PizzaType = Common.PizzaType.Saved,
+                        PizzaType = PizzaType.Saved,
                         Ingredients = entity.IngredientItems.Select(i => new IngredientDto
                         {
                             Id = i.Ingredient.Id,
@@ -124,14 +124,30 @@ namespace Pizza_Ordering.Services.BLs
                 {
                     var entity = uow.ModifiedPizzas.GetById(pizzaId);
 
+                    decimal price = entity.BasePizza.Price;
+                    // add price for each extra ingredient
+                    var basePizzaIngredients = entity.BasePizza.IngredientItems.ToList();
+                    foreach (var thisIngr in entity.IngredientItems)
+                    {
+                        var baseIngr = basePizzaIngredients.FirstOrDefault(x => x.IngredientId == thisIngr.IngredientId);
+                        int thisCount = thisIngr.Quantity;
+                        int baseCount = baseIngr?.Quantity ?? 0;
+                        int extraIngredientsCount = thisCount > baseCount
+                            ? thisCount - baseCount
+                            : 0;
+
+                        price += thisIngr.Ingredient.Price * extraIngredientsCount;
+                    }
+
                     var dto = new PizzaDto
                     {
                         Id = entity.Id,
-                        Name = $"{entity.BasePizza.Name} (customized)",
-                        Price = entity.BasePizza.Price > entity.IngredientItems.Sum(i => i.Quantity * i.Ingredient.Price)
-                                ? entity.BasePizza.Price
-                                : entity.IngredientItems.Sum(i => i.Quantity * i.Ingredient.Price),
-                        PizzaType = Common.PizzaType.Modified,
+                        BasePizzaId = entity.FixPizzaId,
+                        // Here should be entity.UserId which is not in the database yet
+                        // UserId =
+                        Name = $"{entity.BasePizza} (змінена)",
+                        Price = price,
+                        PizzaType = PizzaType.Modified,
                         Ingredients = entity.IngredientItems.Select(i => new IngredientDto
                         {
                             Id = i.Ingredient.Id,

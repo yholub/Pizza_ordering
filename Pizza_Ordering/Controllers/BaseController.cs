@@ -13,8 +13,8 @@ namespace Pizza_Ordering.Controllers
         {
             get
             {
-                return User?.Identity?.GetUserId<long>();
-                //return 1;
+                //return User?.Identity?.GetUserId<long>();
+                return 1;
             }
         }
     }

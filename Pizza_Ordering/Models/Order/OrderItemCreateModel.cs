@@ -17,6 +17,6 @@ namespace Pizza_Ordering.Models.Order
 
         public string Name { get; set; }
 
-        public List<IngredientDto> Ingredients { get; set; }
+        public List<OrderItemIngredientModel> Ingredients { get; set; }
     }
 }

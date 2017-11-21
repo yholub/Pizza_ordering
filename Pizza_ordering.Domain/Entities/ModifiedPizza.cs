@@ -18,5 +18,8 @@ namespace Pizza_Ordering.Domain.Entities
         public virtual FixPizza BasePizza { get; set; }
 
         public virtual List<IngredientItem> IngredientItems { get; set; }
+
+        // Should be introduced
+        //public long? UserId { get; set; }
     }
 }

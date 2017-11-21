@@ -6,7 +6,7 @@
 
     function ViewModel(pizzas) {
         var self = this;
-
+        
         self.cardNumber = ko.observable();
         self.cardCvc = ko.observable();
         self.cardExpMonth = ko.observable();
@@ -14,7 +14,7 @@
 
         self.bonusesHas = ko.observable(500);
         self.bonusesToPay = ko.observable(750);
-        self.moneyToPay = ko.observable(200);
+        self.moneyToPay = pizzas.items.totalPrice;
 
         self.submitBonusesPayment = function (e) {
             if (self.bonusesHas() >= self.bonusesToPay()) {
