@@ -62,8 +62,8 @@
 }
 
 .products-elements{
-    height: 400px;
-    max-height: 400px;
+    height: 300px;
+    max-height: 300px;
     overflow-y: scroll;
     overflow-x: hidden;
 }
@@ -427,7 +427,7 @@ textarea {
 
 .go-checkout-btn{
     display: block;
-    cursor: pointer;
+    cursor: pointer  !important;
     float: right;
     position: absolute;
     bottom: 0;
@@ -437,11 +437,16 @@ textarea {
     height: 26px;
     font-size: 12px;
     font-weight: bold;
+    border: none;
     line-height: 26px;
     text-align: center;
     background: #f79922;
     color: rgba(0, 0, 0, 0.74);
     text-decoration: none;
+}
+
+.go-checkout-btn:hover, .go-checkout-btn:focus{
+    background: rgb(247, 153, 34);
 }
 
 .product-buy{
