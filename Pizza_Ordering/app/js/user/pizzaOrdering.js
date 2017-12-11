@@ -16,10 +16,20 @@
                 for (var i = 0; i < data.length; i++) {
                     var pizza = data[i];
                     var ingredients = [];
+                    
                     for (var j = 0; j < pizza.Ingredients.length; j++) {
-                        ingredients.push({ name: ko.observable(pizza.Ingredients[j].Name), count: ko.observable(1), id: pizza.Ingredients[j].IngredientId, price: pizza.Ingredients[j].Price, initCount: 1 });
+                        console.log(pizza.Ingredients[j]);
+                        var currIngr = {
+                            name: ko.observable(pizza.Ingredients[j].Name),
+                            count: ko.observable(1),
+                            id: pizza.Ingredients[j].Id,
+                            price: pizza.Ingredients[j].Price,
+                            initCount: 1
+                        };
+
+                        ingredients.push(currIngr);
                     }
-                    console.log(ingredients);
+
                     pizzasArr.push({ id: pizza.Id, imgUrl: "../assets/images/" + pizza.Name + ".jpg", name: pizza.Name, price: pizza.Price, ingredients: ko.observableArray(ingredients) });
                 }
 
@@ -39,7 +49,16 @@
                 var ingredientsArr = [];
                 for (var i = 0; i < data.length; i++) {
                     var ingredient = data[i];
-                    ingredientsArr.push({ id: ingredient.Id, imgUrl: "../assets/images/" + ingredient.Name + ".png", name: ko.observable(ingredient.Name), price: ko.observable(ingredient.Price), weight: ingredient.Weight, count: ko.observable(0), totalPrice: ko.observable(ingredient.Price), initCount: 0 });
+                    ingredientsArr.push({
+                        id: ingredient.Id,
+                        imgUrl: "../assets/images/" + ingredient.Name + ".png",
+                        name: ko.observable(ingredient.Name),
+                        price: ko.observable(ingredient.Price),
+                        weight: ingredient.Weight,
+                        count: ko.observable(0),
+                        totalPrice: ko.observable(ingredient.Price),
+                        initCount: 0
+                    });
                 }
 
                 return ingredientsArr;
@@ -56,13 +75,23 @@
         self.allIngredients = ko.observableArray(ingredientsArr);
         self.selectedProducts = ko.observableArray([]);
 
+        self.searchIngredient = ko.observable('');
 
         self.order = function () {
             window.cacheOrders = {
-                orderItems: $.map(self.selectedProducts(), function (el) { return { id: el.id, name: el.name, count: el.countOfPizzas(), ingredients: $.map(el.ingredients(), function (ing) { return { id: ing.id(), count: ing.count() } }) } }),
+                orderItems: $.map(self.selectedProducts(),
+                    function (el) {
+                        return {
+                            id: el.id,
+                            name: el.name,
+                            count: el.countOfPizzas(),
+                            ingredients: $.map(el.ingredients(), function (ing) {
+                                return { id: ing.id, count: ing.count() }
+                            })
+                        }
+                    }),
                 totalPrice: self.totalPrice()
             };
-            console.log(window.cacheOrders);
             location.href = "#/time";
         }
 
@@ -127,12 +156,12 @@
                 if (selectedPizza.ingredients().some(e => e.name() == ingredient.name())) {
                     ingredient.count(selectedPizza.ingredients().filter(x => x.name() == ingredient.name())[0].count());
                     ingredient.initCount = 1;
+                    ingredient.id = selectedPizza.ingredients().filter(x => x.name() == ingredient.name())[0].id;
                 }
                 else {
                     ingredient.count(0);
                 }
             });
-
             self.allIngredientsForPizza({ pizza: ko.observable(selectedPizza), ingredients: ko.observableArray(ingredientWithCount) });
         };
         
@@ -172,7 +201,7 @@
                     data.ingredients().filter(x => x.name() == ingredient.name())[0].count(ingredient.count());
                 }
                 else if (ingredient.count() >= 1) {
-                    data.ingredients.push({ name: ko.observable(ingredient.name()), count: ko.observable(ingredient.count()) });
+                    data.ingredients.push({ name: ko.observable(ingredient.name()), count: ko.observable(ingredient.count()), id: ingredient.id });
                 }
             });
 
@@ -185,9 +214,26 @@
             }, 0);
 
             data.price(data.initPrice + ingredientsPrice);
-            console.log(data.ingredients()[0].count());
+
             $('#ingredientModal').modal('hide');
         }
+
+
+
+
+        self.serchedIngredients = ko.dependentObservable(function () {
+            var search = self.searchIngredient().toLowerCase();
+            var pizzaIngr = self.allIngredientsForPizza();
+            console.log(!$.isEmptyObject(pizzaIngr));
+            if (!$.isEmptyObject(pizzaIngr)) {
+                var ingredients = pizzaIngr.ingredients();
+                console.log(ingredients);
+                return ko.utils.arrayFilter(ingredients, function (ingredient) {
+                    return ingredient.name().toLowerCase().indexOf(search) >= 0;
+                });
+            }
+
+        }, self);
     }
 
     function init() {
