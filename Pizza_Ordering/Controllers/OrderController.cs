@@ -15,6 +15,7 @@ using Pizza_Ordering.Common;
 
 namespace Pizza_Ordering.Controllers
 {
+    
     public class OrderController : BaseController
     {
         private IOrderBL _orders;
@@ -80,15 +81,15 @@ namespace Pizza_Ordering.Controllers
             var houses = _houses.GetPizzaHouses();
 
             var checkIngs = model.OrderItems
-                .SelectMany(o => o.Ingredients)
-                .GroupBy(i => i.Id)
-                .Select(g => new
-                {
-                    Id = g.Key,
-                    Count = g.Sum(i => i.Count)
-                })
-                .Where(g => g.Count > 0);
-
+               .SelectMany(o => o.Ingredients
+                   .Select(i => new { Ing = i, Am = o.Count }))
+               .GroupBy(i => i.Ing.Id)
+               .Select(g => new
+               {
+                   Id = g.Key,
+                   Count = g.Sum(i => i.Ing.Count * i.Am)
+               })
+               .Where(g => g.Count > 0);
 
             var filteredHouses = houses.Where(h =>
             {
@@ -103,7 +104,6 @@ namespace Pizza_Ordering.Controllers
 
             });
 
-
             DateTime now = DateTime.Now;
             int min = DateTime.Now.Minute;
             DateTime start = now - TimeSpan.FromMinutes((min / 10 * 10) + 40);
@@ -112,9 +112,6 @@ namespace Pizza_Ordering.Controllers
             DateTime endStart = DateTime.Today + TimeSpan.FromHours(settings.EndHour);
             TimeSpan step = TimeSpan.FromMinutes(5);
             TimeSpan interval = endStart - dayStart;
-
-
-
 
             foreach (var house in filteredHouses)
             {
@@ -148,9 +145,7 @@ namespace Pizza_Ordering.Controllers
                 res[resModel.PizzaHouseId] = resModel;
             }
 
-
             return res;
-
         }
 
 
@@ -192,93 +187,9 @@ namespace Pizza_Ordering.Controllers
                 TimeToTake = DateTime.Today + TimeSpan.FromHours(10) + TimeSpan.FromMinutes(20)
             });
 
-
             return Ok();
         }
 
-        private OrderCreateModel getOrderCreateModel()
-        {
-            return new OrderCreateModel
-            {
-                PizzaHouseId = 1,
-                TimeToTake = DateTime.Now.AddHours(1),
-                Items = new List<OrderItemCreateModel>
-                {
-                    new OrderItemCreateModel
-                    {
-                        PizzaId = 2,
-                        Name = "цезаре кастом",
-                        Quantity = 2,
-                        Ingredients = new List<OrderItemIngredientModel>
-                        {
-                            new OrderItemIngredientModel
-                            {
-                                // моцарела
-                                Id = 1,
-                                Quantity = 2
-                            },
-                            new OrderItemIngredientModel
-                            {
-                                // пармезан
-                                Id = 2,
-                                Quantity = 1
-                            },
-                            new OrderItemIngredientModel
-                            {
-                                // курка
-                                Id = 9,
-                                Quantity = 1
-                            },
-                            new OrderItemIngredientModel
-                            {
-                                // айсберг
-                                Id = 18,
-                                Quantity = 1
-                            },
-                            new OrderItemIngredientModel
-                            {
-                                // помідори (НЕ В РЕЦЕПТІ)
-                                Id = 13,
-                                Quantity = 1
-                            }
-                        }
-                    },
-                    new OrderItemCreateModel
-                    {
-                        PizzaId = 2,
-                        Name = "цезаре",
-                        Quantity = 1,
-                        Ingredients = new List<OrderItemIngredientModel>
-                        {
-                            new OrderItemIngredientModel
-                            {
-                                // моцарела
-                                Id = 1,
-                                Quantity = 1
-                            },
-                            new OrderItemIngredientModel
-                            {
-                                // пармезан
-                                Id = 2,
-                                Quantity = 1
-                            },
-                            new OrderItemIngredientModel
-                            {
-                                // курка
-                                Id = 9,
-                                Quantity = 1
-                            },
-                            new OrderItemIngredientModel
-                            {
-                                // айсберг
-                                Id = 18,
-                                Quantity = 1
-                            }
-                        }
-                    }
-                }
-            };
-        }
 
         [Route("api/order")]
         [HttpPost]
