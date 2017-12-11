@@ -34,10 +34,19 @@
     <CodeAnalysisRuleSet>..\stylecop.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Castle.Core, Version=4.0.0.0, Culture=neutral, PublicKeyToken=407dd0808d44fbdc, processorArchitecture=MSIL">
+      <HintPath>..\packages\Castle.Core.4.2.1\lib\net45\Castle.Core.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="Microsoft.VisualStudio.QualityTools.UnitTestFramework, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
+    <Reference Include="Moq, Version=4.7.145.0, Culture=neutral, PublicKeyToken=69f491c39445e920, processorArchitecture=MSIL">
+      <HintPath>..\packages\Moq.4.7.145\lib\net45\Moq.dll</HintPath>
+    </Reference>
     <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.10.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="nunit.framework, Version=3.9.0.0, Culture=neutral, PublicKeyToken=2638cd05610744eb, processorArchitecture=MSIL">
+      <HintPath>..\packages\NUnit.3.9.0\lib\net45\nunit.framework.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
@@ -92,6 +101,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BL\IngredientsBL_Test.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Controllers\HomeControllerTest.cs" />
   </ItemGroup>
@@ -103,6 +113,18 @@
     <AdditionalFiles Include="stylecop.json" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Pizza_Ordering.DataProvider\Pizza_Ordering.DataProvider.csproj">
+      <Project>{18ADCB0F-B784-48DA-BDC5-FFDB0273A903}</Project>
+      <Name>Pizza_Ordering.DataProvider</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Pizza_ordering.Domain\Pizza_Ordering.Domain.csproj">
+      <Project>{8B7BC04D-21EE-4260-B2A6-D9559BBA5F38}</Project>
+      <Name>Pizza_Ordering.Domain</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Pizza_Ordering.Services\Pizza_Ordering.Services.csproj">
+      <Project>{cd287681-da63-49ae-8329-3cc9dab2be15}</Project>
+      <Name>Pizza_Ordering.Services</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Pizza_Ordering\Pizza_Ordering.Web.csproj">
       <Project>{70C2A2CE-5691-427B-BC9F-F0011FDA7C6C}</Project>
       <Name>Pizza_Ordering.Web</Name>
@@ -112,6 +134,7 @@
     <Analyzer Include="..\packages\StyleCop.Analyzers.1.0.2\analyzers\dotnet\cs\StyleCop.Analyzers.CodeFixes.dll" />
     <Analyzer Include="..\packages\StyleCop.Analyzers.1.0.2\analyzers\dotnet\cs\StyleCop.Analyzers.dll" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
        Other similar extension points exist, see Microsoft.Common.targets.
