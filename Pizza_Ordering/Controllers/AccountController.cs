@@ -68,7 +68,7 @@ namespace Pizza_Ordering.Controllers
             {
                 Email = User.Identity.GetUserName(),
                 HasRegistered = externalLogin == null,
-                LoginProvider = externalLogin?.LoginProvider
+                LoginProvider = (externalLogin == null) ? null : externalLogin.LoginProvider
             };
         }
 

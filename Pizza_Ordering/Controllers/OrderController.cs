@@ -265,5 +265,89 @@ namespace Pizza_Ordering.Controllers
 
             return Ok();
         }
+
+        private OrderCreateModel getOrderCreateModel()
+        {
+            return new OrderCreateModel
+            {
+                PizzaHouseId = 1,
+                TimeToTake = DateTime.Now.AddHours(1),
+                Items = new List<OrderItemCreateModel>
+                {
+                    new OrderItemCreateModel
+                    {
+                        PizzaId = 2,
+                        Name = "цезаре кастом",
+                        Quantity = 2,
+                        Ingredients = new List<OrderItemIngredientModel>
+                        {
+                            new OrderItemIngredientModel
+                            {
+                                // моцарела
+                                Id = 1,
+                                Quantity = 2
+                            },
+                            new OrderItemIngredientModel
+                            {
+                                // пармезан
+                                Id = 2,
+                                Quantity = 1
+                            },
+                            new OrderItemIngredientModel
+                            {
+                                // курка
+                                Id = 9,
+                                Quantity = 1
+                            },
+                            new OrderItemIngredientModel
+                            {
+                                // айсберг
+                                Id = 18,
+                                Quantity = 1
+                            },
+                            new OrderItemIngredientModel
+                            {
+                                // помідори (НЕ В РЕЦЕПТІ)
+                                Id = 13,
+                                Quantity = 1
+                            }
+                        }
+                    },
+                    new OrderItemCreateModel
+                    {
+                        PizzaId = 2,
+                        Name = "цезаре",
+                        Quantity = 1,
+                        Ingredients = new List<OrderItemIngredientModel>
+                        {
+                            new OrderItemIngredientModel
+                            {
+                                // моцарела
+                                Id = 1,
+                                Quantity = 1
+                            },
+                            new OrderItemIngredientModel
+                            {
+                                // пармезан
+                                Id = 2,
+                                Quantity = 1
+                            },
+                            new OrderItemIngredientModel
+                            {
+                                // курка
+                                Id = 9,
+                                Quantity = 1
+                            },
+                            new OrderItemIngredientModel
+                            {
+                                // айсберг
+                                Id = 18,
+                                Quantity = 1
+                            }
+                        }
+                    }
+                }
+            };
+        }
     }
 }

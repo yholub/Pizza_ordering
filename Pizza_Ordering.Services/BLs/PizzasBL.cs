@@ -131,7 +131,7 @@ namespace Pizza_Ordering.Services.BLs
                     {
                         var baseIngr = basePizzaIngredients.FirstOrDefault(x => x.IngredientId == thisIngr.IngredientId);
                         int thisCount = thisIngr.Quantity;
-                        int baseCount = baseIngr?.Quantity ?? 0;
+                        int baseCount = baseIngr == null ? 0 : baseIngr.Quantity;
                         int extraIngredientsCount = thisCount > baseCount
                             ? thisCount - baseCount
                             : 0;
@@ -145,7 +145,7 @@ namespace Pizza_Ordering.Services.BLs
                         BasePizzaId = entity.FixPizzaId,
                         // Here should be entity.UserId which is not in the database yet
                         // UserId =
-                        Name = $"{entity.BasePizza} (змінена)",
+                        Name = String.Format("{0} (змінена)", entity.BasePizza),
                         Price = price,
                         PizzaType = PizzaType.Modified,
                         Ingredients = entity.IngredientItems.Select(i => new IngredientDto
