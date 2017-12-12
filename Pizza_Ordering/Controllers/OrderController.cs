@@ -20,13 +20,11 @@ namespace Pizza_Ordering.Controllers
         private IOrderBL _orders;
         private IPizzasBL _pizzas;
         private IPizzaHouseBL _houses;
-        private ISettingsBL _settings;
 
-        public OrderController(IOrderBL service, IPizzaHouseBL houses, ISettingsBL settings, IPizzasBL pizzas)
+        public OrderController(IOrderBL service, IPizzaHouseBL houses, IPizzasBL pizzas)
         {
             _orders = service;
             _houses = houses;
-            _settings = settings;
             _pizzas = pizzas;
         }
 
@@ -107,9 +105,9 @@ namespace Pizza_Ordering.Controllers
             DateTime now = DateTime.Now;
             int min = DateTime.Now.Minute;
             DateTime start = now - TimeSpan.FromMinutes((min / 10 * 10) + 40);
-            var settings = _settings.GetSettings();
-            DateTime dayStart = DateTime.Today + TimeSpan.FromHours(settings.StartHour);
-            DateTime endStart = DateTime.Today + TimeSpan.FromHours(settings.EndHour);
+            var settings = _houses.GetPizzaHouseById(model.PizzaHouseId);
+            DateTime dayStart = DateTime.Today + TimeSpan.FromHours(settings.Open);
+            DateTime endStart = DateTime.Today + TimeSpan.FromHours(settings.Close);
             TimeSpan step = TimeSpan.FromMinutes(5);
             TimeSpan interval = endStart - dayStart;
 

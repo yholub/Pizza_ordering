@@ -214,6 +214,18 @@ namespace Pizza_Ordering.Tests.BL
             Assert.AreEqual(4, houses[0].InStock[1].Quantity);
         }
 
+        [Test]
+        public void GetCorrectHouseById()
+        {
+            //Arrange
+            var target = new PizzaHouseBL(unitOfWorkFactory.Object);
+            var res = target.GetPizzaHouseById(houses[0].Id);
+
+            //Assert
+            Assert.AreEqual(res.Id, houses[0].Id);
+            Assert.AreEqual(res.ModeratorId, houses[0].ModeratorId);
+        }
+
         private void Update(PizzaHouse h)
         {
             for (int i = 0; i < houses.Count; ++i)

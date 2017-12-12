@@ -89,6 +89,43 @@ namespace Pizza_Ordering.Services.BLs
             });
         }
 
+        public DTOs.PizzaHouseDto GetPizzaHouseById(long id)
+        {
+            return UseDb(db =>
+            {
+                PizzaHouse p = db.PizzaHouses.GetById(id);
+                return 
+                    new PizzaHouseDto
+                    {
+
+                        Id = p.Id,
+                        Location = new AddressDto
+                        {
+                            Lon = p.Location.Lng,
+                            Lat = p.Location.Lat,
+                            City = p.Location.City,
+                            HouseNumber = p.Location.HouseNumber,
+                            StreetName = p.Location.Street,
+                        },
+                        Close = p.CloseTime.Hours,
+                        Open = p.OpenTime.Hours,
+                        ModeratorId = p.ModeratorId,
+                        Capacity = p.Capacity,
+                        InStock = p.InStock.Select(s => new IngredientQuantityDto
+                        {
+                            Quantity = s.Quantity,
+                            Id = s.Id,
+                            IngredientDto = new IngredientDto
+                            {
+                                Id = s.Ingredient.Id,
+                                Name = s.Ingredient.Name
+                            }
+                        }).ToList()
+                    };
+            });
+   
+        }
+
         public void UpdatePizzaHouse(SettingEditDto dto)
         {
             UseDb(db =>
