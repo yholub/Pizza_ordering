@@ -346,6 +346,7 @@
     <Content Include="app\fonts\icomoonacfe.svg" />
     <Content Include="app\fonts\picto-foundry-food.svg" />
     <Content Include="app\js\libs\bootstrap-notify.min.js" />
+    <Content Include="app\js\libs\date.js" />
     <Content Include="app\js\libs\handlebars-v4.0.11.js" />
     <Content Include="app\js\libs\jquery.maskedinput.js.js" />
     <Content Include="app\js\libs\jquery-layoutday.js" />

@@ -9,11 +9,9 @@ namespace Pizza_Ordering.Models.Order
 {
     public class OrderItemCreateModel
     {
-        [JsonProperty(PropertyName = "id")]
         public long PizzaId { get; set; }
 
-        [JsonProperty(PropertyName = "count")]
-        public int Quantity { get; set; }
+        public int Count { get; set; }
 
         public string Name { get; set; }
 

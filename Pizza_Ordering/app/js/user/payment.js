@@ -4,7 +4,7 @@
         ViewModel: ViewModel
     };
 
-    function ViewModel(pizzas) {
+    function ViewModel(order) {
         var self = this;
         
         self.cardNumber = ko.observable();
@@ -14,12 +14,12 @@
 
         self.bonusesHas = ko.observable(500);
         self.bonusesToPay = ko.observable(750);
-        self.moneyToPay = pizzas.items.totalPrice;
+        self.moneyToPay = order.items.totalPrice;
 
         self.submitBonusesPayment = function (e) {
             if (self.bonusesHas() >= self.bonusesToPay()) {
                 // TODO
-                createOrder();
+                createOrder(order);
             }
             else {
                 failedToPay('У вас недостатньо бонусів =(');
@@ -28,7 +28,7 @@
 
         self.submitMoneyPayment = function (e) {
             //payWithStripe(e);
-            createOrder();
+            createOrder(order);
         }
 
         function payWithStripe(e) {
@@ -82,9 +82,9 @@
         }
     }
 
-    function init() {
+    function init(order) {
         applyJQueryInputMasks();
-        ko.applyBindings(new ViewModel(), document.getElementById('paymentView'));
+        ko.applyBindings(new ViewModel(order), document.getElementById('paymentView'));
     }
 
     function applyJQueryInputMasks() {
@@ -117,13 +117,29 @@
         };
     }
 
-    function createOrder() {
+    function createOrder(order) {
+        var time = Date.parse(order.time);
+        console.log(time);
+        console.log(time.toISOString());
+        var sendObj = {
+            pizzaHouseId: order.pizzaHouseId,
+            timeToTake: time.toISOString(),
+            items: $.map(order.items.orderItems, function (orderItem) {
+                return {
+                    pizzaId: orderItem.id + 1,
+                    name: orderItem.name,
+                    count: orderItem.count,
+                    ingredients: $.map(orderItem.ingredients, function (ingredient) {
+                        return {
+                            id: ingredient.id,
+                            count: ingredient.count
+                        };
+                    })
+                };
+            })
+        };
 
-        var receivedFromPrevStep = window.cacheOrder;
-
-        var postObj = receivedFromPrevStep
-
-        $.post('/order', postObj)
+        $.post('/api/order', sendObj)
             // Assign handlers immediately after making the request,
             .done(function (data, textStatus, jqXHR) {
                 successfullyPaid();

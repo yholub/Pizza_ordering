@@ -15,7 +15,6 @@ using Pizza_Ordering.Common;
 
 namespace Pizza_Ordering.Controllers
 {
-    
     public class OrderController : BaseController
     {
         private IOrderBL _orders;
@@ -104,6 +103,7 @@ namespace Pizza_Ordering.Controllers
 
             });
 
+
             DateTime now = DateTime.Now;
             int min = DateTime.Now.Minute;
             DateTime start = now - TimeSpan.FromMinutes((min / 10 * 10) + 40);
@@ -190,20 +190,17 @@ namespace Pizza_Ordering.Controllers
             return Ok();
         }
 
-
         [Route("api/order")]
         [HttpPost]
-        public IHttpActionResult Post()
+        public IHttpActionResult Post(OrderCreateModel model)
         {
-            var model = getOrderCreateModel();
-
             var listOfOrderItemDtos = new List<OrderItemDto>(model.Items.Count);
 
             foreach (var x in model.Items)
             {
                 var fixPizzaDto = _pizzas.GetPizzaById(PizzaType.Fix, x.PizzaId);
 
-                bool isFixPizza = fixPizzaDto.Ingredients.All(fi => x.Ingredients.Any(mi => mi.Id == fi.Id && mi.Quantity == fi.Quantity));
+                bool isFixPizza = fixPizzaDto.Ingredients.All(fi => x.Ingredients.Any(mi => mi.Id == fi.Id && mi.Count == fi.Quantity));
 
                 if (!isFixPizza)
                 {
@@ -214,7 +211,7 @@ namespace Pizza_Ordering.Controllers
                         Ingredients = x.Ingredients.Select(i => new IngredientDto
                         {
                             Id = i.Id,
-                            Quantity = i.Quantity
+                            Quantity = i.Count
                         }).ToList(),
                         Name = x.Name
                     });
@@ -230,7 +227,7 @@ namespace Pizza_Ordering.Controllers
                         Price = modifiedPizzaDto.Price,
                         Status = Common.PizzaStatusType.Processed,
                         IsModified = true,
-                        Quantity = x.Quantity
+                        Quantity = x.Count
                     };
 
                     listOfOrderItemDtos.Add(orderItemDto);
@@ -246,7 +243,7 @@ namespace Pizza_Ordering.Controllers
                         Price = fixPizzaDto.Price,
                         Status = Common.PizzaStatusType.Processed,
                         IsModified = false,
-                        Quantity = x.Quantity
+                        Quantity = x.Count
                     };
 
                     listOfOrderItemDtos.Add(orderItemDto);
@@ -264,90 +261,6 @@ namespace Pizza_Ordering.Controllers
             });
 
             return Ok();
-        }
-
-        private OrderCreateModel getOrderCreateModel()
-        {
-            return new OrderCreateModel
-            {
-                PizzaHouseId = 1,
-                TimeToTake = DateTime.Now.AddHours(1),
-                Items = new List<OrderItemCreateModel>
-                {
-                    new OrderItemCreateModel
-                    {
-                        PizzaId = 2,
-                        Name = "цезаре кастом",
-                        Quantity = 2,
-                        Ingredients = new List<OrderItemIngredientModel>
-                        {
-                            new OrderItemIngredientModel
-                            {
-                                // моцарела
-                                Id = 1,
-                                Quantity = 2
-                            },
-                            new OrderItemIngredientModel
-                            {
-                                // пармезан
-                                Id = 2,
-                                Quantity = 1
-                            },
-                            new OrderItemIngredientModel
-                            {
-                                // курка
-                                Id = 9,
-                                Quantity = 1
-                            },
-                            new OrderItemIngredientModel
-                            {
-                                // айсберг
-                                Id = 18,
-                                Quantity = 1
-                            },
-                            new OrderItemIngredientModel
-                            {
-                                // помідори (НЕ В РЕЦЕПТІ)
-                                Id = 13,
-                                Quantity = 1
-                            }
-                        }
-                    },
-                    new OrderItemCreateModel
-                    {
-                        PizzaId = 2,
-                        Name = "цезаре",
-                        Quantity = 1,
-                        Ingredients = new List<OrderItemIngredientModel>
-                        {
-                            new OrderItemIngredientModel
-                            {
-                                // моцарела
-                                Id = 1,
-                                Quantity = 1
-                            },
-                            new OrderItemIngredientModel
-                            {
-                                // пармезан
-                                Id = 2,
-                                Quantity = 1
-                            },
-                            new OrderItemIngredientModel
-                            {
-                                // курка
-                                Id = 9,
-                                Quantity = 1
-                            },
-                            new OrderItemIngredientModel
-                            {
-                                // айсберг
-                                Id = 18,
-                                Quantity = 1
-                            }
-                        }
-                    }
-                }
-            };
         }
     }
 }
