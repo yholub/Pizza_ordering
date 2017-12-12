@@ -105,14 +105,21 @@ namespace Pizza_Ordering.Controllers
             DateTime now = DateTime.Now;
             int min = DateTime.Now.Minute;
             DateTime start = now - TimeSpan.FromMinutes((min / 10 * 10) + 40);
-            var settings = _houses.GetPizzaHouseById(model.PizzaHouseId);
-            DateTime dayStart = DateTime.Today + TimeSpan.FromHours(settings.Open);
-            DateTime endStart = DateTime.Today + TimeSpan.FromHours(settings.Close);
-            TimeSpan step = TimeSpan.FromMinutes(5);
-            TimeSpan interval = endStart - dayStart;
+            
 
             foreach (var house in filteredHouses)
             {
+                var settings = _houses.GetPizzaHouseById(house.Id);
+                DateTime dayStart = DateTime.Today + TimeSpan.FromHours(settings.Open);
+                DateTime endStart = DateTime.Today + TimeSpan.FromHours(settings.Close);
+
+                if (endStart < dayStart)
+                {
+                    endStart = endStart + TimeSpan.FromDays(1);
+                }
+                TimeSpan step = TimeSpan.FromMinutes(5);
+                TimeSpan interval = endStart - dayStart;
+
                 int[] counts = new int[(int)Math.Round(interval.TotalMinutes / step.TotalMinutes)];
 
                 PizzaHouseTimeViewModel resModel = new PizzaHouseTimeViewModel
@@ -220,8 +227,8 @@ namespace Pizza_Ordering.Controllers
                     {
                         PizzaId = modifiedPizzaDto.Id,
                         PizzaName = modifiedPizzaDto.Name,
-                        StartTime = DateTime.Today + TimeSpan.FromHours(20),
-                        EndTime = DateTime.Today + TimeSpan.FromHours(20) + TimeSpan.FromMinutes(20),
+                        StartTime = model.TimeToTake - TimeSpan.FromMinutes(20),
+                        EndTime = model.TimeToTake,
                         Price = modifiedPizzaDto.Price,
                         Status = Common.PizzaStatusType.Processed,
                         IsModified = true,
@@ -236,8 +243,8 @@ namespace Pizza_Ordering.Controllers
                     {
                         PizzaId = fixPizzaDto.Id,
                         PizzaName = fixPizzaDto.Name,
-                        StartTime = DateTime.Today + TimeSpan.FromHours(20),
-                        EndTime = DateTime.Today + TimeSpan.FromHours(20) + TimeSpan.FromMinutes(20),
+                        StartTime = model.TimeToTake - TimeSpan.FromMinutes(20),
+                        EndTime = model.TimeToTake,
                         Price = fixPizzaDto.Price,
                         Status = Common.PizzaStatusType.Processed,
                         IsModified = false,

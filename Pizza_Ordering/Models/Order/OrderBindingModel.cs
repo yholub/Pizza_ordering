@@ -7,8 +7,6 @@ namespace Pizza_Ordering.Models.Order
 {
     public class OrderBindingModel
     {
-        public long PizzaHouseId { get; set; }
-
         public string Time { get; set; }
 
         public long PizzaId { get; set; }
