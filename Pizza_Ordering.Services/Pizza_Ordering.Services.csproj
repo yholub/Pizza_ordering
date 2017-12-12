@@ -54,7 +54,6 @@
     <Compile Include="BLs\OrderBL_MOC.cs" />
     <Compile Include="BLs\PizzaHouseBL.cs" />
     <Compile Include="BLs\PizzasBL.cs" />
-    <Compile Include="BLs\SettingsBL.cs" />
     <Compile Include="DTOs\AddressDto.cs" />
     <Compile Include="DTOs\BaseDto.cs" />
     <Compile Include="DTOs\IngredientDto.cs" />
@@ -66,16 +65,12 @@
     <Compile Include="DTOs\PizzaHouseDto.cs" />
     <Compile Include="DTOs\ProductDto.cs" />
     <Compile Include="DTOs\SettingEditDto.cs" />
-    <Compile Include="DTOs\SettingsDto.cs" />
     <Compile Include="Interfaces\IBaseBL.cs" />
     <Compile Include="Interfaces\IIngredientsBL.cs" />
     <Compile Include="Interfaces\IOrderBL.cs" />
     <Compile Include="Interfaces\IPizzaHouseBL.cs" />
     <Compile Include="Interfaces\IPizzasBL.cs" />
-    <Compile Include="Interfaces\IProductService.cs" />
     <Compile Include="BLs\BaseBL.cs" />
-    <Compile Include="BLs\ProductService.cs" />
-    <Compile Include="Interfaces\ISettingsBL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

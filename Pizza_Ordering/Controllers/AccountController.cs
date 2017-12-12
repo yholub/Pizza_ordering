@@ -68,7 +68,7 @@ namespace Pizza_Ordering.Controllers
             {
                 Email = User.Identity.GetUserName(),
                 HasRegistered = externalLogin == null,
-                LoginProvider = externalLogin?.LoginProvider
+                LoginProvider = (externalLogin == null) ? null : externalLogin.LoginProvider
             };
         }
 
@@ -88,7 +88,6 @@ namespace Pizza_Ordering.Controllers
         {
             User user = await UserManager.FindAsync(credentials.UserName, credentials.Password);
 
-            
             if (user == null)
             {
                 return BadRequest("Unauthorized");
@@ -101,9 +100,9 @@ namespace Pizza_Ordering.Controllers
 
             if (UserManager.IsInRole(user.Id, "Moderator"))
             {
-                return Json(new { 
+                return Json(new {
                     status = "success",
-                    redirect_url = "moderator/ModeratorLayout.html#/" 
+                    redirect_url = "moderator/ModeratorLayout.html#/"
                 });
             }
 

@@ -5,7 +5,7 @@ using Ninject.Web.WebApi;
 using Pizza_Ordering.DataProvider.UnitOfWork;
 using Pizza_Ordering.Services.BLs;
 using Pizza_Ordering.Services.Interfaces;
-using Pizza_Ordering.Services.Services;
+using Pizza_Ordering.Services;
 using System;
 using System.Web;
 using System.Web.Http;
@@ -71,7 +71,6 @@ namespace Pizza_Ordering.App_Start
             kernel.Bind<IIngredientsBL>().To<IngredientsBL>();
             kernel.Bind<IPizzasBL>().To<PizzasBL>();
             kernel.Bind<IOrderBL>().To<OrderBL>();
-            kernel.Bind<ISettingsBL>().To<SettingsBL>();
             kernel.Bind<IPizzaHouseBL>().To<PizzaHouseBL>();
         }
     }

@@ -13,6 +13,8 @@ namespace Pizza_Ordering.Services.Interfaces
 
         PizzaHouseDto GetPizzaHouse(long moderatorId);
 
+        PizzaHouseDto GetPizzaHouseById(long id);
+
         void UpdatePizzaHouse(SettingEditDto dto);
     }
 }

@@ -1,4 +1,5 @@
-﻿<Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
@@ -102,6 +103,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BL\IngredientsBL_Test.cs" />
+    <Compile Include="BL\PizzaBL_Test.cs" />
+    <Compile Include="BL\PizzaHouseBL_Test.cs" />
+    <Compile Include="BL\OrderBL_Test.cs" />
+    <Compile Include="Comparers\PizzaHouseEntityDtoComparer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Controllers\HomeControllerTest.cs" />
   </ItemGroup>
@@ -113,6 +118,10 @@
     <AdditionalFiles Include="stylecop.json" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Pizza_Ordering.Common\Pizza_Ordering.Common.csproj">
+      <Project>{7475802d-7f59-4dbc-a1b0-b8e7bde8108f}</Project>
+      <Name>Pizza_Ordering.Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Pizza_Ordering.DataProvider\Pizza_Ordering.DataProvider.csproj">
       <Project>{18ADCB0F-B784-48DA-BDC5-FFDB0273A903}</Project>
       <Name>Pizza_Ordering.DataProvider</Name>

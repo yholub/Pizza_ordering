@@ -20,13 +20,11 @@ namespace Pizza_Ordering.Controllers
         private IOrderBL _orders;
         private IPizzasBL _pizzas;
         private IPizzaHouseBL _houses;
-        private ISettingsBL _settings;
 
-        public OrderController(IOrderBL service, IPizzaHouseBL houses, ISettingsBL settings, IPizzasBL pizzas)
+        public OrderController(IOrderBL service, IPizzaHouseBL houses, IPizzasBL pizzas)
         {
             _orders = service;
             _houses = houses;
-            _settings = settings;
             _pizzas = pizzas;
         }
 
@@ -56,7 +54,6 @@ namespace Pizza_Ordering.Controllers
             return Json(_orders.GetOrderItemsSince(start, houseId, true).Select(o => new OrderViewModel(o)).ToList());
         }
 
-
         [Route("api/order/accept/{id:long}")]
         [HttpPost]
         public void Accept(int id)
@@ -80,15 +77,15 @@ namespace Pizza_Ordering.Controllers
             var houses = _houses.GetPizzaHouses();
 
             var checkIngs = model.OrderItems
-                .SelectMany(o => o.Ingredients)
-                .GroupBy(i => i.Id)
-                .Select(g => new
-                {
-                    Id = g.Key,
-                    Count = g.Sum(i => i.Count)
-                })
-                .Where(g => g.Count > 0);
-
+               .SelectMany(o => o.Ingredients
+                   .Select(i => new { Ing = i, Am = o.Count }))
+               .GroupBy(i => i.Ing.Id)
+               .Select(g => new
+               {
+                   Id = g.Key,
+                   Count = g.Sum(i => i.Ing.Count * i.Am)
+               })
+               .Where(g => g.Count > 0);
 
             var filteredHouses = houses.Where(h =>
             {
@@ -103,21 +100,23 @@ namespace Pizza_Ordering.Controllers
 
             });
 
-
             DateTime now = DateTime.Now;
             int min = DateTime.Now.Minute;
             DateTime start = now - TimeSpan.FromMinutes((min / 10 * 10) + 40);
-            var settings = _settings.GetSettings();
-            DateTime dayStart = DateTime.Today + TimeSpan.FromHours(settings.StartHour);
-            DateTime endStart = DateTime.Today + TimeSpan.FromHours(settings.EndHour);
-            TimeSpan step = TimeSpan.FromMinutes(5);
-            TimeSpan interval = endStart - dayStart;
-
-
-
 
             foreach (var house in filteredHouses)
             {
+                var settings = _houses.GetPizzaHouseById(house.Id);
+                DateTime dayStart = DateTime.Today + TimeSpan.FromHours(settings.Open);
+                DateTime endStart = DateTime.Today + TimeSpan.FromHours(settings.Close);
+
+                if (endStart < dayStart)
+                {
+                    endStart = endStart + TimeSpan.FromDays(1);
+                }
+                TimeSpan step = TimeSpan.FromMinutes(5);
+                TimeSpan interval = endStart - dayStart;
+
                 int[] counts = new int[(int)Math.Round(interval.TotalMinutes / step.TotalMinutes)];
 
                 PizzaHouseTimeViewModel resModel = new PizzaHouseTimeViewModel
@@ -148,9 +147,7 @@ namespace Pizza_Ordering.Controllers
                 res[resModel.PizzaHouseId] = resModel;
             }
 
-
             return res;
-
         }
 
         private static bool CheckTimeArrBack(int[] arr, int ind, int cap, int qty, int dist)
@@ -191,7 +188,6 @@ namespace Pizza_Ordering.Controllers
                 TimeToTake = DateTime.Today + TimeSpan.FromHours(10) + TimeSpan.FromMinutes(20)
             });
 
-
             return Ok();
         }
 
@@ -227,8 +223,8 @@ namespace Pizza_Ordering.Controllers
                     {
                         PizzaId = modifiedPizzaDto.Id,
                         PizzaName = modifiedPizzaDto.Name,
-                        StartTime = DateTime.Today + TimeSpan.FromHours(20),
-                        EndTime = DateTime.Today + TimeSpan.FromHours(20) + TimeSpan.FromMinutes(20),
+                        StartTime = model.TimeToTake - TimeSpan.FromMinutes(20),
+                        EndTime = model.TimeToTake,
                         Price = modifiedPizzaDto.Price,
                         Status = Common.PizzaStatusType.Processed,
                         IsModified = true,
@@ -243,8 +239,8 @@ namespace Pizza_Ordering.Controllers
                     {
                         PizzaId = fixPizzaDto.Id,
                         PizzaName = fixPizzaDto.Name,
-                        StartTime = DateTime.Today + TimeSpan.FromHours(20),
-                        EndTime = DateTime.Today + TimeSpan.FromHours(20) + TimeSpan.FromMinutes(20),
+                        StartTime = model.TimeToTake - TimeSpan.FromMinutes(20),
+                        EndTime = model.TimeToTake,
                         Price = fixPizzaDto.Price,
                         Status = Common.PizzaStatusType.Processed,
                         IsModified = false,
