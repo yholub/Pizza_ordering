@@ -25,7 +25,6 @@ namespace Pizza_Ordering.Tests.BL
         private Mock<IRepository<Pizza_Ordering.Domain.Entities.Order>> ordersRepo;
         private Mock<IUnitOfWork> unitOfWork;
         private Mock<IUnitOfWorkFactory> unitOfWorkFactory;
-    
 
         private List<PizzaHouse> houses;
         private List<Ingredient> ings;
@@ -47,8 +46,6 @@ namespace Pizza_Ordering.Tests.BL
             ordersRepo = new Mock<IRepository<Domain.Entities.Order>>();
             unitOfWork = new Mock<IUnitOfWork>();
             unitOfWorkFactory = new Mock<IUnitOfWorkFactory>();
-
-
 
             currSettings = new SettingEditDto
             {
@@ -108,12 +105,12 @@ namespace Pizza_Ordering.Tests.BL
 
             ingAms = new List<IngredientAmount>
             {
-                new IngredientAmount 
+                new IngredientAmount
                 {
-                    Id = 0, 
-                    IngredientId = 1, 
-                    PizzaHouseId = 0, 
-                    House = houses[0], 
+                    Id = 0,
+                    IngredientId = 1,
+                    PizzaHouseId = 0,
+                    House = houses[0],
                     Ingredient = ings[0]
                 }
             };
@@ -122,20 +119,20 @@ namespace Pizza_Ordering.Tests.BL
 
             fixPizzas = new List<FixPizza>
             {
-                new FixPizza 
-                { 
-                    Name = "Маргарита", 
-                    Price = 50, 
-                    IngredientItems = 
-                        new List<IngredientItem> 
-                        { 
-                            new IngredientItem 
-                            { 
-                                Id = 10, 
-                                IngredientId = ings[0].Id, 
+                new FixPizza
+                {
+                    Name = "Маргарита",
+                    Price = 50,
+                    IngredientItems =
+                        new List<IngredientItem>
+                        {
+                            new IngredientItem
+                            {
+                                Id = 10,
+                                IngredientId = ings[0].Id,
                                 Quantity = 1
-                            } 
-                        } 
+                            }
+                        }
                 },
             };
 
@@ -172,9 +169,9 @@ namespace Pizza_Ordering.Tests.BL
                 }
             };
 
-            orders = new List<Domain.Entities.Order> 
+            orders = new List<Domain.Entities.Order>
             {
-                new Domain.Entities.Order 
+                new Domain.Entities.Order
                 {
                     Id = 20,
                     Price = 100,
@@ -186,7 +183,7 @@ namespace Pizza_Ordering.Tests.BL
                     },
                     TimeToTake = DateTime.Today + TimeSpan.FromHours(6)
                 },
-                new Domain.Entities.Order 
+                new Domain.Entities.Order
                 {
                     Id = 50,
                     Price = 50,

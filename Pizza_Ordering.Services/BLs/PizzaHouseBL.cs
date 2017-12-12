@@ -38,7 +38,7 @@ namespace Pizza_Ordering.Services.BLs
                         Open = p.OpenTime.Hours,
                         ModeratorId = p.ModeratorId,
                         Capacity = p.Capacity,
-                        InStock = p.InStock.Select(s => new IngredientQuantityDto { 
+                        InStock = p.InStock.Select(s => new IngredientQuantityDto {
                             Quantity = s.Quantity,
                             Id = s.Id,
                             IngredientDto = new IngredientDto
@@ -61,7 +61,7 @@ namespace Pizza_Ordering.Services.BLs
                     .Where( h => h.ModeratorId == moderatorId)
                     .Select(p => new PizzaHouseDto
                     {
-                        
+
                         Id = p.Id,
                         Location = new AddressDto
                         {
@@ -94,7 +94,7 @@ namespace Pizza_Ordering.Services.BLs
             return UseDb(db =>
             {
                 PizzaHouse p = db.PizzaHouses.GetById(id);
-                return 
+                return
                     new PizzaHouseDto
                     {
 
@@ -123,7 +123,7 @@ namespace Pizza_Ordering.Services.BLs
                         }).ToList()
                     };
             });
-   
+
         }
 
         public void UpdatePizzaHouse(SettingEditDto dto)
@@ -141,7 +141,7 @@ namespace Pizza_Ordering.Services.BLs
                 var ams = db.IngredientAmounts.Query()
                     .Where(l => l.PizzaHouseId == dto.PizzaHouseId);
 
-                foreach(var am in dto.IngState) 
+                foreach(var am in dto.IngState)
                 {
                     var e = ams.FirstOrDefault(a => a.IngredientId == am.Id);
                     if (e == null)

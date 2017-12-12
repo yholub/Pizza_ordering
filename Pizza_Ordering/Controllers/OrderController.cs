@@ -54,7 +54,6 @@ namespace Pizza_Ordering.Controllers
             return Json(_orders.GetOrderItemsSince(start, houseId, true).Select(o => new OrderViewModel(o)).ToList());
         }
 
-
         [Route("api/order/accept/{id:long}")]
         [HttpPost]
         public void Accept(int id)
@@ -101,11 +100,9 @@ namespace Pizza_Ordering.Controllers
 
             });
 
-
             DateTime now = DateTime.Now;
             int min = DateTime.Now.Minute;
             DateTime start = now - TimeSpan.FromMinutes((min / 10 * 10) + 40);
-            
 
             foreach (var house in filteredHouses)
             {
@@ -152,7 +149,6 @@ namespace Pizza_Ordering.Controllers
 
             return res;
         }
-
 
         private static bool CheckTimeArrBack(int[] arr, int ind, int cap, int qty, int dist)
         {

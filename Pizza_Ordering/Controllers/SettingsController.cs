@@ -26,7 +26,6 @@ namespace Pizza_Ordering.Controllers
             return _service.GetPizzaHouse(User.Identity.GetUserId<long>());
         }
 
-
         [HttpPost]
         public void Post(SettingEditDto set)
         {

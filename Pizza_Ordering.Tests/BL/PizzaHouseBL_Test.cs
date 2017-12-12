@@ -38,9 +38,7 @@ namespace Pizza_Ordering.Tests.BL
             housesRepo = new Mock<IRepository<PizzaHouse>>();
             unitOfWork = new Mock<IUnitOfWork>();
             unitOfWorkFactory = new Mock<IUnitOfWorkFactory>();
-           
 
-           
             currSettings = new SettingEditDto
             {
                 StartHour = 9,
@@ -99,18 +97,17 @@ namespace Pizza_Ordering.Tests.BL
 
             ingAms = new List<IngredientAmount>
             {
-                new IngredientAmount 
+                new IngredientAmount
                 {
-                    Id = 0, 
-                    IngredientId = 1, 
-                    PizzaHouseId = 0, 
-                    House = houses[0], 
+                    Id = 0,
+                    IngredientId = 1,
+                    PizzaHouseId = 0,
+                    House = houses[0],
                     Ingredient = ings[0]
                 }
             };
 
             houses[0].InStock = new List<IngredientAmount> { ingAms[0] };
-
 
             unitOfWorkFactory.Setup(x => x.Create()).Returns(unitOfWork.Object);
             unitOfWork.Setup(x => x.PizzaHouses).Returns(housesRepo.Object);
@@ -131,7 +128,7 @@ namespace Pizza_Ordering.Tests.BL
         {
             //Arrange
             var target = new PizzaHouseBL(unitOfWorkFactory.Object);
-          
+
             //Act
             var actual = target.GetPizzaHouses();
 
@@ -161,7 +158,7 @@ namespace Pizza_Ordering.Tests.BL
             var target = new PizzaHouseBL(unitOfWorkFactory.Object);
             currSettings.StartHour = 10;
             target.UpdatePizzaHouse(currSettings);
-          
+
             //Assert
             Assert.AreEqual(10, houses[0].OpenTime.Hours, "Incorrectly time is updated");
         }
@@ -206,7 +203,6 @@ namespace Pizza_Ordering.Tests.BL
                 }
             };
 
-            
             target.UpdatePizzaHouse(currSettings);
 
             //Assert

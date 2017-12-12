@@ -80,7 +80,7 @@ namespace Pizza_Ordering.Services.BLs
             {
                 var queryFix =
                     from ordItem in db.OrderItems.Query()
-                    where ordItem.Order.PizzaHouseId == houseId && ordItem.EndTime > st && 
+                    where ordItem.Order.PizzaHouseId == houseId && ordItem.EndTime > st &&
                     !ordItem.IsModified && ((!onlyPending && ordItem.Order.Status != Common.PizzaStatusType.Refused)
                                                                 || ordItem.Order.Status == Common.PizzaStatusType.Processed)
                     join pizza in db.FixPizzas.Query() on ordItem.PizzaId equals pizza.Id

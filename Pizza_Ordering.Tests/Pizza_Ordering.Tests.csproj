@@ -103,6 +103,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BL\IngredientsBL_Test.cs" />
+    <Compile Include="BL\PizzaBL_Test.cs" />
     <Compile Include="BL\PizzaHouseBL_Test.cs" />
     <Compile Include="BL\OrderBL_Test.cs" />
     <Compile Include="Comparers\PizzaHouseEntityDtoComparer.cs" />
