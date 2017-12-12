@@ -184,6 +184,15 @@ namespace Pizza_Ordering.Services.BLs
 
                 uow.FixPizzas.Create(entity);
 
+                foreach (var ingr in pizzaDto.Ingredients)
+                {
+                    var ingrAmount = uow.IngredientAmounts.Query()
+                        .FirstOrDefault(x => x.IngredientId == ingr.Id);
+                    ingrAmount.Quantity -= ingr.Quantity;
+
+                    uow.IngredientAmounts.Update(ingrAmount);
+                }
+
                 uow.Save();
 
                 return entity.Id;
@@ -214,6 +223,15 @@ namespace Pizza_Ordering.Services.BLs
                 };
 
                 uow.ModifiedPizzas.Create(entity);
+
+                foreach (var ingr in pizzaDto.Ingredients)
+                {
+                    var ingrAmount = uow.IngredientAmounts.Query()
+                        .FirstOrDefault(x => x.IngredientId == ingr.Id);
+                    ingrAmount.Quantity -= ingr.Quantity;
+
+                    uow.IngredientAmounts.Update(ingrAmount);
+                }
 
                 uow.Save();
 
@@ -247,6 +265,15 @@ namespace Pizza_Ordering.Services.BLs
                 };
 
                 uow.SavedPizzas.Create(entity);
+
+                foreach (var ingr in pizzaDto.Ingredients)
+                {
+                    var ingrAmount = uow.IngredientAmounts.Query()
+                        .FirstOrDefault(x => x.IngredientId == ingr.Id);
+                    ingrAmount.Quantity -= ingr.Quantity;
+
+                    uow.IngredientAmounts.Update(ingrAmount);
+                }
 
                 uow.Save();
 

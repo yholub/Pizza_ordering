@@ -20,8 +20,7 @@
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-
-                    <li class="toShow" ><a href="" data-toggle="modal" data-target="#login-modal">Login</a></li>
+                    <li class="toShow"><a href="" data-toggle="modal" data-target="#login-modal">Login</a></li>
                     <li class="toHide" style="display:none" id="userList" hidden><a href="">Hello <span id="userNamePut"></span></a> </li>
                     <li class="toHide" style="display:none" id="logout" hidden><a href="">Logout</a> </li>
                 </ul>
@@ -44,10 +43,8 @@
                         <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
                     </button>
                 </div>
-
                 <!-- Begin # DIV Form -->
                 <div id="div-forms">
-
                     <!-- Begin # Login Form -->
                     <form id="login-form">
                         <div class="modal-body">
@@ -117,17 +114,16 @@
                         </div>
                     </form>
                     <!-- End | Register Form -->
-
                 </div>
                 <!-- End # DIV Form -->
-
             </div>
         </div>
     </div>
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
-            @RenderSection("scripts", required: false)
-         <script src="~/Scripts/jquery.cookie.js"></script>
-        <script src="~/Scripts/site.js"></script>
+    <script src="~/app/js/libs/date.js"></script>
+    @RenderSection("scripts", required: false)
+    <script src="~/Scripts/jquery.cookie.js"></script>
+    <script src="~/Scripts/site.js"></script>
 </body>
 </html>

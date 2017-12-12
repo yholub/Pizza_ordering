@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace Pizza_Ordering.DataProvider
 {
-    public class DbInitializer : DropCreateDatabaseAlways<ApplicationDbContext>
+    public class DbInitializer : DropCreateDatabaseIfModelChanges<ApplicationDbContext>
     {
         protected override void Seed(ApplicationDbContext context)
         {

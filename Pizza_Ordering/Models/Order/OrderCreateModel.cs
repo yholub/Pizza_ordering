@@ -12,7 +12,6 @@ namespace Pizza_Ordering.Models.Order
     {
         public long PizzaHouseId { get; set; }
 
-        [JsonProperty(PropertyName = "time")]
         public DateTime TimeToTake { get; set; }
 
         public List<OrderItemCreateModel> Items { get; set; }
