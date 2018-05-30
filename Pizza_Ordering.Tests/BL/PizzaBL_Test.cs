@@ -133,6 +133,7 @@ namespace Pizza_Ordering.Tests.BL
 
             //Assert
             Assert.AreEqual(fixPizzas.Count, actual.Count());
+            Assert.IsTrue(false);
         }
 
         [Test]
