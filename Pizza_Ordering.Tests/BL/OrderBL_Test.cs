@@ -247,8 +247,8 @@ namespace Pizza_Ordering.Tests.BL
         {
             OrderBL bl = new OrderBL(unitOfWorkFactory.Object);
             bl.Reject((int)orders[0].Id);
-            //Assert.AreEqual(orders[0].Status, PizzaStatusType.Refused);
-            Assert.IsTrue(false);
+            Assert.AreEqual(orders[0].Status, PizzaStatusType.Refused);
+            //Assert.IsTrue(false);
         }
 
         private void Update(PizzaHouse h)
